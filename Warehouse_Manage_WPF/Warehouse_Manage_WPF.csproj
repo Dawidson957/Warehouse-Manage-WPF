@@ -73,6 +73,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="EntitiesConfiguration\CustomerPropertiesConfiguration.cs" />
+    <Compile Include="EntitiesConfiguration\CustomerRelationshipsConfiguration.cs" />
+    <Compile Include="EntitiesConfiguration\DevicePropertiesConfiguration.cs" />
+    <Compile Include="EntitiesConfiguration\DeviceRelationshipsConfiguration.cs" />
+    <Compile Include="EntitiesConfiguration\ProducerPropertiesConfiguration.cs" />
+    <Compile Include="EntitiesConfiguration\ProducerRelationshipsConfiguration.cs" />
+    <Compile Include="EntitiesConfiguration\ProjectPropertiesConfiguration.cs" />
+    <Compile Include="EntitiesConfiguration\ProjectRelationshipsConfiguration.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Device.cs" />
     <Compile Include="Entities\Producer.cs" />
