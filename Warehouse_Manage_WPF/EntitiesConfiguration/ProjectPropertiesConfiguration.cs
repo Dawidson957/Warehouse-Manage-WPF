@@ -12,7 +12,14 @@ namespace Warehouse_Manage_WPF.EntitiesConfiguration
     {
         public ProjectPropertiesConfiguration()
         {
+            HasKey(c => c.Id);
 
+            Property(c => c.Name)
+            .HasColumnName("Name")
+            .HasColumnType("varchar")
+            .HasColumnOrder(2)
+            .IsRequired()
+            .HasMaxLength(255);
         }
     }
 }
