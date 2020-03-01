@@ -12,7 +12,21 @@ namespace Warehouse_Manage_WPF.EntitiesConfiguration
     {
         public ProducerPropertiesConfiguration()
         {
+            HasKey(c => c.Id);
 
+            Property(c => c.Name)
+            .HasColumnName("Name")
+            .HasColumnType("varchar")
+            .HasColumnOrder(2)
+            .IsRequired()
+            .HasMaxLength(64);
+
+            Property(c => c.URL)
+            .HasColumnName("URL")
+            .HasColumnType("nvarchar")
+            .HasColumnOrder(3)
+            .IsOptional()
+            .HasMaxLength(512);
         }
     }
 }
