@@ -8,6 +8,14 @@ namespace Warehouse_Manage_WPF.Entities
 {
     public class Device
     {
+        public int Id { get; set; }
 
+        public string Name { get; set; }
+
+        public string ArticleNumber { get; set; }
+
+        public string Location { get; set; }
+
+        public int Quantity { get; set; }
     }
 }
