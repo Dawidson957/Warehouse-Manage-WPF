@@ -12,7 +12,28 @@ namespace Warehouse_Manage_WPF.EntitiesConfiguration
     {
         public CustomerPropertiesConfiguration()
         {
+            HasKey(c => c.Id);
 
+            Property(c => c.Name)
+            .HasColumnName("Name")
+            .HasColumnType("varchar")
+            .HasColumnOrder(2)
+            .IsRequired()
+            .HasMaxLength(255);
+
+            Property(c => c.Address)
+            .HasColumnName("Address")
+            .HasColumnType("varchar")
+            .HasColumnOrder(3)
+            .IsOptional()
+            .HasMaxLength(128);
+
+            Property(c => c.City)
+            .HasColumnName("City")
+            .HasColumnType("varchar")
+            .HasColumnOrder(4)
+            .IsOptional()
+            .HasMaxLength(64);
         }
     }
 }
