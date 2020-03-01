@@ -12,7 +12,34 @@ namespace Warehouse_Manage_WPF.EntitiesConfiguration
     {
         public DevicePropertiesConfiguration()
         {
+            HasKey(c => c.Id);
 
+            Property(c => c.Name)
+            .HasColumnName("Name")
+            .HasColumnType("varchar")
+            .HasColumnOrder(2)
+            .IsRequired()
+            .HasMaxLength(255);
+
+            Property(c => c.ArticleNumber)
+            .HasColumnName("ArticleNumber")
+            .HasColumnType("nvarchar")
+            .HasColumnOrder(3)
+            .IsRequired()
+            .HasMaxLength(64);
+
+            Property(c => c.Location)
+            .HasColumnName("Location")
+            .HasColumnType("varchar")
+            .HasColumnOrder(4)
+            .IsRequired()
+            .HasMaxLength(4);
+
+            Property(c => c.Quantity)
+            .HasColumnName("Quantity")
+            .HasColumnType("int")
+            .HasColumnOrder(5)
+            .IsOptional();
         }
     }
 }
