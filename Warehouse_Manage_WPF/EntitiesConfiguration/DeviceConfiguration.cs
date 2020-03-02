@@ -32,7 +32,7 @@ namespace Warehouse_Manage_WPF.EntitiesConfiguration
             .HasColumnName("Location")
             .HasColumnType("varchar")
             .HasColumnOrder(4)
-            .IsRequired()
+            .IsOptional()
             .HasMaxLength(4);
 
             Property(c => c.Quantity)

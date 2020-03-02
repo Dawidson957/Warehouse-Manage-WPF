@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Warehouse_Manage_WPF.Entities;
+using Warehouse_Manage_WPF.EntityModel;
 
 namespace Warehouse_Manage_WPF
 {
@@ -21,7 +24,7 @@ namespace Warehouse_Manage_WPF
     public partial class MainWindow : Window
     {
         public MainWindow()
-        {
+        {   
             InitializeComponent();
         }
     }
