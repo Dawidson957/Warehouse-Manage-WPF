@@ -11,5 +11,9 @@ namespace Warehouse_Manage_WPF.Entities
         public int Id { get; set; }
 
         public string Name { get; set; }
+
+        public int CustomerID { get; set; }
+
+        public Customer Customer { get; set; }
     }
 }

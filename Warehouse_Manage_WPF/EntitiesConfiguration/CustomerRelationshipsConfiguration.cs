@@ -12,7 +12,9 @@ namespace Warehouse_Manage_WPF.EntitiesConfiguration
     {
         public CustomerRelationshipsConfiguration()
         {
-
+            HasMany(c => c.Projects)
+            .WithRequired(c => c.Customer)
+            .HasForeignKey(c => c.CustomerID);
         }
     }
 }

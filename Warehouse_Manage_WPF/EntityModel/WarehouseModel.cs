@@ -23,6 +23,7 @@ namespace Warehouse_Manage_WPF.EntityModel
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Configurations.Add(new CustomerPropertiesConfiguration());
             modelBuilder.Configurations.Add(new DevicePropertiesConfiguration());
             modelBuilder.Configurations.Add(new ProducerPropertiesConfiguration());

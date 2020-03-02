@@ -102,6 +102,10 @@
     <Compile Include="Migrations\202003021731298_AddedRelationBetweenProducerAndDeviceTable.designer.cs">
       <DependentUpon>202003021731298_AddedRelationBetweenProducerAndDeviceTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003021744270_AddedRelationshipBetweenCustomerAndProjectTable.cs" />
+    <Compile Include="Migrations\202003021744270_AddedRelationshipBetweenCustomerAndProjectTable.designer.cs">
+      <DependentUpon>202003021744270_AddedRelationshipBetweenCustomerAndProjectTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -121,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003021731298_AddedRelationBetweenProducerAndDeviceTable.resx">
       <DependentUpon>202003021731298_AddedRelationBetweenProducerAndDeviceTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003021744270_AddedRelationshipBetweenCustomerAndProjectTable.resx">
+      <DependentUpon>202003021744270_AddedRelationshipBetweenCustomerAndProjectTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
