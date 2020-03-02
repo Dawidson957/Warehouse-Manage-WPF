@@ -8,9 +8,9 @@ using Warehouse_Manage_WPF.Entities;
 
 namespace Warehouse_Manage_WPF.EntitiesConfiguration
 {
-    public class ProducerPropertiesConfiguration : EntityTypeConfiguration<Producer>
+    public class ProducerConfiguration : EntityTypeConfiguration<Producer>
     {
-        public ProducerPropertiesConfiguration()
+        public ProducerConfiguration()
         {
             HasKey(c => c.Id);
 
@@ -27,6 +27,10 @@ namespace Warehouse_Manage_WPF.EntitiesConfiguration
             .HasColumnOrder(3)
             .IsOptional()
             .HasMaxLength(512);
+
+            HasMany(c => c.Devices)
+            .WithRequired(c => c.Producer)
+            .HasForeignKey(c => c.ProducerID);
         }
     }
 }

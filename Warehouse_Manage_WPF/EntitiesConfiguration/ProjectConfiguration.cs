@@ -8,9 +8,9 @@ using Warehouse_Manage_WPF.Entities;
 
 namespace Warehouse_Manage_WPF.EntitiesConfiguration
 {
-    public class ProjectPropertiesConfiguration : EntityTypeConfiguration<Project>
+    public class ProjectConfiguration : EntityTypeConfiguration<Project>
     {
-        public ProjectPropertiesConfiguration()
+        public ProjectConfiguration()
         {
             HasKey(c => c.Id);
 

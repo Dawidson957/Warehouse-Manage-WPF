@@ -8,9 +8,9 @@ using Warehouse_Manage_WPF.Entities;
 
 namespace Warehouse_Manage_WPF.EntitiesConfiguration
 {
-    public class DevicePropertiesConfiguration : EntityTypeConfiguration<Device>
+    public class DeviceConfiguration : EntityTypeConfiguration<Device>
     {
-        public DevicePropertiesConfiguration()
+        public DeviceConfiguration()
         {
             HasKey(c => c.Id);
 

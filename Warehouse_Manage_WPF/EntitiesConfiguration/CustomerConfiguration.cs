@@ -8,9 +8,9 @@ using Warehouse_Manage_WPF.Entities;
 
 namespace Warehouse_Manage_WPF.EntitiesConfiguration
 {
-    public class CustomerPropertiesConfiguration : EntityTypeConfiguration<Customer>
+    public class CustomerConfiguration : EntityTypeConfiguration<Customer>
     {
-        public CustomerPropertiesConfiguration()
+        public CustomerConfiguration()
         {
             HasKey(c => c.Id);
 
@@ -34,6 +34,10 @@ namespace Warehouse_Manage_WPF.EntitiesConfiguration
             .HasColumnOrder(4)
             .IsOptional()
             .HasMaxLength(64);
+
+            HasMany(c => c.Projects)
+            .WithRequired(c => c.Customer)
+            .HasForeignKey(c => c.CustomerID);
         }
     }
 }
