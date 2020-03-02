@@ -98,6 +98,10 @@
     <Compile Include="Migrations\202003011656193_InitialModel.designer.cs">
       <DependentUpon>202003011656193_InitialModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003021731298_AddedRelationBetweenProducerAndDeviceTable.cs" />
+    <Compile Include="Migrations\202003021731298_AddedRelationBetweenProducerAndDeviceTable.designer.cs">
+      <DependentUpon>202003021731298_AddedRelationBetweenProducerAndDeviceTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -114,6 +118,9 @@
     </Compile>
     <EmbeddedResource Include="Migrations\202003011656193_InitialModel.resx">
       <DependentUpon>202003011656193_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003021731298_AddedRelationBetweenProducerAndDeviceTable.resx">
+      <DependentUpon>202003021731298_AddedRelationBetweenProducerAndDeviceTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

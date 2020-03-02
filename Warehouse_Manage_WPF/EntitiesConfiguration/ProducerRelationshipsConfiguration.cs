@@ -12,7 +12,9 @@ namespace Warehouse_Manage_WPF.EntitiesConfiguration
     {
         public ProducerRelationshipsConfiguration()
         {
-
+            HasMany(c => c.Devices)
+            .WithRequired(c => c.Producer)
+            .HasForeignKey(c => c.ProducerID);
         }
     }
 }

@@ -17,5 +17,10 @@ namespace Warehouse_Manage_WPF.Entities
         public string Location { get; set; }
 
         public int Quantity { get; set; }
+
+        public int ProducerID { get; set; }
+
+        public Producer Producer { get; set; }
+
     }
 }

@@ -13,5 +13,8 @@ namespace Warehouse_Manage_WPF.Entities
         public string Name { get; set; }
 
         public string URL { get; set; }
+
+        public virtual ICollection<Device> Devices { get; set; }
+
     }
 }
