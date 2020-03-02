@@ -15,5 +15,7 @@ namespace Warehouse_Manage_WPF.Entities
         public int CustomerID { get; set; }
 
         public Customer Customer { get; set; }
+
+        public virtual ICollection<Device> Devices { get; set; }
     }
 }

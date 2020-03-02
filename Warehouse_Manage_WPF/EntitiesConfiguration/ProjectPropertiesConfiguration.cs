@@ -20,6 +20,15 @@ namespace Warehouse_Manage_WPF.EntitiesConfiguration
             .HasColumnOrder(2)
             .IsRequired()
             .HasMaxLength(255);
+
+            HasMany(c => c.Devices)
+            .WithMany(c => c.Projects)
+            .Map(m =>
+            {
+                m.ToTable("ProjectDevices");
+                m.MapLeftKey("ProjectId");
+                m.MapRightKey("DeviceId");
+            });
         }
     }
 }
