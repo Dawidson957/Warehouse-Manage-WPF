@@ -75,6 +75,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DataAccess\DataAPI.cs" />
     <Compile Include="EntitiesConfiguration\CustomerConfiguration.cs" />
     <Compile Include="EntitiesConfiguration\DeviceConfiguration.cs" />
     <Compile Include="EntitiesConfiguration\ProducerConfiguration.cs" />
