@@ -256,5 +256,83 @@ namespace Warehouse_Manage_WPF.DataAccess
         }
 
         #endregion
+
+        #region Project Entity
+
+        public Project GetProjectById(int Id)
+        {
+            return context.Projects.Include("Devices").AsNoTracking().FirstOrDefault(c => c.Id == Id);
+        }
+
+        public List<Project> GetAllProjects()
+        {
+            List<Project> projects = context.Projects.Include("Devices").ToList();
+
+            return projects.Count == 0 ? null : projects;
+        }
+
+        public bool AddProject(Project project)
+        {
+            try
+            {
+                context.Projects.Add(project);
+                context.SaveChanges();
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool UpdateProject(Project project)
+        {
+            var existingProject = context.Projects.AsNoTracking().FirstOrDefault(c => c.Id == project.Id);
+
+            if (existingProject == null)
+                return false;
+            else
+            {
+                existingProject.Name = project.Name;
+                existingProject.CustomerID = project.CustomerID;
+
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch(Exception)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+
+        }
+
+        public bool DeleteProject(Project project)
+        {
+            var existingProject = context.Projects.AsNoTracking().FirstOrDefault(c => c.Id == project.Id);
+
+            if (existingProject == null)
+                return false;
+            else
+            {
+                try
+                {
+                    context.Projects.Remove(existingProject);
+                    context.SaveChanges();
+                }
+                catch(Exception)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
+        #endregion
     }
 }
