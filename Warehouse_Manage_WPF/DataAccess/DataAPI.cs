@@ -178,5 +178,83 @@ namespace Warehouse_Manage_WPF.DataAccess
         }
 
         #endregion
+
+        #region Customer Entity
+
+        public Customer GetCustomerById(int Id)
+        {
+            return context.Customers.AsNoTracking().FirstOrDefault(c => c.Id == Id);
+        }
+
+        public List<Customer> GetAllCustomers()
+        {
+            List<Customer> customers = context.Customers.AsNoTracking().ToList<Customer>();
+
+            return customers.Count == 0 ? null : customers;
+        }
+
+        public bool AddCustomer(Customer customer)
+        {
+            try
+            {
+                context.Customers.Add(customer);
+                context.SaveChanges();
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool UpdateCustomer(Customer customer)
+        {
+            var existingCustomer = context.Customers.AsNoTracking().FirstOrDefault(c => c.Id == customer.Id);
+
+            if (existingCustomer == null)
+                return false;
+            else
+            {
+                existingCustomer.Name = customer.Name;
+                existingCustomer.Address = customer.Address;
+                existingCustomer.City = customer.City;
+
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch(Exception)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
+        public bool DeleteCustomer(Customer customer)
+        {
+            var existingCustomer = context.Customers.AsNoTracking().FirstOrDefault(c => c.Id == customer.Id);
+
+            if (existingCustomer == null)
+                return false;
+            else
+            {
+                try
+                {
+                    context.Customers.Remove(customer);
+                    context.SaveChanges();
+                }
+                catch(Exception)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
+        #endregion
     }
 }
