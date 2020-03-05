@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Warehouse_Manage_WPF.Entities;
 using Warehouse_Manage_WPF.EntityModel;
+using Warehouse_Manage_WPF.DataAccess;
 
 namespace Warehouse_Manage_WPF
 {
