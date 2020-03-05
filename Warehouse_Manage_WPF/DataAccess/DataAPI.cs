@@ -101,5 +101,82 @@ namespace Warehouse_Manage_WPF.DataAccess
         }
 
         #endregion
+
+        #region Producer Entity
+
+        public List<Producer> GetAllProducers()
+        {
+            List<Producer> producers = context.Producers.AsNoTracking().ToList<Producer>();
+
+            return producers.Count == 0 ? null : producers;
+        }
+
+        public Producer GetProducerById(int Id)
+        {
+            return context.Producers.AsNoTracking().FirstOrDefault(c => c.Id == Id);
+        }
+
+        public bool AddProducer(Producer producer)
+        {
+            try
+            {
+                context.Producers.Add(producer);
+                context.SaveChanges();
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool UpdateProducer(Producer producer)
+        {
+            var existingProducer = context.Producers.AsNoTracking().FirstOrDefault(c => c.Id == producer.Id);
+
+            if (existingProducer == null)
+                return false;
+            else
+            {
+                existingProducer.Name = producer.Name;
+                existingProducer.URL = producer.URL;
+
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch(Exception)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
+        public bool DeleteProducer(Producer producer)
+        {
+            var existingProducer = context.Producers.AsNoTracking().FirstOrDefault(c => c.Id == producer.Id);
+
+            if (existingProducer == null)
+                return false;
+            else
+            {
+                try
+                {
+                    context.Producers.Remove(existingProducer);
+                    context.SaveChanges();
+                }
+                catch(Exception)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+        }
+
+        #endregion
     }
 }
