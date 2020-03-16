@@ -336,3 +336,6 @@ namespace Warehouse_Manage_WPF.DataAccess
         #endregion
     }
 }
+
+
+// Przeciążanie funkcji, ta sama funkcja z różnymi parametrami
