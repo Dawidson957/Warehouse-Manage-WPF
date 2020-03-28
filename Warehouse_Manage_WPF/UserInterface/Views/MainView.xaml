@@ -5,9 +5,144 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Warehouse_Manage_WPF.UserInterface.Views"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:viewmodel="clr-namespace:Warehouse_Manage_WPF.UserInterface.ViewModels"
+        xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
-        Title="MainView" Height="450" Width="800">
+        Title="MainView" Height="600" Width="1080" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize">
+    <Window.Resources>
+        
+        <!-- Reference to MainViewModel class -->
+        <viewmodel:MainViewModel x:Key="MainViewModel"/>
+
+        <!-- Open Menu animation -->
+        <Storyboard x:Key="MenuOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="LeftMenuGrid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="60"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="MainGrid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="1010"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="870"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <!-- Close Menu animation -->
+        <Storyboard x:Key="MenuClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="LeftMenuGrid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="60"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="MainGrid">
+                <EasingDoubleKeyFrame KeyTime="0" Value="870"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="1010"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
+    <!-- Wiring up left menu button with storyboards action -->
+    <Window.Triggers>
+
+        <!-- Close Menu button -->
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="CloseMenuButton">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
+        </EventTrigger>
+
+        <!-- Open Menu button -->
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="OpenMenuButton">
+            <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
+        </EventTrigger>
+    </Window.Triggers>
+
     <Grid>
         
+        <!-- Top Menu -->
+        <DockPanel Height="70" VerticalAlignment="Top" Background="#FF194EDE">
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right">
+
+                <!-- Currently logged in username -->
+                <TextBlock Text="Gracjan Bryt" VerticalAlignment="Center" Foreground="White" FontSize="18"/>
+
+                <!-- Popup Menu -->
+                <materialDesign:PopupBox Margin="10" Foreground="White" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
+                    <StackPanel Width="150">
+                        <Button Content="Account"/>
+                        <Button Content="Settings"/>
+                        <Button Content="Help"/>
+                        <Separator/>
+                        <Button Content="Logout"/>
+                    </StackPanel>
+                </materialDesign:PopupBox>
+            </StackPanel>
+        </DockPanel>
+
+        <!-- Left Menu -->
+        <Grid x:Name="LeftMenuGrid" Width="60" HorizontalAlignment="Left" Background="#FF171C87">
+            <StackPanel>
+
+                <!-- Top part of Menu (white) -->
+                <Grid Height="70" Background="White">
+
+                    <!-- Close Menu button -->
+                    <Button x:Name="CloseMenuButton" Width="60" Height="60" HorizontalAlignment="Right" VerticalAlignment="Top"
+                            Background="{x:Null}" BorderBrush="{x:Null}" Visibility="Collapsed" Click="CloseMenuButton_Click">
+                        <materialDesign:PackIcon Kind="ArrowLeft" Foreground="#FF171C87" Width="25" Height="25"/>
+                    </Button>
+
+                    <!-- Open Menu button -->
+                    <Button x:Name="OpenMenuButton" Width="60" Height="60" HorizontalAlignment="Right" VerticalAlignment="Top"
+                            Background="{x:Null}" BorderBrush="{x:Null}" Click="OpenMenuButton_Click">
+                        <materialDesign:PackIcon Kind="Menu" Foreground="#FF171C87" Width="25" Height="25"/>
+                    </Button>
+                </Grid>
+
+                <!-- Actual menu navigation -->
+                <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+                    <!-- First Item (Magazyn) -->
+                    <ListViewItem Height="60" Foreground="White">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Home" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
+                            <TextBlock Text="Magazyn" VerticalAlignment="Center" Margin="20 10" FontSize="16"/>
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <!-- Second Item (Nowy element) -->
+                    <ListViewItem Height="60" Foreground="White">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="AddBox" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
+                            <TextBlock Text="Nowy element" VerticalAlignment="Center" Margin="20 10" FontSize="16"/>
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <!-- Third Item (Projekty) -->
+                    <ListViewItem Height="60" Foreground="White">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="LocalLibrary" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
+                            <TextBlock Text="Projekty" VerticalAlignment="Center" Margin="20 10" FontSize="16"/>
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <!-- Fourth Item (Udostępnij) -->
+                    <ListViewItem Height="60" Foreground="White">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ShareVariant" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
+                            <TextBlock Text="Udostępnij" VerticalAlignment="Center" Margin="20 10" FontSize="16"/>
+                        </StackPanel>
+                    </ListViewItem>
+
+                    <!-- Fifth Item (GitHub) -->
+                    <ListViewItem Height="60" Foreground="White">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="GithubBox" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
+                            <TextBlock Text="GitHub" VerticalAlignment="Center" Margin="20 10" FontSize="16"/>
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="MainGrid" Width="1010" Height="520" Background="White" Margin="65 75 5 5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+
+        </Grid>
     </Grid>
 </Window>

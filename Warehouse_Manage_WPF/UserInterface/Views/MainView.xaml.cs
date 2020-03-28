@@ -23,5 +23,17 @@ namespace Warehouse_Manage_WPF.UserInterface.Views
         {
             InitializeComponent();
         }
+
+        private void CloseMenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenMenuButton.Visibility = Visibility.Visible;
+            CloseMenuButton.Visibility = Visibility.Collapsed;
+        }
+
+        private void OpenMenuButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenMenuButton.Visibility = Visibility.Collapsed;
+            CloseMenuButton.Visibility = Visibility.Visible;
+        }
     }
 }
