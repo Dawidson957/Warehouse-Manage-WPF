@@ -94,43 +94,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DataAccess\DataAPI.cs" />
-    <Compile Include="EntitiesConfiguration\CustomerConfiguration.cs" />
-    <Compile Include="EntitiesConfiguration\DeviceConfiguration.cs" />
-    <Compile Include="EntitiesConfiguration\ProducerConfiguration.cs" />
-    <Compile Include="EntitiesConfiguration\ProjectConfiguration.cs" />
-    <Compile Include="Entities\Customer.cs" />
-    <Compile Include="Entities\Device.cs" />
-    <Compile Include="Entities\Producer.cs" />
-    <Compile Include="Entities\Project.cs" />
-    <Compile Include="EntityModel\WarehouseModel.cs" />
     <Page Include="UserInterface\Views\MainView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\202003011656193_InitialModel.cs" />
-    <Compile Include="Migrations\202003011656193_InitialModel.designer.cs">
-      <DependentUpon>202003011656193_InitialModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003021731298_AddedRelationBetweenProducerAndDeviceTable.cs" />
-    <Compile Include="Migrations\202003021731298_AddedRelationBetweenProducerAndDeviceTable.designer.cs">
-      <DependentUpon>202003021731298_AddedRelationBetweenProducerAndDeviceTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003021744270_AddedRelationshipBetweenCustomerAndProjectTable.cs" />
-    <Compile Include="Migrations\202003021744270_AddedRelationshipBetweenCustomerAndProjectTable.designer.cs">
-      <DependentUpon>202003021744270_AddedRelationshipBetweenCustomerAndProjectTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003021749306_AddedRelationshipBetweenProjectAndDeviceTable.cs" />
-    <Compile Include="Migrations\202003021749306_AddedRelationshipBetweenProjectAndDeviceTable.designer.cs">
-      <DependentUpon>202003021749306_AddedRelationshipBetweenProjectAndDeviceTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003021918156_AddedOptionalForLocationColumnToDeviceTable.cs" />
-    <Compile Include="Migrations\202003021918156_AddedOptionalForLocationColumnToDeviceTable.designer.cs">
-      <DependentUpon>202003021918156_AddedOptionalForLocationColumnToDeviceTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -144,21 +113,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202003011656193_InitialModel.resx">
-      <DependentUpon>202003011656193_InitialModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003021731298_AddedRelationBetweenProducerAndDeviceTable.resx">
-      <DependentUpon>202003021731298_AddedRelationBetweenProducerAndDeviceTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003021744270_AddedRelationshipBetweenCustomerAndProjectTable.resx">
-      <DependentUpon>202003021744270_AddedRelationshipBetweenCustomerAndProjectTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003021749306_AddedRelationshipBetweenProjectAndDeviceTable.resx">
-      <DependentUpon>202003021749306_AddedRelationshipBetweenProjectAndDeviceTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003021918156_AddedOptionalForLocationColumnToDeviceTable.resx">
-      <DependentUpon>202003021918156_AddedOptionalForLocationColumnToDeviceTable.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
