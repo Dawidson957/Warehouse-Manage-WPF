@@ -16,5 +16,12 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
 
         public ICollection<Device> Devices { get; set; }
 
+        public Producer(Entities.Producer producer)
+        {
+            Id = producer.Id;
+            Name = producer.Name;
+            URL = producer.URL;
+        }
+
     }
 }

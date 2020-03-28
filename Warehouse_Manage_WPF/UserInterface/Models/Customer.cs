@@ -18,5 +18,14 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
 
         public ICollection<Project> Projects { get; set; }
 
+        public Customer(Entities.Customer customer)
+        {
+            Id = customer.Id;
+            Name = customer.Name;
+            Address = customer.Address;
+            City = customer.City;
+
+        }
+
     }
 }

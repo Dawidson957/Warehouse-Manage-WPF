@@ -18,5 +18,15 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
 
         public ICollection<Device> Devices { get; set; }
 
+        public Project(Entities.Project project)
+        {
+            Id = project.Id;
+            Name = project.Name;
+            CustomerID = project.CustomerID;
+
+            if(project.Customer != null)
+                Customer = new Customer(project.Customer);
+        }
+
     }
 }

@@ -24,5 +24,19 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
 
         public ICollection<Project> Projects { get; set; }
 
+        public Device(Entities.Device device)
+        {
+            Id = device.Id;
+            Name = device.Name;
+            ArticleNumber = device.ArticleNumber;
+            Location = device.Location;
+            Quantity = device.Quantity;
+            ProducerID = device.ProducerID;
+
+            if(device.Producer != null)
+                ProducerObject = new Producer(device.Producer);
+
+        }
+
     }
 }
