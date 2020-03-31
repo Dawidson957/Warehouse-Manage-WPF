@@ -11,9 +11,6 @@
         Title="MainView" Height="600" Width="1080" WindowStartupLocation="CenterScreen" WindowStyle="None" ResizeMode="NoResize">
     <Window.Resources>
         
-        <!-- Reference to MainViewModel class -->
-        <viewmodel:MainViewModel x:Key="MainViewModel"/>
-
         <!-- Open Menu animation -->
         <Storyboard x:Key="MenuOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="LeftMenuGrid">
@@ -141,8 +138,9 @@
             </StackPanel>
         </Grid>
 
+        <!-- Main Grid for UserControl -->
         <Grid x:Name="MainGrid" Width="1010" Height="520" Background="White" Margin="65 75 5 5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
-
+            <ContentControl x:Name="ActiveItem"/>
         </Grid>
     </Grid>
 </Window>

@@ -20,7 +20,7 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
 
         public int ProducerID { get; set; }
 
-        public Producer ProducerObject { get; set; }
+        public string ProducerName { get; set; }
 
         public ICollection<Project> Projects { get; set; }
 
@@ -32,9 +32,8 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
             Location = device.Location;
             Quantity = device.Quantity;
             ProducerID = device.ProducerID;
-
-            if(device.Producer != null)
-                ProducerObject = new Producer(device.Producer);
+            ProducerName = device.Producer.Name;
+            
 
         }
 

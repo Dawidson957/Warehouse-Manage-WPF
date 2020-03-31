@@ -1,0 +1,70 @@
+﻿<Window x:Class="Warehouse_Manage_WPF.UserInterface.Views.DeviceDetailsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Warehouse_Manage_WPF.UserInterface.Views"
+        mc:Ignorable="d"
+        Title="DeviceDetailsView" Height="400" Width="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Row 0 -->
+        <TextBlock Grid.Row="0" Grid.Column="0" Margin="0 10 0 0" Grid.ColumnSpan="7" HorizontalAlignment="Center" Text="Device Details" FontSize="30" FontWeight="Bold" />
+
+        <!-- Row 1 -->
+        <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" 
+                 Width="200"  Margin="20 10 0 0"
+                 x:Name="Name"
+                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 materialDesign:HintAssist.Hint="Nazwa urządzenia"/>
+
+        <!-- Row 2 -->
+        <TextBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" 
+                 Width="200"  Margin="20 10 0 0"
+                 x:Name="ArticleNumber"
+                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 materialDesign:HintAssist.Hint="Numer artykułu"/>
+
+        <!-- Row 3 -->
+        <ComboBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"
+                  Width="200" Margin="20 10 0 0" IsEditable="True"
+                  x:Name="Producers"
+                  SelectedItem="{Binding Path=ProducerName}"
+                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
+                  materialDesign:HintAssist.Hint="Producent"
+                  />
+
+        <!-- Row 4 -->
+        <TextBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" 
+                 Width="200"  Margin="20 10 0 0"
+                 x:Name="Quantity"
+                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 materialDesign:HintAssist.Hint="Ilość"/>
+
+        <!-- Row 5 -->
+        <TextBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" 
+                 Width="200"  Margin="20 10 0 0"
+                 x:Name="Location"
+                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 materialDesign:HintAssist.Hint="Lokalizacja"/>
+
+        <!-- Row 6 -->
+        <Button x:Name="Submit" Content="Submit" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" Width="150" Margin="0 20 0 0"/>
+    </Grid>
+</Window>
