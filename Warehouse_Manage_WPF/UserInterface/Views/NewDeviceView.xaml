@@ -7,81 +7,92 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="White" FontSize="18">
+             d:DesignHeight="500" d:DesignWidth="800" Background="White" >
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <!-- Row 0 -->
-        <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Top" Height="60" Margin="1 5 1 5">
-            <TextBlock Text="Nowy produkt" HorizontalAlignment="Left" FontSize="36" FontFamily="Microsoft YaHei" FontWeight="Bold" Margin="5 10 0 0"/>
+        <TextBlock Text="Nowe urządzenie" Style="{StaticResource MaterialDesignHeadline1TextBlock}" FontSize="30" Grid.Row="0" Margin="10 10 0 0" />
 
-            <materialDesign:PopupBox Foreground="Black" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" HorizontalAlignment="Right" Margin="0 0 5 0">
-                <StackPanel Width="150">
-                    <Button x:Name="NewProducerWindowOpenButton" Content="Nowy producent" Click="NewProducerWindowOpenButton_Click"/>
+        <Separator Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignSeparator}" Margin="5 0 5 0"/>
+
+        <materialDesign:Card Grid.Row="2" Grid.Column="0" Height="370" Width="300" Margin="20 15 0 0" materialDesign:ShadowAssist.ShadowDepth="Depth3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="Dane urządzenia" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="5 5 0 0" FontSize="20"/>
+
+                <Separator Grid.Row="1" Style="{StaticResource MaterialDesignSeparator}" Margin="5 0 5 0"/>
+
+                <TextBox Grid.Row="2" Width="250" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         materialDesign:HintAssist.Hint="Nazwa" />
+
+                <TextBox Grid.Row="3" Width="250" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         materialDesign:HintAssist.Hint="Numer artykułu" Margin="0 15 0 0"/>
+
+                <ComboBox Grid.Row="4" Width="250" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                          materialDesign:HintAssist.Hint="Producent" Margin="0 20 0 0" />
+
+                <TextBox Grid.Row="5" Width="250" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         materialDesign:HintAssist.Hint="Lokalizacja" Margin="0 15 0 0"/>
+
+                <TextBox Grid.Row="6" Width="250" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         materialDesign:HintAssist.Hint="Ilość" Margin="0 15 0 0"/>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="7" Margin="0 20 0 0" HorizontalAlignment="Center" >
+                    <Button Content="Zapisz" Width="80" Style="{StaticResource MaterialDesignFlatButton}" Margin="0 0 30 0"/>
+                    <Button Content="Wyczyść" Width="100" Style="{StaticResource MaterialDesignFlatButton}" />
                 </StackPanel>
-            </materialDesign:PopupBox>
-        </DockPanel>
 
-        <!-- Row 1 -->
-        <TextBox Grid.Row="1" Grid.Column="0" Width="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                 materialDesign:HintAssist.Hint="Nazwa urządzenia" HorizontalAlignment="Left" Margin="20 0 0 0"/>
 
-        <TextBlock x:Name="NewProducerTitle" Grid.Row="1" Grid.Column="1" Text="Nowy producent" FontSize="24" Margin="50 0 0 0" VerticalAlignment="Center" Visibility="Collapsed"/>
 
-        <!-- Row 2 -->
-        <TextBox Grid.Row="2" Grid.Column="0" Width="300" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                 materialDesign:HintAssist.Hint="Numer artykułu" HorizontalAlignment="Left" Margin="20 10 0 0"/>
+            </Grid>
+        </materialDesign:Card>
 
-        <TextBox x:Name="NewProducerName" Grid.Row="2" Grid.Column="1" Width="250" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 materialDesign:HintAssist.Hint="Nazwa producenta" HorizontalAlignment="Left" Margin="60 10 0 0" Height="50" Visibility="Collapsed"/>
+        <materialDesign:Card Grid.Row="2" Grid.Column="1" Height="200" Width="250" Margin="30 15 0 0" materialDesign:ShadowAssist.ShadowDepth="Depth3"
+                             VerticalAlignment="Top">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
 
-        <!-- Row 3 -->
-        <ComboBox Grid.Row="3" Grid.Column="0" Width="300" Margin="20 10 0 0" IsEditable="True" HorizontalAlignment="Left"
-                  SelectedItem="{Binding Path=ProducerName}"
-                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                  materialDesign:HintAssist.Hint="Producent"
-                  />
+                <TextBlock Grid.Row="0" Text="Nowy producent" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="5 5 0 0" FontSize="20"/>
 
-        <TextBox x:Name="NewProducerURL" Grid.Row="3" Grid.Column="1" Width="250" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 materialDesign:HintAssist.Hint="URL" HorizontalAlignment="Left" Margin="60 10 0 0" Height="50" Visibility="Collapsed"/>
+                <Separator Grid.Row="1" Style="{StaticResource MaterialDesignSeparator}" Margin="5 0 5 0"/>
 
-        <!-- Row 4 -->
-        <TextBox Grid.Row="4" Grid.Column="0"
-                 Width="300"  Margin="20 10 0 0" HorizontalAlignment="Left"
-                 x:Name="Quantity"
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 materialDesign:HintAssist.Hint="Ilość"/>
+                <TextBox Grid.Row="2" Width="200" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         materialDesign:HintAssist.Hint="Nazwa" />
 
-        <Button x:Name="SaveNewProducer" Content="Zapisz" Grid.Row="4" Grid.Column="1" Width="130" Height="40" Margin="60 20 0 0"
-                Style="{StaticResource MaterialDesignFlatButton}" FontSize="20" HorizontalAlignment="Left" Visibility="Collapsed"/>
+                <TextBox Grid.Row="3" Width="200" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                         materialDesign:HintAssist.Hint="URL" Margin="0 15 0 0" />
 
-        <!-- Row 5 -->
-        <TextBox Grid.Row="5" Grid.Column="0"
-                 Width="300"  Margin="20 10 0 0" HorizontalAlignment="Left"
-                 x:Name="Location"
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 materialDesign:HintAssist.Hint="Lokalizacja"/>
-        
-        <!-- Row 6 -->
-        <Button x:Name="AddNewDeviceButton" Content="Zapisz" Grid.Row="6" Grid.Column="0" Width="130" Height="40" Margin="20 20 0 0"
-                Style="{StaticResource MaterialDesignFlatButton}" FontSize="20" HorizontalAlignment="Left"/>
+                <Button Content="Zapisz" Grid.Row="4" Width="80" Style="{StaticResource MaterialDesignFlatButton}" Margin="0 15 0 0" HorizontalAlignment="Center"/>
 
-        <Button x:Name="ClearFields" Content="Wyczyść" Grid.Row="6" Grid.Column="0" Width="130" Height="40" Margin="0 20 20 0"
-                Style="{StaticResource MaterialDesignFlatButton}" FontSize="20" HorizontalAlignment="Right"/>
+            </Grid>
+        </materialDesign:Card>
     </Grid>
 </UserControl>

@@ -66,7 +66,7 @@
                         <Button Content="Settings"/>
                         <Button Content="Help"/>
                         <Separator/>
-                        <Button Content="Logout"/>
+                        <Button Content="Logout" cal:Message.Attach="[Event Click] = [Action CloseAppButton]"/>
                     </StackPanel>
                 </materialDesign:PopupBox>
             </StackPanel>
@@ -96,7 +96,7 @@
                 <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled">
 
                     <!-- First Item (Magazyn) -->
-                    <ListViewItem Height="60" Foreground="White">
+                    <ListViewItem Height="60" Foreground="White" cal:Message.Attach="[Event PreviewMouseLeftButtonDown] = [Action WarehouseViewOpen]">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Home" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
                             <TextBlock Text="Magazyn" VerticalAlignment="Center" Margin="20 10" FontSize="16"/>
@@ -104,7 +104,7 @@
                     </ListViewItem>
 
                     <!-- Second Item (Nowy element) -->
-                    <ListViewItem Height="60" Foreground="White">
+                    <ListViewItem Height="60" Foreground="White" cal:Message.Attach="[Event PreviewMouseLeftButtonDown] = [Action NewDeviceViewOpen]">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="AddBox" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
                             <TextBlock Text="Nowy element" VerticalAlignment="Center" Margin="20 10" FontSize="16"/>
@@ -112,7 +112,7 @@
                     </ListViewItem>
 
                     <!-- Third Item (Projekty) -->
-                    <ListViewItem Height="60" Foreground="White">
+                    <ListViewItem Height="60" Foreground="White" cal:Message.Attach="[Event PreviewMouseLeftButtonDown] = [Action ProjectListViewOpen]">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="LocalLibrary" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
                             <TextBlock Text="Projekty" VerticalAlignment="Center" Margin="20 10" FontSize="16"/>
@@ -120,7 +120,7 @@
                     </ListViewItem>
 
                     <!-- Fourth Item (Udostępnij) -->
-                    <ListViewItem Height="60" Foreground="White">
+                    <ListViewItem Height="60" Foreground="White" cal:Message.Attach="[Event PreviewMouseLeftButtonDown] = [Action ProjectViewOpen]">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="ShareVariant" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
                             <TextBlock Text="Udostępnij" VerticalAlignment="Center" Margin="20 10" FontSize="16"/>

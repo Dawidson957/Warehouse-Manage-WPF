@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using Warehouse_Manage_WPF.UserInterface.Models;
 using Warehouse_Manage_WPF.DataAccess;
+using System.Windows;
+using Warehouse_Manage_WPF.Validators;
+using Warehouse_Manage_WPF.UserInterface.Helpers;
 
 namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
@@ -20,14 +23,29 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         private DataAPI _dataAPI { get; set; }
 
-        public Device DeviceModel { get; set; }
+        private DeviceModel deviceModel { get; set; }
 
         public BindableCollection<string> Producers { get; set; }
 
-        public DeviceDetailsViewModel(Device device)
+        public DeviceDetailsViewModel(IWindowManager windowManager)
         {
             _dataAPI = new DataAPI();
             LoadProducers();
+        }
+
+        public override void CanClose(Action<bool> callback)
+        {
+            if (SomethingChangedFlag)
+            {
+                MessageBoxResult result = MessageBox.Show("Czy chcesz zapisać zmiany?", "Title", MessageBoxButton.YesNo);
+
+                if (result == MessageBoxResult.Yes)
+                    return;
+                else
+                    callback(true);
+            }
+            else
+                callback(true);
         }
 
         private void LoadProducers()
@@ -39,13 +57,16 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
                 Producers.Add(producer.Name);
         }
 
-        public void LoadDevice(Device device)
+        public void LoadDevice(DeviceModel device)
         {
+            deviceModel = device;
+
             Name = device.Name;
             ArticleNumber = device.ArticleNumber;
             ProducerName = device.ProducerName;
             Quantity = device.Quantity;
             Location = device.Location;
+            SomethingChangedFlag = false;
         }
 
         public string Name
@@ -53,7 +74,9 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             get { return _name; }
             set 
             { 
-                _name = value; 
+                _name = value;
+                NotifyOfPropertyChange(() => Name);
+                SomethingChangedFlag = true;
             }
         }
 
@@ -73,7 +96,9 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             get { return _quantity; }
             set 
             { 
-                _quantity = value; 
+                _quantity = value;
+                NotifyOfPropertyChange(() => Quantity);
+                SomethingChangedFlag = true;
             }
         }
 
@@ -82,7 +107,9 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             get { return _location; }
             set 
             { 
-                _location = value; 
+                _location = value;
+                NotifyOfPropertyChange(() => Location);
+                SomethingChangedFlag = true;
             }
         }
 
@@ -91,7 +118,9 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             get { return _producerName; }
             set 
             { 
-                _producerName = value; 
+                _producerName = value;
+                NotifyOfPropertyChange(() => ProducerName);
+                SomethingChangedFlag = true;
             }
         }
 
@@ -104,5 +133,51 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             }
         }
 
+        public void SubmitButton()
+        {
+            var device = new DeviceModel(deviceModel.Id, Name, ArticleNumber, Location, Quantity, ProducerName);
+            var deviceValidator = new DeviceValidator();
+            var result = deviceValidator.Validate(device);
+
+            if (result.IsValid)
+            {
+                var converter = new EntitiesConverter();
+                var resultt = _dataAPI.UpdateDevice(converter.DeviceToEntityDevice(device));
+
+                if (resultt)
+                {
+                    SomethingChangedFlag = false;
+                    MessageBox.Show("Evertything is so good.");
+                }
+                else
+                    MessageBox.Show("Something bad happend");
+            }
+            else
+            {
+                string resultString = "";
+
+                foreach (var failure in result.Errors)
+                    resultString += "Property: " + failure.PropertyName + " - Error: " + failure.ErrorMessage + "\n";
+
+                MessageBox.Show(resultString);
+            }
+        }
+
+        public void DeleteButton()
+        {
+            MessageBoxResult result = MessageBox.Show("Na pewno chcesz usunąć?", "Title", MessageBoxButton.YesNo);
+
+            if(result == MessageBoxResult.Yes)
+            {
+                var device = new DeviceModel(deviceModel.Id, Name, ArticleNumber, Location, Quantity, ProducerName);
+                var converter = new EntitiesConverter();
+                var resultt = _dataAPI.DeleteDevice(converter.DeviceToEntityDevice(device));
+
+                if (resultt)
+                    MessageBox.Show("Everything is good");
+                else
+                    MessageBox.Show("Something bad happend");
+            }
+        }
     }
 }

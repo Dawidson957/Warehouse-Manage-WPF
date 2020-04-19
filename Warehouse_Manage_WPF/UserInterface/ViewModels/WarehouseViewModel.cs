@@ -19,9 +19,9 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         private IWindowManager _windowManager { get; set; }
 
         
-        public BindableCollection<Device> Devices { get; set; }
+        public BindableCollection<DeviceModel> Devices { get; set; }
 
-        public Device SelectedDevice { get; set; }
+        public DeviceModel SelectedDevice { get; set; }
 
 
         public WarehouseViewModel(SimpleContainer simpleContainer, IWindowManager windowManager)
@@ -34,11 +34,11 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         private void LoadDevices()
         {
-            Devices = new BindableCollection<Device>();
+            Devices = new BindableCollection<DeviceModel>();
             var devicesFromAPI = _dataAPI.GetAllDevices();
 
             foreach (var device in devicesFromAPI)
-                Devices.Add(new Device(device));
+                Devices.Add(new DeviceModel(device));
         }
 
         public void MouseDoubleClick_DataGrid()

@@ -21,5 +21,33 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             _simpleContainer = simpleContainer;
             ActivateItem(_simpleContainer.GetInstance<WarehouseViewModel>());
         }
+
+        public void NewDeviceViewOpen()
+        {
+            ActivateItem(_simpleContainer.GetInstance<NewDeviceViewModel>());
+        }
+
+        public void WarehouseViewOpen()
+        {
+            ActivateItem(_simpleContainer.GetInstance<WarehouseViewModel>());
+        }
+
+        public void ProjectListViewOpen()
+        {
+            ActivateItem(_simpleContainer.GetInstance<ProjectListViewModel>());
+        }
+
+        public void ProjectViewOpen()
+        {
+            ActivateItem(_simpleContainer.GetInstance<ProjectViewModel>());
+        }
+
+        public void CloseAppButton()
+        {
+            if (ActiveItem != null)
+                DeactivateItem(ActiveItem, true);
+
+            TryClose();
+        }
     }
 }

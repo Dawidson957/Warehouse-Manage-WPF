@@ -27,10 +27,7 @@ namespace Warehouse_Manage_WPF.UserInterface.Views
 
         private void NewProducerWindowOpenButton_Click(object sender, RoutedEventArgs e)
         {
-            NewProducerTitle.Visibility = Visibility.Visible;
-            NewProducerName.Visibility = Visibility.Visible;
-            NewProducerURL.Visibility = Visibility.Visible;
-            SaveNewProducer.Visibility = Visibility.Visible;
+            
         }
     }
 }
