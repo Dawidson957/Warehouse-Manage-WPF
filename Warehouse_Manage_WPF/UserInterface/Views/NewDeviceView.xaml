@@ -23,7 +23,12 @@
 
         <TextBlock Text="Nowe urządzenie" Style="{StaticResource MaterialDesignHeadline1TextBlock}" FontSize="30" Grid.Row="0" Margin="10 10 0 0" />
 
-        <Separator Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignSeparator}" Margin="5 0 5 0"/>
+        <materialDesign:Snackbar x:Name="SnackbarDevice" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"
+                          MessageQueue="{materialDesign:MessageQueue}" Width="400"
+                         cal:Message.Attach="[Event Loaded] = [Action SnackbarLoaded($source)]"/>
+
+        <Separator Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignSeparator}" Margin="5 0 5 0"
+                   />
 
         <materialDesign:Card Grid.Row="2" Grid.Column="0" Height="370" Width="300" Margin="20 15 0 0" materialDesign:ShadowAssist.ShadowDepth="Depth3">
             <Grid>
@@ -44,24 +49,24 @@
 
                 <Separator Grid.Row="1" Style="{StaticResource MaterialDesignSeparator}" Margin="5 0 5 0"/>
 
-                <TextBox Grid.Row="2" Width="250" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                <TextBox x:Name="DeviceName" Grid.Row="2" Width="250" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="Nazwa" />
 
-                <TextBox Grid.Row="3" Width="250" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                <TextBox x:Name="ArticleNumber" Grid.Row="3" Width="250" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="Numer artykułu" Margin="0 15 0 0"/>
 
-                <ComboBox Grid.Row="4" Width="250" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
-                          materialDesign:HintAssist.Hint="Producent" Margin="0 20 0 0" />
+                <ComboBox x:Name="ProducersName" Grid.Row="4" Width="250" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
+                          materialDesign:HintAssist.Hint="Producent" Margin="0 20 0 0" SelectedItem="{Binding SelectedProducerName}" />
 
-                <TextBox Grid.Row="5" Width="250" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                <TextBox x:Name="Location" Grid.Row="5" Width="250" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="Lokalizacja" Margin="0 15 0 0"/>
 
-                <TextBox Grid.Row="6" Width="250" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                <TextBox x:Name="Quantity" Grid.Row="6" Width="250" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="Ilość" Margin="0 15 0 0"/>
 
                 <StackPanel Orientation="Horizontal" Grid.Row="7" Margin="0 20 0 0" HorizontalAlignment="Center" >
-                    <Button Content="Zapisz" Width="80" Style="{StaticResource MaterialDesignFlatButton}" Margin="0 0 30 0"/>
-                    <Button Content="Wyczyść" Width="100" Style="{StaticResource MaterialDesignFlatButton}" />
+                    <Button x:Name="SaveButton" Content="Zapisz" Width="80" Style="{StaticResource MaterialDesignFlatButton}" Margin="0 0 30 0"/>
+                    <Button x:Name="ClearButton" Content="Wyczyść" Width="100" Style="{StaticResource MaterialDesignFlatButton}" />
                 </StackPanel>
 
 
@@ -84,13 +89,13 @@
 
                 <Separator Grid.Row="1" Style="{StaticResource MaterialDesignSeparator}" Margin="5 0 5 0"/>
 
-                <TextBox Grid.Row="2" Width="200" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                <TextBox x:Name="ProducerName" Grid.Row="2" Width="200" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="Nazwa" />
 
-                <TextBox Grid.Row="3" Width="200" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                <TextBox x:Name="URL" Grid.Row="3" Width="200" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="URL" Margin="0 15 0 0" />
 
-                <Button Content="Zapisz" Grid.Row="4" Width="80" Style="{StaticResource MaterialDesignFlatButton}" Margin="0 15 0 0" HorizontalAlignment="Center"/>
+                <Button x:Name="SaveNewProducer" Content="Zapisz" Grid.Row="4" Width="80" Style="{StaticResource MaterialDesignFlatButton}" Margin="0 15 0 0" HorizontalAlignment="Center"/>
 
             </Grid>
         </materialDesign:Card>

@@ -1,14 +1,237 @@
 ﻿using Caliburn.Micro;
+using DataAccess.DataAcc;
+using MaterialDesignThemes.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using Warehouse_Manage_WPF.DataAccess;
+using Warehouse_Manage_WPF.UserInterface.Models;
+using Warehouse_Manage_WPF.Validators;
 
 namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
     public class NewDeviceViewModel : Screen
     {
+		private BindableCollection<string> _producersName;
+		private ProducerAccess producerAccess;
+		private Snackbar _snackbarNewDeviceForm;
 
-    }
+		public NewDeviceViewModel()
+		{
+			producerAccess = new ProducerAccess();
+		}
+
+		protected override async void OnViewLoaded(object view)
+		{
+			base.OnViewLoaded(view);
+			await LoadProducers();
+		}
+
+		private async Task LoadProducers()
+		{
+			var producersFromAPI = await producerAccess.GetProducerNamesAll();
+			ProducersName = new BindableCollection<string>(producersFromAPI);
+		}
+
+		public BindableCollection<string> ProducersName
+		{
+			get { return _producersName; }
+			set 
+			{ 
+				_producersName = value;
+				NotifyOfPropertyChange(() => ProducersName);
+			}
+		}
+
+		public Snackbar SnackbarNotification
+		{
+			get { return _snackbarNewDeviceForm; }
+			set
+			{
+				_snackbarNewDeviceForm = value;
+				NotifyOfPropertyChange(() => SnackbarNotification);
+			}
+		}
+
+		public void SnackbarLoaded(object sender)
+		{
+			SnackbarNotification = (Snackbar)sender;
+		}
+
+		/// <summary>
+		/// Controls for adding new producer form
+		/// </summary>
+		#region NewProducerForm
+
+		private string _producerName;
+		private string _url;
+
+
+		public string ProducerName
+		{
+			get { return _producerName; }
+			set 
+			{ 
+				_producerName = value;
+				NotifyOfPropertyChange(() => ProducerName);
+			}
+		}
+
+		public string URL
+		{
+			get { return _url; }
+			set 
+			{ 
+				_url = value;
+				NotifyOfPropertyChange(() => URL);
+			}
+		}
+
+		public async void SaveNewProducer()
+		{
+			var producer = new ProducerModel
+			{
+				Name = ProducerName,
+				URL = URL
+			};
+
+			var producerValidator = new ProducerValidator();
+			var result = producerValidator.Validate(producer);
+			
+
+			if (result.IsValid)
+			{
+				var producerEntity = producer.ConvertToProducerEntity();
+				var resultTask = await producerAccess.AddProducer(producerEntity);
+				SnackbarNotification.MessageQueue = new SnackbarMessageQueue();
+				string message = null;
+
+				if (resultTask)
+				{
+					message = "Producent dodany poprawnie.";
+				}
+				else
+				{
+					message = "Producent nie zostal dodany";
+				}
+
+				SnackbarNotification.MessageQueue.Enqueue(message);
+				ProducerName = "";
+				URL = "";
+			}
+			else
+			{
+				SnackbarNotification.MessageQueue = new SnackbarMessageQueue();
+				SnackbarNotification.MessageQueue.Enqueue("Błąd wprowadzonych danych, producent nie został dodany.");
+			}
+		}
+
+		#endregion
+
+
+		/// <summary>
+		/// Controls for adding new device form
+		/// </summary>
+		#region NewDeviceForm
+
+		private string _deviceName;
+		private string _articleNumber;
+		private string _selectedProducerName;
+		private string _location;
+		private int _quantity;
+		
+
+
+		public string DeviceName
+		{
+			get { return _deviceName; }
+			set 
+			{ 
+				_deviceName = value;
+				NotifyOfPropertyChange(() => DeviceName);
+			}
+		}
+
+		public string ArticleNumber
+		{
+			get { return _articleNumber; }
+			set 
+			{ 
+				_articleNumber = value;
+				NotifyOfPropertyChange(() => ArticleNumber);
+			}
+		}
+
+		public string SelectedProducerName
+		{
+			get { return _selectedProducerName; }
+			set 
+			{ 
+				_selectedProducerName = value;
+				NotifyOfPropertyChange(() => SelectedProducerName);
+			}
+		}
+
+		public string Location
+		{
+			get { return _location; }
+			set 
+			{ 
+				_location = value;
+				NotifyOfPropertyChange(() => Location);
+			}
+		}
+
+		public int Quantity
+		{
+			get { return _quantity; }
+			set 
+			{ 
+				_quantity = value;
+				NotifyOfPropertyChange(() => Quantity);
+			}
+		}
+
+		public void SaveButton()
+		{
+			var device = new NewDeviceFormModel
+			{
+				Name = DeviceName,
+				ArticleNumber = ArticleNumber,
+				ProducerName = SelectedProducerName,
+				Location = Location,
+				Quantity = Quantity
+			};
+
+			var deviceValidator = new NewDeviceFormValidator();
+			var result = deviceValidator.Validate(device);
+
+			if (result.IsValid)
+			{
+				// TODO: Save device to database
+			}
+			else
+			{
+				string resultString = "";
+
+				foreach (var failure in result.Errors)
+					resultString += "Property: " + failure.PropertyName + " - Error: " + failure.ErrorMessage + "\n";
+
+				MessageBox.Show(resultString);
+			}
+		}
+
+		public void ClearButton()
+		{
+			string message = "Test message";
+			SnackbarNotification.MessageQueue = new SnackbarMessageQueue();
+			SnackbarNotification.MessageQueue.Enqueue(message);
+		}
+
+		#endregion
+
+	}
 }
