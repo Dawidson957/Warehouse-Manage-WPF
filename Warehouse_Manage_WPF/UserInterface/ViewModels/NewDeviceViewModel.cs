@@ -17,11 +17,13 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
     {
 		private BindableCollection<string> _producersName;
 		private ProducerAccess producerAccess;
+		private DeviceAccess deviceAccess;
 		private Snackbar _snackbarNewDeviceForm;
 
 		public NewDeviceViewModel()
 		{
 			producerAccess = new ProducerAccess();
+			deviceAccess = new DeviceAccess();
 		}
 
 		protected override async void OnViewLoaded(object view)
@@ -119,14 +121,20 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 				}
 
 				SnackbarNotification.MessageQueue.Enqueue(message);
-				ProducerName = "";
-				URL = "";
+				ClearProducerForm();
+				await LoadProducers();
 			}
 			else
 			{
 				SnackbarNotification.MessageQueue = new SnackbarMessageQueue();
 				SnackbarNotification.MessageQueue.Enqueue("Błąd wprowadzonych danych, producent nie został dodany.");
 			}
+		}
+
+		public void ClearProducerForm()
+		{
+			ProducerName = "";
+			URL = "";
 		}
 
 		#endregion
@@ -195,7 +203,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			}
 		}
 
-		public void SaveButton()
+		public async void SaveButton()
 		{
 			var device = new NewDeviceFormModel
 			{
@@ -211,24 +219,41 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
 			if (result.IsValid)
 			{
-				// TODO: Save device to database
+				var deviceEntity = await device.ConvertToDeviceEntity();
+				var resultTask = await deviceAccess.AddDevice(deviceEntity);
+				SnackbarNotification.MessageQueue = new SnackbarMessageQueue();
+				string message = null;
+
+				if (resultTask)
+				{
+					message = "Urządzenie zostało dodane poprawnie.";
+				}
+				else
+				{
+					message = "Urządzenie nie zostało dodane.";
+				}
+
+				SnackbarNotification.MessageQueue.Enqueue(message);
+				ClearDeviceForm();
 			}
 			else
 			{
-				string resultString = "";
-
-				foreach (var failure in result.Errors)
-					resultString += "Property: " + failure.PropertyName + " - Error: " + failure.ErrorMessage + "\n";
-
-				MessageBox.Show(resultString);
+				SnackbarNotification.MessageQueue = new SnackbarMessageQueue();
+				SnackbarNotification.MessageQueue.Enqueue("Błąd wprowadzonych danych, urządzenie nie zostało dodane.");
 			}
 		}
 
 		public void ClearButton()
 		{
-			string message = "Test message";
-			SnackbarNotification.MessageQueue = new SnackbarMessageQueue();
-			SnackbarNotification.MessageQueue.Enqueue(message);
+			ClearDeviceForm();
+		}
+
+		public void ClearDeviceForm()
+		{
+			DeviceName = "";
+			ArticleNumber = "";
+			Location = "";
+			Quantity = 0;
 		}
 
 		#endregion

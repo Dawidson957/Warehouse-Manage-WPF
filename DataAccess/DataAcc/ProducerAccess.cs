@@ -56,5 +56,26 @@ namespace DataAccess.DataAcc
 
             return true;
         }
+
+        public async Task<int> GetProducerId(string name)
+        {
+            int Id;
+
+            try
+            {
+                using (var context = new WarehouseModel())
+                {
+                    Id = await (from s in context.Producers 
+                                where s.Name == name 
+                                select s.Id).FirstOrDefaultAsync();
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return Id;
+        }
     }
 }

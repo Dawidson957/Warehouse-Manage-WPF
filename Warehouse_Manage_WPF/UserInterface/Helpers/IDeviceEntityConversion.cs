@@ -7,8 +7,10 @@ using Warehouse_Manage_WPF.Entities;
 
 namespace Warehouse_Manage_WPF.UserInterface.Helpers
 {
-    interface IProducerEntityConversion
+    interface IDeviceEntityConversion
     {
-        Producer ConvertToProducerEntity();
+        Task<Device> ConvertToDeviceEntity();
+
+        Task<int> GetProducerId(string Name);
     }
 }
