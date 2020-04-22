@@ -213,7 +213,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 				Quantity = Quantity
 			};
 
-			var deviceValidator = new NewDeviceFormValidator();
+			var deviceValidator = new DeviceModelValidator();
 			var result = deviceValidator.Validate(device);
 
 			if (result.IsValid)

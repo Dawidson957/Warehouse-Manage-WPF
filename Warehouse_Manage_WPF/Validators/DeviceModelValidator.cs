@@ -8,9 +8,9 @@ using Warehouse_Manage_WPF.UserInterface.Models;
 
 namespace Warehouse_Manage_WPF.Validators
 {
-    public class NewDeviceFormValidator : AbstractValidator<DeviceModel>
+    public class DeviceModelValidator : AbstractValidator<DeviceModel>
     {
-        public NewDeviceFormValidator()
+        public DeviceModelValidator()
         {
             RuleFor(x => x.Name)
                 .NotEmpty()

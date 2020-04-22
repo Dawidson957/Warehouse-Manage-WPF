@@ -124,7 +124,7 @@
     <Compile Include="UserInterface\Views\WarehouseView.xaml.cs">
       <DependentUpon>WarehouseView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Validators\NewDeviceFormValidator.cs" />
+    <Compile Include="Validators\DeviceModelValidator.cs" />
     <Compile Include="Validators\ProducerValidator.cs" />
     <Page Include="UserInterface\Views\DeviceDetailsView.xaml">
       <SubType>Designer</SubType>

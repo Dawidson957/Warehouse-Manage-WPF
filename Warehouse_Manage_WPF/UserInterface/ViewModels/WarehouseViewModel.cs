@@ -30,6 +30,8 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             }
         }
 
+        public DeviceModel SelectedDevice { get; set; }
+
 
         public WarehouseViewModel(SimpleContainer simpleContainer, IWindowManager windowManager)
         {
@@ -57,7 +59,6 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         public void MouseDoubleClick_DataGrid()
         {
-            /*
             if (SelectedDevice != null)
             {
                 DeviceDetailsViewModel deviceDetailsVM = _simpleContainer.GetInstance<DeviceDetailsViewModel>();
@@ -66,7 +67,6 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             }
             else
                 MessageBox.Show("No device found.");
-            */
         }
     }
 }

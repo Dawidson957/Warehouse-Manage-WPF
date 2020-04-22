@@ -8,24 +8,61 @@ using System.Windows;
 using Warehouse_Manage_WPF.Validators;
 using Warehouse_Manage_WPF.UserInterface.Helpers;
 using Warehouse_Manage_WPF.UserInterface.Models;
+using DataAccess.DataAcc;
 
 namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
     public class DeviceDetailsViewModel : Screen
     {
-        private string _name;
-        private string _articleNumber;
-        private int _quantity;
-        private string _location;
-        private string _producerName;
         private bool _somethingChangedFlag;
+        private DeviceModel _deviceModel;
+        private ProducerAccess _producerAccess;
+        private DeviceAccess _deviceAccess;
 
-        public BindableCollection<string> Producers { get; set; }
+        private BindableCollection<string> _producers;
+
+        public BindableCollection<string> Producers
+        {
+            get { return _producers; }
+            set 
+            {
+                _producers = value;
+                NotifyOfPropertyChange(() => Producers);
+            }
+        }
+
+
+        public DeviceModel Device
+        {
+            get { return _deviceModel; }
+            set 
+            { 
+                _deviceModel = value;
+                NotifyOfPropertyChange(() => Device);
+            }
+        }
 
         public DeviceDetailsViewModel(IWindowManager windowManager)
         {
-            
-            LoadProducers();
+            _producerAccess = new ProducerAccess();
+            _deviceAccess = new DeviceAccess();
+        }
+
+        protected override async void OnViewLoaded(object view)
+        {
+            base.OnViewLoaded(view);
+            await LoadProducers();
+        }
+
+        public void LoadDevice(DeviceModel device)
+        {
+            Device = device;
+        }
+
+        private async Task LoadProducers()
+        {
+            var producersName = await _producerAccess.GetProducerNamesAll();
+            Producers = new BindableCollection<string>(producersName);
         }
 
         public override void CanClose(Action<bool> callback)
@@ -43,65 +80,9 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
                 callback(true);
         }
 
-        private void LoadProducers()
-        {
-            
-        }
+        
 
-        public string Name
-        {
-            get { return _name; }
-            set 
-            { 
-                _name = value;
-                NotifyOfPropertyChange(() => Name);
-                SomethingChangedFlag = true;
-            }
-        }
 
-        public string ArticleNumber
-        {
-            get { return _articleNumber; }
-            set 
-            { 
-                _articleNumber = value;
-                NotifyOfPropertyChange(() => ArticleNumber);
-                SomethingChangedFlag = true;
-            }
-        }
-
-        public int Quantity
-        {
-            get { return _quantity; }
-            set 
-            { 
-                _quantity = value;
-                NotifyOfPropertyChange(() => Quantity);
-                SomethingChangedFlag = true;
-            }
-        }
-
-        public string Location
-        {
-            get { return _location; }
-            set 
-            { 
-                _location = value;
-                NotifyOfPropertyChange(() => Location);
-                SomethingChangedFlag = true;
-            }
-        }
-
-        public string ProducerName
-        {
-            get { return _producerName; }
-            set 
-            { 
-                _producerName = value;
-                NotifyOfPropertyChange(() => ProducerName);
-                SomethingChangedFlag = true;
-            }
-        }
 
         public bool SomethingChangedFlag
         {
@@ -112,55 +93,30 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             }
         }
 
-        public void SubmitButton()
+        public async Task SubmitButton()
         {
-            /*
-            var device = new DeviceModel(deviceModel.Id, Name, ArticleNumber, Location, Quantity, ProducerName);
-            var deviceValidator = new DeviceValidator();
-            var result = deviceValidator.Validate(device);
+            var deviceValidator = new DeviceModelValidator();
+            var validationResult = deviceValidator.Validate(Device);
 
-            if (result.IsValid)
+            if(validationResult.IsValid)
             {
-                var converter = new EntitiesConverter();
-                var resultt = _dataAPI.UpdateDevice(converter.DeviceToEntityDevice(device));
+                var deviceEntity = await Device.ConvertToDeviceEntity();
+                var resultTask = await _deviceAccess.UpdateDevice(deviceEntity);
 
-                if (resultt)
-                {
-                    SomethingChangedFlag = false;
-                    MessageBox.Show("Evertything is so good.");
-                }
+                if (resultTask)
+                    MessageBox.Show("Device credentials has been changed successfully.");
                 else
-                    MessageBox.Show("Something bad happend");
+                    MessageBox.Show("An error occured.");
             }
             else
             {
-                string resultString = "";
-
-                foreach (var failure in result.Errors)
-                    resultString += "Property: " + failure.PropertyName + " - Error: " + failure.ErrorMessage + "\n";
-
-                MessageBox.Show(resultString);
+                MessageBox.Show("Bad credentials.");
             }
-            */
         }
 
         public void DeleteButton()
         {
-            /*
-            MessageBoxResult result = MessageBox.Show("Na pewno chcesz usunąć?", "Title", MessageBoxButton.YesNo);
-
-            if(result == MessageBoxResult.Yes)
-            {
-                var device = new DeviceModel(deviceModel.Id, Name, ArticleNumber, Location, Quantity, ProducerName);
-                var converter = new EntitiesConverter();
-                var resultt = _dataAPI.DeleteDevice(converter.DeviceToEntityDevice(device));
-
-                if (resultt)
-                    MessageBox.Show("Everything is good");
-                else
-                    MessageBox.Show("Something bad happend");
-            }
-            */
+            
         }
     }
 }

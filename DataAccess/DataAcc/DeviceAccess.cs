@@ -57,5 +57,42 @@ namespace DataAccess.DataAcc
 
             return devices;
         }
+
+        public async Task<bool> UpdateDevice(Device device)
+        {
+            try
+            {
+                using (var context = new WarehouseModel())
+                {
+                    var existingDevice = await context.Devices.FirstOrDefaultAsync(x => x.Id == device.Id);
+                    
+                    if(existingDevice != null)
+                    {
+                        existingDevice.Name = device.Name;
+                        existingDevice.ArticleNumber = device.ArticleNumber;
+                        existingDevice.Location = device.Location;
+                        existingDevice.Quantity = device.Quantity;
+
+                        if (existingDevice.ProducerID != device.ProducerID) 
+                        {
+                            existingDevice.ProducerID = device.ProducerID;
+                        }
+
+                        await context.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        throw new Exception("No device found");
+                    } 
+                }
+            }
+            catch(Exception ex)
+            {
+                return false;
+                throw new Exception(ex.Message);
+            }
+
+            return true;
+        }
     }
 }

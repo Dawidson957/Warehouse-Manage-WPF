@@ -27,6 +27,7 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
         {
             Device DeviceEntity = new Device
             {
+                Id = this.Id,
                 Name = this.Name,
                 ArticleNumber = this.ArticleNumber,
                 ProducerID = await this.GetProducerId(this.ProducerName),
