@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Caliburn.Micro;
-using Warehouse_Manage_WPF.UserInterface.Models;
-using Warehouse_Manage_WPF.DataAccess;
 using System.Windows;
 using Warehouse_Manage_WPF.Validators;
 using Warehouse_Manage_WPF.UserInterface.Helpers;
+using Warehouse_Manage_WPF.UserInterface.Models;
 
 namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
@@ -21,15 +20,11 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         private string _producerName;
         private bool _somethingChangedFlag;
 
-        private DataAPI _dataAPI { get; set; }
-
-        private DeviceModel deviceModel { get; set; }
-
         public BindableCollection<string> Producers { get; set; }
 
         public DeviceDetailsViewModel(IWindowManager windowManager)
         {
-            _dataAPI = new DataAPI();
+            
             LoadProducers();
         }
 
@@ -50,23 +45,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         private void LoadProducers()
         {
-            Producers = new BindableCollection<string>();
-            var producersFromAPI = _dataAPI.GetAllProducers();
-
-            foreach (var producer in producersFromAPI)
-                Producers.Add(producer.Name);
-        }
-
-        public void LoadDevice(DeviceModel device)
-        {
-            deviceModel = device;
-
-            Name = device.Name;
-            ArticleNumber = device.ArticleNumber;
-            ProducerName = device.ProducerName;
-            Quantity = device.Quantity;
-            Location = device.Location;
-            SomethingChangedFlag = false;
+            
         }
 
         public string Name
@@ -135,6 +114,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         public void SubmitButton()
         {
+            /*
             var device = new DeviceModel(deviceModel.Id, Name, ArticleNumber, Location, Quantity, ProducerName);
             var deviceValidator = new DeviceValidator();
             var result = deviceValidator.Validate(device);
@@ -161,10 +141,12 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
                 MessageBox.Show(resultString);
             }
+            */
         }
 
         public void DeleteButton()
         {
+            /*
             MessageBoxResult result = MessageBox.Show("Na pewno chcesz usunąć?", "Title", MessageBoxButton.YesNo);
 
             if(result == MessageBoxResult.Yes)
@@ -178,6 +160,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
                 else
                     MessageBox.Show("Something bad happend");
             }
+            */
         }
     }
 }

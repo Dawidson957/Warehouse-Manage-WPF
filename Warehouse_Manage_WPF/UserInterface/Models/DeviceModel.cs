@@ -9,8 +9,10 @@ using Warehouse_Manage_WPF.UserInterface.Helpers;
 
 namespace Warehouse_Manage_WPF.UserInterface.Models
 {
-    public class NewDeviceFormModel : IDeviceEntityConversion
+    public class DeviceModel : IDeviceEntityConversion
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public string ArticleNumber { get; set; }
@@ -41,6 +43,21 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
             int Id = await producerAcces.GetProducerId(this.ProducerName);
 
             return Id;
+        }
+
+        public DeviceModel(Device device)
+        {
+            Id = device.Id;
+            Name = device.Name;
+            ArticleNumber = device.ArticleNumber;
+            ProducerName = device.Producer.Name;
+            Location = device.Location;
+            Quantity = device.Quantity;
+        }
+
+        public DeviceModel()
+        {
+
         }
     }
 }

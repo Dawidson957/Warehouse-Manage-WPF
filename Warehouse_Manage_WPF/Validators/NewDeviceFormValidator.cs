@@ -8,7 +8,7 @@ using Warehouse_Manage_WPF.UserInterface.Models;
 
 namespace Warehouse_Manage_WPF.Validators
 {
-    public class NewDeviceFormValidator : AbstractValidator<NewDeviceFormModel>
+    public class NewDeviceFormValidator : AbstractValidator<DeviceModel>
     {
         public NewDeviceFormValidator()
         {

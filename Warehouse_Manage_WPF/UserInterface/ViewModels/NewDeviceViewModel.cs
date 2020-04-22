@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using Warehouse_Manage_WPF.DataAccess;
 using Warehouse_Manage_WPF.UserInterface.Models;
 using Warehouse_Manage_WPF.Validators;
 
@@ -205,7 +204,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
 		public async void SaveButton()
 		{
-			var device = new NewDeviceFormModel
+			var device = new DeviceModel
 			{
 				Name = DeviceName,
 				ArticleNumber = ArticleNumber,

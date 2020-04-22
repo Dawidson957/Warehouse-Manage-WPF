@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +37,25 @@ namespace DataAccess.DataAcc
             }
 
             return true;
+        }
+
+        public async Task<List<Device>> GetDevicesAll()
+        {
+            List<Device> devices = null;
+
+            try
+            {
+                using (var context = new WarehouseModel())
+                {
+                    devices = await context.Devices.Include("Producer").ToListAsync<Device>();
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return devices;
         }
     }
 }

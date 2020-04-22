@@ -11,16 +11,20 @@
     <Grid Margin="1 1 1 1">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!-- Row 0 -->
-        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Top" Height="60" Margin="1 5 1 5">
-            <TextBlock Text="Magazyn" HorizontalAlignment="Left" FontSize="36" FontFamily="Lucida Console" FontWeight="Bold" Margin="5 10 0 0"/>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Top" Height="60" Margin="1 5 1 5" >
+            <TextBlock Text="Magazyn" HorizontalAlignment="Left" FontSize="30" Style="{StaticResource MaterialDesignHeadline1TextBlock}" Margin="5 10 0 0" />
         </StackPanel>
 
         <!-- Row 1 -->
-        <Grid Grid.Row="1" Margin="1 1 1 1">
+        <Separator Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignSeparator}" Margin="5 0 5 0" />
+        
+        <!-- Row 2 -->
+        <Grid Grid.Row="2" Margin="1 1 1 1">
             <DataGrid x:Name="Devices" Margin="1 1 1 1"  
                           CanUserAddRows="False" CanUserSortColumns="True" AutoGenerateColumns="False" IsReadOnly="True" 
                           materialDesign:ThemeAssist.Theme="Light"

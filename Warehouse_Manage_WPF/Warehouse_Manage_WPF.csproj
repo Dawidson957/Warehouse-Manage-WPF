@@ -92,11 +92,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="UserInterface\Bootstrapper.cs" />
-    <Compile Include="UserInterface\Helpers\EntitiesConverter.cs" />
-    <Compile Include="UserInterface\Models\Customer.cs" />
+    <Compile Include="UserInterface\Helpers\IDeviceEntityConversion.cs" />
+    <Compile Include="UserInterface\Helpers\IProducerEntityConversion.cs" />
     <Compile Include="UserInterface\Models\DeviceModel.cs" />
-    <Compile Include="UserInterface\Models\Producer.cs" />
-    <Compile Include="UserInterface\Models\Project.cs" />
+    <Compile Include="UserInterface\Models\ProducerModel.cs" />
     <Compile Include="UserInterface\ViewModels\DeviceDetailsViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\MainViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\NewDeviceViewModel.cs" />
@@ -125,7 +124,8 @@
     <Compile Include="UserInterface\Views\WarehouseView.xaml.cs">
       <DependentUpon>WarehouseView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Validators\DeviceValidator.cs" />
+    <Compile Include="Validators\NewDeviceFormValidator.cs" />
+    <Compile Include="Validators\ProducerValidator.cs" />
     <Page Include="UserInterface\Views\DeviceDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
