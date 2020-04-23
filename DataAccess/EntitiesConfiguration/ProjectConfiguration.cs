@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity.ModelConfiguration;
-using Warehouse_Manage_WPF.Entities;
+using DataAccess.Entities;
 
-namespace Warehouse_Manage_WPF.EntitiesConfiguration
+namespace DataAccess.EntitiesConfiguration
 {
     public class ProjectConfiguration : EntityTypeConfiguration<Project>
     {

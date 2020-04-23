@@ -1,15 +1,15 @@
-namespace Warehouse_Manage_WPF.EntityModel
+namespace DataAccess.EntityModel
 {
+    using DataAccess.Entities;
     using System;
     using System.Data.Entity;
     using System.Linq;
-    using Warehouse_Manage_WPF.Entities;
-    using Warehouse_Manage_WPF.EntitiesConfiguration;
+    using DataAccess.EntitiesConfiguration;
 
     public class WarehouseModel : DbContext
     {
         public WarehouseModel()
-            : base("name=WarehouseModel")
+            : base("name=WarehouseModel1")
         {
         }
 
@@ -20,6 +20,7 @@ namespace Warehouse_Manage_WPF.EntityModel
         public DbSet<Producer> Producers { get; set; }
 
         public DbSet<Project> Projects { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

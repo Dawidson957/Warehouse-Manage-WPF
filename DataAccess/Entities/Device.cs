@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Warehouse_Manage_WPF.Entities
+namespace DataAccess.Entities
 {
     public class Device
     {

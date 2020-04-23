@@ -1,4 +1,4 @@
-﻿namespace Warehouse_Manage_WPF.Migrations
+﻿namespace DataAccess.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;
@@ -24,7 +24,7 @@
                     {
                         Name = c.String(nullable: false, maxLength: 255, unicode: false),
                         ArticleNumber = c.String(nullable: false, maxLength: 64),
-                        Location = c.String(nullable: false, maxLength: 4, unicode: false),
+                        Location = c.String(maxLength: 4, unicode: false),
                         Quantity = c.Int(),
                         Id = c.Int(nullable: false, identity: true),
                     })

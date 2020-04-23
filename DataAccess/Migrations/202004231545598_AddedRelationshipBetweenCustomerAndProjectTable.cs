@@ -1,4 +1,4 @@
-﻿namespace Warehouse_Manage_WPF.Migrations
+﻿namespace DataAccess.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

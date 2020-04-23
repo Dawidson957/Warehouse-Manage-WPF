@@ -1,12 +1,12 @@
-﻿using System;
+﻿using DataAccess.Entities;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data.Entity.ModelConfiguration;
-using Warehouse_Manage_WPF.Entities;
 
-namespace Warehouse_Manage_WPF.EntitiesConfiguration
+namespace DataAccess.EntitiesConfiguration
 {
     public class DeviceConfiguration : EntityTypeConfiguration<Device>
     {

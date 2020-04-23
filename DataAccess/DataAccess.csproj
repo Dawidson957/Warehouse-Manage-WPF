@@ -43,6 +43,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -64,29 +66,21 @@
     <Compile Include="Entities\Producer.cs" />
     <Compile Include="Entities\Project.cs" />
     <Compile Include="EntityModel\WarehouseModel.cs" />
-    <Compile Include="Migrations\202003011656193_InitialModel.cs" />
-    <Compile Include="Migrations\202003011656193_InitialModel.Designer.cs">
-      <DependentUpon>202003011656193_InitialModel.cs</DependentUpon>
+    <Compile Include="Migrations\202004231537145_InitialModel.cs" />
+    <Compile Include="Migrations\202004231537145_InitialModel.designer.cs">
+      <DependentUpon>202004231537145_InitialModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003021731298_AddedRelationBetweenProducerAndDeviceTable.cs" />
-    <Compile Include="Migrations\202003021731298_AddedRelationBetweenProducerAndDeviceTable.Designer.cs">
-      <DependentUpon>202003021731298_AddedRelationBetweenProducerAndDeviceTable.cs</DependentUpon>
+    <Compile Include="Migrations\202004231542474_AddedRelationshipBetweenProducerAndDeviceTable.cs" />
+    <Compile Include="Migrations\202004231542474_AddedRelationshipBetweenProducerAndDeviceTable.designer.cs">
+      <DependentUpon>202004231542474_AddedRelationshipBetweenProducerAndDeviceTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003021744270_AddedRelationshipBetweenCustomerAndProjectTable.cs" />
-    <Compile Include="Migrations\202003021744270_AddedRelationshipBetweenCustomerAndProjectTable.Designer.cs">
-      <DependentUpon>202003021744270_AddedRelationshipBetweenCustomerAndProjectTable.cs</DependentUpon>
+    <Compile Include="Migrations\202004231545598_AddedRelationshipBetweenCustomerAndProjectTable.cs" />
+    <Compile Include="Migrations\202004231545598_AddedRelationshipBetweenCustomerAndProjectTable.designer.cs">
+      <DependentUpon>202004231545598_AddedRelationshipBetweenCustomerAndProjectTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003021749306_AddedRelationshipBetweenProjectAndDeviceTable.cs" />
-    <Compile Include="Migrations\202003021749306_AddedRelationshipBetweenProjectAndDeviceTable.Designer.cs">
-      <DependentUpon>202003021749306_AddedRelationshipBetweenProjectAndDeviceTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003021918156_AddedOptionalForLocationColumnToDeviceTable.cs" />
-    <Compile Include="Migrations\202003021918156_AddedOptionalForLocationColumnToDeviceTable.Designer.cs">
-      <DependentUpon>202003021918156_AddedOptionalForLocationColumnToDeviceTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202004231412439_ChangedRelationshipBetweenDevicesAndProjectsToOneToMany.cs" />
-    <Compile Include="Migrations\202004231412439_ChangedRelationshipBetweenDevicesAndProjectsToOneToMany.designer.cs">
-      <DependentUpon>202004231412439_ChangedRelationshipBetweenDevicesAndProjectsToOneToMany.cs</DependentUpon>
+    <Compile Include="Migrations\202004231549598_AddedRelationshipBetweenProjectAndDeviceTable.cs" />
+    <Compile Include="Migrations\202004231549598_AddedRelationshipBetweenProjectAndDeviceTable.designer.cs">
+      <DependentUpon>202004231549598_AddedRelationshipBetweenProjectAndDeviceTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -96,23 +90,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202003011656193_InitialModel.resx">
-      <DependentUpon>202003011656193_InitialModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004231537145_InitialModel.resx">
+      <DependentUpon>202004231537145_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003021731298_AddedRelationBetweenProducerAndDeviceTable.resx">
-      <DependentUpon>202003021731298_AddedRelationBetweenProducerAndDeviceTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004231542474_AddedRelationshipBetweenProducerAndDeviceTable.resx">
+      <DependentUpon>202004231542474_AddedRelationshipBetweenProducerAndDeviceTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003021744270_AddedRelationshipBetweenCustomerAndProjectTable.resx">
-      <DependentUpon>202003021744270_AddedRelationshipBetweenCustomerAndProjectTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004231545598_AddedRelationshipBetweenCustomerAndProjectTable.resx">
+      <DependentUpon>202004231545598_AddedRelationshipBetweenCustomerAndProjectTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003021749306_AddedRelationshipBetweenProjectAndDeviceTable.resx">
-      <DependentUpon>202003021749306_AddedRelationshipBetweenProjectAndDeviceTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003021918156_AddedOptionalForLocationColumnToDeviceTable.resx">
-      <DependentUpon>202003021918156_AddedOptionalForLocationColumnToDeviceTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004231412439_ChangedRelationshipBetweenDevicesAndProjectsToOneToMany.resx">
-      <DependentUpon>202004231412439_ChangedRelationshipBetweenDevicesAndProjectsToOneToMany.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202004231549598_AddedRelationshipBetweenProjectAndDeviceTable.resx">
+      <DependentUpon>202004231549598_AddedRelationshipBetweenProjectAndDeviceTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

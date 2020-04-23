@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Warehouse_Manage_WPF.Entities
+namespace DataAccess.Entities
 {
     public class Producer
     {
@@ -15,6 +15,5 @@ namespace Warehouse_Manage_WPF.Entities
         public string URL { get; set; }
 
         public virtual ICollection<Device> Devices { get; set; }
-
     }
 }
