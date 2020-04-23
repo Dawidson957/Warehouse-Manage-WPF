@@ -15,9 +15,9 @@
         </Grid.RowDefinitions>
 
         <!-- Row 0 -->
-        <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Top" Height="60" Margin="1 5 1 5">
+        <DockPanel Grid.Row="0" VerticalAlignment="Top" Height="60" Margin="1 5 1 5">
             <TextBlock Text="Projekty" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignHeadline1TextBlock}" FontSize="32" Margin="5 10 0 0"/>
-        </StackPanel>
+        </DockPanel>
 
         <!-- Row 1 -->
         <Grid Grid.Row="1" Margin="1 1 1 1">
@@ -37,8 +37,8 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <materialDesign:DataGridTextColumn Header="Nazwa projektu" MaxLength="50" />
-                    <materialDesign:DataGridTextColumn Header="Klient" MaxLength="30" />
+                    <materialDesign:DataGridTextColumn Header="Nazwa projektu" MaxLength="50" Binding="{Binding Name}"/>
+                    <materialDesign:DataGridTextColumn Header="Klient" MaxLength="30" Binding="{Binding CustomerName}"/>
                     <materialDesign:DataGridTextColumn Header="Status" MaxLength="30" />
                     <materialDesign:DataGridTextColumn Header="Komentarz" MaxLength="10" />
                 </DataGrid.Columns>
