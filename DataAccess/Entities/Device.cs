@@ -22,7 +22,9 @@ namespace Warehouse_Manage_WPF.Entities
 
         public Producer Producer { get; set; }
 
-        public virtual ICollection<Project> Projects { get; set; }
+        public int ProjectID { get; set; }
+
+        public Project Project { get; set; }
 
     }
 }

@@ -54,6 +54,7 @@
     <Compile Include="DataAcc\CustomerAccess.cs" />
     <Compile Include="DataAcc\DeviceAccess.cs" />
     <Compile Include="DataAcc\ProducerAccess.cs" />
+    <Compile Include="DataAcc\ProjectAccess.cs" />
     <Compile Include="EntitiesConfiguration\CustomerConfiguration.cs" />
     <Compile Include="EntitiesConfiguration\DeviceConfiguration.cs" />
     <Compile Include="EntitiesConfiguration\ProducerConfiguration.cs" />
@@ -83,6 +84,10 @@
     <Compile Include="Migrations\202003021918156_AddedOptionalForLocationColumnToDeviceTable.Designer.cs">
       <DependentUpon>202003021918156_AddedOptionalForLocationColumnToDeviceTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004231412439_ChangedRelationshipBetweenDevicesAndProjectsToOneToMany.cs" />
+    <Compile Include="Migrations\202004231412439_ChangedRelationshipBetweenDevicesAndProjectsToOneToMany.designer.cs">
+      <DependentUpon>202004231412439_ChangedRelationshipBetweenDevicesAndProjectsToOneToMany.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -105,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003021918156_AddedOptionalForLocationColumnToDeviceTable.resx">
       <DependentUpon>202003021918156_AddedOptionalForLocationColumnToDeviceTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004231412439_ChangedRelationshipBetweenDevicesAndProjectsToOneToMany.resx">
+      <DependentUpon>202004231412439_ChangedRelationshipBetweenDevicesAndProjectsToOneToMany.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

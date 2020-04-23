@@ -22,13 +22,8 @@ namespace Warehouse_Manage_WPF.EntitiesConfiguration
             .HasMaxLength(255);
 
             HasMany(c => c.Devices)
-            .WithMany(c => c.Projects)
-            .Map(m =>
-            {
-                m.ToTable("ProjectDevices");
-                m.MapLeftKey("ProjectId");
-                m.MapRightKey("DeviceId");
-            });
+                .WithRequired(c => c.Project)
+                .HasForeignKey(c => c.ProjectID);
         }
     }
 }
