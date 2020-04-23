@@ -1,16 +1,17 @@
-﻿using System;
+﻿using DataAccess.Entities;
+using DataAccess.EntityModel;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Warehouse_Manage_WPF.Entities;
-using Warehouse_Manage_WPF.EntityModel;
 
 namespace DataAccess.DataAcc
 {
     public class ProducerAccess
     {
+        
         public async Task<List<string>> GetProducerNamesAll()
         {
            List<string> producers = null;
@@ -77,5 +78,6 @@ namespace DataAccess.DataAcc
 
             return Id;
         }
+        
     }
 }

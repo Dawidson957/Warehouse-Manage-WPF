@@ -219,6 +219,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			if (result.IsValid)
 			{
 				var deviceEntity = await device.ConvertToDeviceEntity();
+				deviceEntity.ProjectID = 5;
 				var resultTask = await deviceAccess.AddDevice(deviceEntity);
 				SnackbarNotification.MessageQueue = new SnackbarMessageQueue();
 				string message = null;

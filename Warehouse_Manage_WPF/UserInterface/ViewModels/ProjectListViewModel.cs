@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Warehouse_Manage_WPF.UserInterface.Models;
 
 namespace Warehouse_Manage_WPF.UserInterface.ViewModels
@@ -13,10 +14,14 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
     {
         private ProjectAccess _projectAccess;
         private BindableCollection<ProjectModel> _projects;
+        private SimpleContainer _container { get; set; }
+       
+        public ProjectModel SelectedProject { get; set; }
 
 
-        public ProjectListViewModel()
+        public ProjectListViewModel(SimpleContainer simpleContainer)
         {
+            _container = simpleContainer;
             _projectAccess = new ProjectAccess();
         }
 
@@ -47,6 +52,22 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
 
             Console.WriteLine("Loaded Projects");
+        }
+
+        public void MouseDoubleClick_DataGrid()
+        {
+            if(SelectedProject != null)
+            {
+                var mainViewConductor = (MainViewModel)this.Parent;
+                var projectVM = _container.GetInstance<ProjectViewModel>();
+                projectVM.LoadProject(SelectedProject);
+                mainViewConductor.DeactivateItem(mainViewConductor.ActiveItem, true);
+                mainViewConductor.ActivateItem(projectVM);
+            }
+            else
+            {
+                MessageBox.Show("Selected Project is NULL!!!!!!!!!!!!!!1");
+            }
         }
 
     }

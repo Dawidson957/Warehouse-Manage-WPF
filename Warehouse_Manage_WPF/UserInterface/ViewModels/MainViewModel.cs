@@ -33,12 +33,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         public void ProjectListViewOpen()
         {
-            ActivateItem(_simpleContainer.GetInstance<ProjectListViewModel>());
-        }
-
-        public void ProjectViewOpen()
-        {
-            ActivateItem(_simpleContainer.GetInstance<ProjectViewModel>());
+            this.ActivateItem(_simpleContainer.GetInstance<ProjectListViewModel>());
         }
 
         public void CloseAppButton()

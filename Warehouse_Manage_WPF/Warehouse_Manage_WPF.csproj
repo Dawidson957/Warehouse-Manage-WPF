@@ -92,10 +92,14 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="UserInterface\Bootstrapper.cs" />
+    <Compile Include="UserInterface\Helpers\ICustomerEntityConversion.cs" />
     <Compile Include="UserInterface\Helpers\IDeviceEntityConversion.cs" />
     <Compile Include="UserInterface\Helpers\IProducerEntityConversion.cs" />
+    <Compile Include="UserInterface\Helpers\IProjectEntityConversion.cs" />
+    <Compile Include="UserInterface\Models\CustomerModel.cs" />
     <Compile Include="UserInterface\Models\DeviceModel.cs" />
     <Compile Include="UserInterface\Models\ProducerModel.cs" />
+    <Compile Include="UserInterface\Models\ProjectModel.cs" />
     <Compile Include="UserInterface\ViewModels\DeviceDetailsViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\MainViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\NewDeviceViewModel.cs" />

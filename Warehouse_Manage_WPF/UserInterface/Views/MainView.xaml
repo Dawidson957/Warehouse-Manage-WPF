@@ -120,7 +120,7 @@
                     </ListViewItem>
 
                     <!-- Fourth Item (Udostępnij) -->
-                    <ListViewItem Height="60" Foreground="White" cal:Message.Attach="[Event PreviewMouseLeftButtonDown] = [Action ProjectViewOpen]">
+                    <ListViewItem Height="60" Foreground="White" >
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="ShareVariant" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
                             <TextBlock Text="Udostępnij" VerticalAlignment="Center" Margin="20 10" FontSize="16"/>

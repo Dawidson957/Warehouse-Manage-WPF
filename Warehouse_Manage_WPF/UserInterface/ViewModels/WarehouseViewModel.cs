@@ -48,7 +48,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         private async Task LoadDevices()
         {
-            var devices = await _deviceAccess.GetDevicesAll();
+            var devices = await _deviceAccess.GetDevicesAll(5);
             Devices = new BindableCollection<DeviceModel>();
 
             foreach(var device in devices)

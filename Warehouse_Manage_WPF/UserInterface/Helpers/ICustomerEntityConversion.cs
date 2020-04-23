@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DataAccess.Entities;
 
 namespace Warehouse_Manage_WPF.UserInterface.Helpers
 {
-    interface IProducerEntityConversion
+    interface ICustomerEntityConversion
     {
-        Producer ConvertToProducerEntity();
+
     }
 }

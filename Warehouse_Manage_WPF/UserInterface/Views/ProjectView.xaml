@@ -21,7 +21,9 @@
         </Grid.ColumnDefinitions>
 
         <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
-            <TextBlock Text="( Nazwa projektu )" Style="{StaticResource MaterialDesignHeadline1TextBlock}" FontSize="30"  Margin="10 10 0 0" HorizontalAlignment="Left"/>
+            <TextBlock Text="{Binding projectModel.Name}" Style="{StaticResource MaterialDesignHeadline1TextBlock}" FontSize="30"  Margin="10 10 0 0" HorizontalAlignment="Left"/>
+
+            <Button Content="Add device" x:Name="TestAddDevice" Width="150" Margin="300 0 0 0"/>
 
             <materialDesign:PopupBox Margin="0 10 10 0" Foreground="Black" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" HorizontalAlignment="Right" >
                 <StackPanel Width="150">
@@ -49,6 +51,8 @@
                 <TextBlock Grid.Row="0" Text="Informacje o projekcie" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="5 5 0 0" FontSize="18"/>
 
                 <Separator Grid.Row="1" Style="{StaticResource MaterialDesignSeparator}" Margin="5 0 5 0"/>
+                
+                
             </Grid>
         </materialDesign:Card>
 
@@ -66,7 +70,7 @@
                 <Separator Grid.Row="1" Style="{StaticResource MaterialDesignSeparator}" Margin="5 0 5 0"/>
 
                 <Grid Grid.Row="2" Margin="1 1 1 1">
-                    <DataGrid x:Name="Devices" Margin="1 1 1 1"  
+                    <DataGrid x:Name="ProjectDevices" Margin="1 1 1 1"  
                           CanUserAddRows="False" CanUserSortColumns="True" AutoGenerateColumns="False" IsReadOnly="True" 
                           materialDesign:ThemeAssist.Theme="Light"
                           materialDesign:DataGridAssist.ColumnHeaderPadding="3"

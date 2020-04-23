@@ -80,10 +80,6 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
                 callback(true);
         }
 
-        
-
-
-
         public bool SomethingChangedFlag
         {
             get { return _somethingChangedFlag; }
@@ -101,6 +97,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             if(validationResult.IsValid)
             {
                 var deviceEntity = await Device.ConvertToDeviceEntity();
+                deviceEntity.ProjectID = 5;
                 var resultTask = await _deviceAccess.UpdateDevice(deviceEntity);
 
                 if (resultTask)

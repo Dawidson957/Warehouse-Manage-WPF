@@ -1,16 +1,17 @@
-﻿using System;
+﻿using DataAccess.Entities;
+using DataAccess.EntityModel;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Warehouse_Manage_WPF.Entities;
-using Warehouse_Manage_WPF.EntityModel;
 
 namespace DataAccess.DataAcc
 {
     public class CustomerAccess
     {
+        
         public async Task<List<Customer>> GetCustomers()
         {
             List<Customer> customers = null;
@@ -25,6 +26,27 @@ namespace DataAccess.DataAcc
             catch { }
 
             return customers;
+        }
+
+        public async Task<int> GetCustomerId(string name)
+        {
+            int ID;
+
+            try
+            {
+                using (var context = new WarehouseModel())
+                {
+                    ID = await (from s in context.Customers
+                                where s.Name == name
+                                select s.Id).FirstOrDefaultAsync();
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return ID;
         }
 
         public async Task<bool> AddCustomer(Customer customer)
@@ -77,5 +99,6 @@ namespace DataAccess.DataAcc
 
             return true;
         }
+        
     }
 }

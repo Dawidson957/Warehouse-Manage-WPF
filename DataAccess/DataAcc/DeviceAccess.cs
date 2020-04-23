@@ -1,16 +1,17 @@
-﻿using System;
+﻿using DataAccess.Entities;
+using DataAccess.EntityModel;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Warehouse_Manage_WPF.Entities;
-using Warehouse_Manage_WPF.EntityModel;
 
 namespace DataAccess.DataAcc
 {
     public class DeviceAccess
     {
+        
         public async Task<bool> AddDevice(Device device)
         {
             try
@@ -39,7 +40,7 @@ namespace DataAccess.DataAcc
             return true;
         }
 
-        public async Task<List<Device>> GetDevicesAll()
+        public async Task<List<Device>> GetDevicesAll(int projectId)
         {
             List<Device> devices = null;
 
@@ -47,7 +48,9 @@ namespace DataAccess.DataAcc
             {
                 using (var context = new WarehouseModel())
                 {
-                    devices = await context.Devices.Include("Producer").ToListAsync<Device>();
+                    devices = await context.Devices
+                        .Include(x => x.Producer)
+                        .Where(x => x.ProjectID == projectId).ToListAsync<Device>();
                 }
             }
             catch(Exception ex)
@@ -94,5 +97,6 @@ namespace DataAccess.DataAcc
 
             return true;
         }
+        
     }
 }
