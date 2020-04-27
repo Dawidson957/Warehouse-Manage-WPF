@@ -23,6 +23,8 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
 
         public int Quantity { get; set; }
 
+        public int ProjectId { get; set; }
+
         public async Task<Device> ConvertToDeviceEntity()
         {
             Device DeviceEntity = new Device
@@ -32,7 +34,8 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
                 ArticleNumber = this.ArticleNumber,
                 ProducerID = await this.GetProducerId(this.ProducerName),
                 Location = this.Location,
-                Quantity = this.Quantity
+                Quantity = this.Quantity,
+                ProjectID = this.ProjectId
             };
 
             return DeviceEntity;
@@ -54,6 +57,7 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
             ProducerName = device.Producer.Name;
             Location = device.Location;
             Quantity = device.Quantity;
+            ProjectId = device.ProjectID;
         }
 
         public DeviceModel()

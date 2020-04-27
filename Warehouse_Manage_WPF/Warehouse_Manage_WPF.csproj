@@ -92,6 +92,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="UserInterface\Bootstrapper.cs" />
+    <Compile Include="UserInterface\EventModels\AddedNewDeviceToProjectEvent.cs" />
     <Compile Include="UserInterface\EventModels\NewProjectAddedEvent.cs" />
     <Compile Include="UserInterface\Helpers\ICustomerEntityConversion.cs" />
     <Compile Include="UserInterface\Helpers\IDeviceEntityConversion.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="UserInterface\ViewModels\NewDeviceViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\NewProjectViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\ProjectListViewModel.cs" />
+    <Compile Include="UserInterface\ViewModels\ProjectNewDeviceViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\ProjectViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\WarehouseViewModel.cs" />
     <Compile Include="UserInterface\Views\DeviceDetailsView.xaml.cs">
@@ -126,6 +128,9 @@
     </Compile>
     <Compile Include="UserInterface\Views\ProjectListView.xaml.cs">
       <DependentUpon>ProjectListView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Views\ProjectNewDeviceView.xaml.cs">
+      <DependentUpon>ProjectNewDeviceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserInterface\Views\ProjectView.xaml.cs">
       <DependentUpon>ProjectView.xaml</DependentUpon>
@@ -153,6 +158,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserInterface\Views\ProjectListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\Views\ProjectNewDeviceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -97,7 +97,6 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             if(validationResult.IsValid)
             {
                 var deviceEntity = await Device.ConvertToDeviceEntity();
-                deviceEntity.ProjectID = 5;
                 var resultTask = await _deviceAccess.UpdateDevice(deviceEntity);
 
                 if (resultTask)
