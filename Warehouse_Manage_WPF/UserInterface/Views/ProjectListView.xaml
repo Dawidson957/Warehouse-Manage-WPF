@@ -17,6 +17,11 @@
         <!-- Row 0 -->
         <DockPanel Grid.Row="0" VerticalAlignment="Top" Height="60" Margin="1 5 1 5">
             <TextBlock Text="Projekty" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignHeadline1TextBlock}" FontSize="32" Margin="5 10 0 0"/>
+
+            <materialDesign:Snackbar x:Name="SnackbarStatus" Margin="120 0 0 0" MessageQueue="{materialDesign:MessageQueue}" Width="300"
+                         cal:Message.Attach="[Event Loaded] = [Action SnackbarLoaded($source)]"/>
+            
+            <Button x:Name="AddNewProject" Content="Nowy projekt" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignFlatButton}" Margin="0 0 10 0" FontSize="16"/>
         </DockPanel>
 
         <!-- Row 1 -->

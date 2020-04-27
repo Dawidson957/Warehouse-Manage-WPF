@@ -23,7 +23,8 @@ namespace Warehouse_Manage_WPF.UserInterface
             _container.Instance(_container);
 
             _container
-                .Singleton<IWindowManager, WindowManager>();
+                .Singleton<IWindowManager, WindowManager>()
+                .Singleton<IEventAggregator, EventAggregator>();
 
             GetType().Assembly.GetTypes()
                 .Where(type => type.IsClass)

@@ -28,6 +28,25 @@ namespace DataAccess.DataAcc
             return customers;
         }
 
+        public async Task<List<string>> GetCustomersName()
+        {
+            List<string> customersName = null;
+
+            try
+            {
+                using (var context = new WarehouseModel())
+                {
+                    customersName = await (from s in context.Customers select s.Name).ToListAsync<string>();
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return customersName.Count > 0 ? customersName : null;
+        }
+
         public async Task<int> GetCustomerId(string name)
         {
             int ID;

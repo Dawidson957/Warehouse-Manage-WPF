@@ -15,6 +15,8 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
 
         public string Name { get; set; }
 
+        public string Comment { get; set; }
+
         public string CustomerName { get; set; }
 
 
