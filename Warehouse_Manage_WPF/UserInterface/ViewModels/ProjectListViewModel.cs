@@ -41,6 +41,10 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         private async Task LoadProjects()
         {
             var projectEnts = await _projectAccess.GetProjectsInfo();
+
+            // Removes Warehouse project from list
+            projectEnts.Remove(projectEnts.First(x => x.Id == 5));
+
             Projects = new BindableCollection<ProjectModel>();
 
             foreach (var projectEnt in projectEnts)

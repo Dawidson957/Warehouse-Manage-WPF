@@ -18,6 +18,9 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         private DeviceAccess _deviceAccess { get; set; }
 
+        // Warehouse project Id
+        private const int ProjectId = 5;
+
 
         public WarehouseViewModel(SimpleContainer simpleContainer, IWindowManager windowManager)
         {
@@ -37,7 +40,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         private async Task LoadDevices()
         {
-            var devices = await _deviceAccess.GetDevicesAll(5);
+            var devices = await _deviceAccess.GetDevicesAll(ProjectId);
             Devices = new BindableCollection<DeviceModel>();
 
             foreach (var device in devices)
