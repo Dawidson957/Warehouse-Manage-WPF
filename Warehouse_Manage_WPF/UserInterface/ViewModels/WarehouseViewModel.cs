@@ -18,20 +18,6 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         private DeviceAccess _deviceAccess { get; set; }
 
-        private BindableCollection<DeviceModel> _devices;
-
-        public BindableCollection<DeviceModel> Devices
-        {
-            get { return _devices; }
-            set 
-            { 
-                _devices = value;
-                NotifyOfPropertyChange(() => Devices);
-            }
-        }
-
-        public DeviceModel SelectedDevice { get; set; }
-
 
         public WarehouseViewModel(SimpleContainer simpleContainer, IWindowManager windowManager)
         {
@@ -39,6 +25,9 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             _windowManager = windowManager;
             _deviceAccess = new DeviceAccess();
         }
+
+
+        #region Window Operations
 
         protected override async void OnViewLoaded(object view)
         {
@@ -51,9 +40,29 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             var devices = await _deviceAccess.GetDevicesAll(5);
             Devices = new BindableCollection<DeviceModel>();
 
-            foreach(var device in devices)
+            foreach (var device in devices)
             {
                 Devices.Add(new DeviceModel(device));
+            }
+        }
+
+        #endregion
+
+
+        #region Device Grid
+
+        private BindableCollection<DeviceModel> _devices;
+
+        public DeviceModel SelectedDevice { get; set; }
+
+
+        public BindableCollection<DeviceModel> Devices
+        {
+            get { return _devices; }
+            set
+            {
+                _devices = value;
+                NotifyOfPropertyChange(() => Devices);
             }
         }
 
@@ -68,5 +77,8 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             else
                 MessageBox.Show("No device found.");
         }
+
+        #endregion
+
     }
 }

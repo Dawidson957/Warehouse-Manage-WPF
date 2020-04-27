@@ -12,22 +12,14 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
     public class ProjectViewModel : Screen, IHandle<AddedNewDeviceToProjectEvent>
     {
-		
-		private ProjectModel _project;
-		private ProjectAccess _projectAccess;
-		private DeviceAccess _deviceAccess;
-		private IWindowManager _windowManager;
-		private SimpleContainer _container;
+		private ProjectAccess _projectAccess { get; set; }
 
-		public ProjectModel projectModel
-		{
-			get { return _project; }
-			set
-			{
-				_project = value;
-				NotifyOfPropertyChange(() => projectModel);
-			}
-		}
+		private DeviceAccess _deviceAccess { get; set; }
+
+		private IWindowManager _windowManager { get; set; }
+
+		private SimpleContainer _container { get; set; }
+
 
 		public ProjectViewModel(IEventAggregator eventAggregator, IWindowManager windowManager, SimpleContainer simpleContainer)
 		{
@@ -37,6 +29,9 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			_container = simpleContainer;
 			eventAggregator.Subscribe(this);
 		}
+
+
+		#region Window Operations
 
 		protected override async void OnViewLoaded(object view)
 		{
@@ -58,8 +53,27 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 				ProjectDevices.Add(new DeviceModel(device));
 		}
 
+		#endregion
 
-        #region PopUp Menu
+
+		#region Project
+
+		private ProjectModel _project { get; set; }
+
+		public ProjectModel projectModel
+		{
+			get { return _project; }
+			set
+			{
+				_project = value;
+				NotifyOfPropertyChange(() => projectModel);
+			}
+		}
+
+		#endregion
+
+
+		#region PopUp Menu
 
 		public void AddNewDevice()
 		{
@@ -71,16 +85,18 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 		#endregion
 
 
-
 		#region Project Information Card
 
 
 
 		#endregion
 
+
 		#region Devices List Card
 
 		private BindableCollection<DeviceModel> _projectDevices;
+		private DeviceModel _selectedDevice;
+
 
 		public BindableCollection<DeviceModel> ProjectDevices
 		{
@@ -91,8 +107,6 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 				NotifyOfPropertyChange(() => ProjectDevices);
 			}
 		}
-
-		private DeviceModel _selectedDevice;
 
 		public DeviceModel SelectedDevice
 		{
@@ -115,6 +129,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 		}
 
 		#endregion
+
 
 		#region Events
 

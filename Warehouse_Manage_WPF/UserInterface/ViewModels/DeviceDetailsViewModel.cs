@@ -14,39 +14,19 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
     public class DeviceDetailsViewModel : Screen
     {
-        private bool _somethingChangedFlag;
-        private DeviceModel _deviceModel;
-        private ProducerAccess _producerAccess;
-        private DeviceAccess _deviceAccess;
+        private ProducerAccess _producerAccess { get; set; }
 
-        private BindableCollection<string> _producers;
+        private DeviceAccess _deviceAccess { get; set; }
 
-        public BindableCollection<string> Producers
-        {
-            get { return _producers; }
-            set 
-            {
-                _producers = value;
-                NotifyOfPropertyChange(() => Producers);
-            }
-        }
-
-
-        public DeviceModel Device
-        {
-            get { return _deviceModel; }
-            set 
-            { 
-                _deviceModel = value;
-                NotifyOfPropertyChange(() => Device);
-            }
-        }
 
         public DeviceDetailsViewModel(IWindowManager windowManager)
         {
             _producerAccess = new ProducerAccess();
             _deviceAccess = new DeviceAccess();
         }
+
+
+        #region Window Operations
 
         protected override async void OnViewLoaded(object view)
         {
@@ -80,12 +60,48 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
                 callback(true);
         }
 
+        #endregion
+
+
+        #region Helpers
+
+        private bool _somethingChangedFlag;
+
         public bool SomethingChangedFlag
         {
             get { return _somethingChangedFlag; }
-            set 
-            { 
-                _somethingChangedFlag = value; 
+            set
+            {
+                _somethingChangedFlag = value;
+            }
+        }
+
+        #endregion
+
+
+        #region Form Controls
+
+        private DeviceModel _deviceModel;
+        private BindableCollection<string> _producers;
+
+
+        public DeviceModel Device
+        {
+            get { return _deviceModel; }
+            set
+            {
+                _deviceModel = value;
+                NotifyOfPropertyChange(() => Device);
+            }
+        }
+
+        public BindableCollection<string> Producers
+        {
+            get { return _producers; }
+            set
+            {
+                _producers = value;
+                NotifyOfPropertyChange(() => Producers);
             }
         }
 
@@ -94,7 +110,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             var deviceValidator = new DeviceModelValidator();
             var validationResult = deviceValidator.Validate(Device);
 
-            if(validationResult.IsValid)
+            if (validationResult.IsValid)
             {
                 var deviceEntity = await Device.ConvertToDeviceEntity();
                 var resultTask = await _deviceAccess.UpdateDevice(deviceEntity);
@@ -112,7 +128,9 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         public void DeleteButton()
         {
-            
+
         }
+
+        #endregion
     }
 }

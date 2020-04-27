@@ -21,6 +21,9 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             ActivateItem(_simpleContainer.GetInstance<WarehouseViewModel>());
         }
 
+
+        #region Left Menu
+
         public void NewDeviceViewOpen()
         {
             ActivateItem(_simpleContainer.GetInstance<NewDeviceViewModel>());
@@ -36,6 +39,11 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             this.ActivateItem(_simpleContainer.GetInstance<ProjectListViewModel>());
         }
 
+        #endregion
+
+
+        #region PopUp Menu
+
         public void CloseAppButton()
         {
             if (ActiveItem != null)
@@ -43,5 +51,8 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
             TryClose();
         }
+
+        #endregion
+
     }
 }

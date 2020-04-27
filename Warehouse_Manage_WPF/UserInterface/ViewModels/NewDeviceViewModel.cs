@@ -14,10 +14,10 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
     public class NewDeviceViewModel : Screen
     {
-		private BindableCollection<string> _producersName;
-		private ProducerAccess producerAccess;
-		private DeviceAccess deviceAccess;
-		private Snackbar _snackbarNewDeviceForm;
+		private ProducerAccess producerAccess { get; set; }
+
+		private DeviceAccess deviceAccess { get; set; }
+		
 
 		public NewDeviceViewModel()
 		{
@@ -25,7 +25,9 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			deviceAccess = new DeviceAccess();
 		}
 
-		protected override async void OnViewLoaded(object view)
+        #region Window Operations
+
+        protected override async void OnViewLoaded(object view)
 		{
 			base.OnViewLoaded(view);
 			await LoadProducers();
@@ -37,15 +39,12 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			ProducersName = new BindableCollection<string>(producersFromAPI);
 		}
 
-		public BindableCollection<string> ProducersName
-		{
-			get { return _producersName; }
-			set 
-			{ 
-				_producersName = value;
-				NotifyOfPropertyChange(() => ProducersName);
-			}
-		}
+        #endregion
+
+
+        #region Snackbar PopUp Notification
+
+        private Snackbar _snackbarNewDeviceForm;
 
 		public Snackbar SnackbarNotification
 		{
@@ -62,12 +61,15 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			SnackbarNotification = (Snackbar)sender;
 		}
 
-		/// <summary>
-		/// Controls for adding new producer form
-		/// </summary>
-		#region NewProducerForm
+        #endregion
 
-		private string _producerName;
+
+        /// <summary>
+        /// Controls for adding new producer form
+        /// </summary>
+        #region NewProducerForm
+
+        private string _producerName;
 		private string _url;
 
 
@@ -146,6 +148,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
 		private string _deviceName;
 		private string _articleNumber;
+		private BindableCollection<string> _producersName;
 		private string _selectedProducerName;
 		private string _location;
 		private int _quantity;
@@ -169,6 +172,16 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			{ 
 				_articleNumber = value;
 				NotifyOfPropertyChange(() => ArticleNumber);
+			}
+		}
+
+		public BindableCollection<string> ProducersName
+		{
+			get { return _producersName; }
+			set
+			{
+				_producersName = value;
+				NotifyOfPropertyChange(() => ProducersName);
 			}
 		}
 

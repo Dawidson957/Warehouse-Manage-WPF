@@ -14,13 +14,13 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
     public class ProjectNewDeviceViewModel : Screen
     {
-		private ProducerAccess _producerAccess;
+		private ProducerAccess _producerAccess { get; set; }
 
-		private DeviceAccess _deviceAccess;
+		private DeviceAccess _deviceAccess { get; set; }
 
-		private int ProjectId;
+		private int ProjectId { get; set; }
 
-		private IEventAggregator _events;
+		private IEventAggregator _events { get; set; }
 
 
 		public ProjectNewDeviceViewModel(IEventAggregator eventAggregator)
@@ -29,6 +29,9 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			_deviceAccess = new DeviceAccess();
 			_events = eventAggregator;
 		}
+
+
+		#region Window Operations
 
 		protected override async void OnViewLoaded(object view)
 		{
@@ -47,6 +50,9 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			var producers = await _producerAccess.GetProducerNamesAll();
 			Producers = new BindableCollection<string>(producers);
 		}
+
+		#endregion
+
 
 		#region Form Controls
 

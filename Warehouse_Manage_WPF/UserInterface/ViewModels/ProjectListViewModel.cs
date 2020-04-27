@@ -14,16 +14,12 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
     public class ProjectListViewModel : Screen, IHandle<NewProjectAddedEvent>
     {
-        private ProjectAccess _projectAccess;
-        private BindableCollection<ProjectModel> _projects;
+        private ProjectAccess _projectAccess { get; set; }
+        
         private SimpleContainer _container { get; set; }
 
-        private IWindowManager _windowManager;
+        private IWindowManager _windowManager { get; set; }
        
-        public ProjectModel SelectedProject { get; set; }
-
-        
-
 
         public ProjectListViewModel(SimpleContainer simpleContainer, IWindowManager windowManager, IEventAggregator eventAggregator)
         {
@@ -34,15 +30,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         }
 
 
-        public BindableCollection<ProjectModel> Projects
-        {
-            get { return _projects; }
-            set 
-            { 
-                _projects = value;
-                NotifyOfPropertyChange(() => Projects);
-            }
-        }
+        #region Window Operations
 
         protected override async void OnViewLoaded(object view)
         {
@@ -62,14 +50,28 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             Console.WriteLine("Loaded Projects");
         }
 
-        public void SnackbarLoaded(object sender)
+        #endregion
+
+
+        #region Project List 
+
+        private BindableCollection<ProjectModel> _projects;
+
+        public ProjectModel SelectedProject { get; set; }
+
+        public BindableCollection<ProjectModel> Projects
         {
-            SnackbarNotification = (Snackbar)sender;
+            get { return _projects; }
+            set
+            {
+                _projects = value;
+                NotifyOfPropertyChange(() => Projects);
+            }
         }
 
         public void MouseDoubleClick_DataGrid()
         {
-            if(SelectedProject != null)
+            if (SelectedProject != null)
             {
                 var mainViewConductor = (MainViewModel)this.Parent;
                 var projectVM = _container.GetInstance<ProjectViewModel>();
@@ -79,16 +81,14 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             }
             else
             {
-                MessageBox.Show("Selected Project is NULL!!!!!!!!!!!!!!1");
+                MessageBox.Show("Selected Project is null");
             }
         }
 
-        public void AddNewProject()
-        {
-            var newProjectVM = _container.GetInstance<NewProjectViewModel>();
-            _windowManager.ShowDialog(newProjectVM);
-        }
+        #endregion
 
+
+        #region Events
 
         public async void Handle(NewProjectAddedEvent newProjectAddedEvent)
         {
@@ -97,19 +97,40 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             SnackbarNotification.MessageQueue.Enqueue("Projekt został dodany pomyślnie.");
         }
 
+        #endregion
+
+
+        #region Snackbar PopUp Notification
+
         private Snackbar _snackbarNotification;
 
         public Snackbar SnackbarNotification
         {
             get { return _snackbarNotification; }
-            set 
+            set
             {
                 _snackbarNotification = value;
                 NotifyOfPropertyChange(() => SnackbarNotification);
             }
         }
 
+        public void SnackbarLoaded(object sender)
+        {
+            SnackbarNotification = (Snackbar)sender;
+        }
 
+        #endregion
+
+
+        #region Button New Project
+
+        public void AddNewProject()
+        {
+            var newProjectVM = _container.GetInstance<NewProjectViewModel>();
+            _windowManager.ShowDialog(newProjectVM);
+        }
+
+        #endregion
 
     }
 }

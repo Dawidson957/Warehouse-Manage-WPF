@@ -14,11 +14,11 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
     public class NewProjectViewModel : Screen
     {
-		private CustomerAccess _customerAccess;
+		private CustomerAccess _customerAccess { get; set; }
 
-		private ProjectAccess _projectAccess;
+		private ProjectAccess _projectAccess { get; set; }
 
-		private IEventAggregator _events;
+		private IEventAggregator _events { get; set; }
 
 
 		public NewProjectViewModel(IEventAggregator eventAggregator)
@@ -29,7 +29,9 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 		}
 
 
-		protected override async void OnViewLoaded(object view)
+        #region Window Operations
+
+        protected override async void OnViewLoaded(object view)
 		{
 			base.OnViewLoaded(view);
 			await LoadCustomers();
@@ -40,6 +42,8 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			var customersName = await _customerAccess.GetCustomersName();
 			CustomersName = new BindableCollection<string>(customersName);
 		}
+
+        #endregion
 
 
         #region Form Controls
