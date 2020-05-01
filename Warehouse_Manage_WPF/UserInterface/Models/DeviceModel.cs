@@ -25,18 +25,34 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
 
         public int ProjectId { get; set; }
 
-        public async Task<Device> ConvertToDeviceEntity()
+        public async Task<Device> ConvertToDeviceEntity(bool clearIDs = false)
         {
-            Device DeviceEntity = new Device
+            Device DeviceEntity = null;
+
+            if(clearIDs)
             {
-                Id = this.Id,
-                Name = this.Name,
-                ArticleNumber = this.ArticleNumber,
-                ProducerID = await this.GetProducerId(this.ProducerName),
-                Location = this.Location,
-                Quantity = this.Quantity,
-                ProjectID = this.ProjectId
-            };
+                DeviceEntity = new Device
+                {
+                    Name = this.Name,
+                    ArticleNumber = this.ArticleNumber,
+                    ProducerID = await this.GetProducerId(this.ProducerName),
+                    Location = this.Location,
+                    Quantity = this.Quantity
+                };
+            }
+            else
+            {
+                DeviceEntity = new Device
+                {
+                    Id = this.Id,
+                    Name = this.Name,
+                    ArticleNumber = this.ArticleNumber,
+                    ProducerID = await this.GetProducerId(this.ProducerName),
+                    Location = this.Location,
+                    Quantity = this.Quantity,
+                    ProjectID = this.ProjectId
+                };
+            }
 
             return DeviceEntity;
         }
@@ -63,6 +79,18 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
         public DeviceModel()
         {
 
+        }
+
+        // Copy constructor
+        public DeviceModel(DeviceModel deviceModel)
+        {
+            Id = deviceModel.Id;
+            Name = deviceModel.Name;
+            ArticleNumber = deviceModel.ArticleNumber;
+            ProducerName = deviceModel.ProducerName;
+            Location = deviceModel.Location;
+            Quantity = deviceModel.Quantity;
+            ProjectId = deviceModel.ProjectId;
         }
     }
 }

@@ -106,6 +106,7 @@
     <Compile Include="UserInterface\ViewModels\MainViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\NewDeviceViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\NewProjectViewModel.cs" />
+    <Compile Include="UserInterface\ViewModels\ProjectAddDevicesFromWarehouseViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\ProjectListViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\ProjectNewDeviceViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\ProjectViewModel.cs" />
@@ -125,6 +126,9 @@
     </Compile>
     <Compile Include="UserInterface\Views\NewProjectView.xaml.cs">
       <DependentUpon>NewProjectView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Views\ProjectAddDevicesFromWarehouseView.xaml.cs">
+      <DependentUpon>ProjectAddDevicesFromWarehouseView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserInterface\Views\ProjectListView.xaml.cs">
       <DependentUpon>ProjectListView.xaml</DependentUpon>
@@ -154,6 +158,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserInterface\Views\NewProjectView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\Views\ProjectAddDevicesFromWarehouseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

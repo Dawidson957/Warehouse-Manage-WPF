@@ -82,6 +82,13 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			_windowManager.ShowDialog(ProjectNewDeviceVM);
 		}
 
+		public async void ExchangeDevices()
+		{
+			var ProjectAddDeviesFromWarehouseVM = _container.GetInstance<ProjectAddDevicesFromWarehouseViewModel>();
+			await ProjectAddDeviesFromWarehouseVM.LoadProjectDevices(this.projectModel.Id);
+			_windowManager.ShowDialog(ProjectAddDeviesFromWarehouseVM);
+		}
+
 		#endregion
 
 

@@ -61,6 +61,25 @@ namespace DataAccess.DataAcc
             return devices;
         }
 
+        public async Task<Device> GetDeviceById(int Id)
+        {
+            Device device = null;
+
+            try
+            {
+                using (var context = new WarehouseModel())
+                {
+                    device = await context.Devices.FirstOrDefaultAsync(x => x.Id == Id);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
+            return device;
+        }
+
         public async Task<bool> UpdateDevice(Device device)
         {
             try
@@ -75,6 +94,7 @@ namespace DataAccess.DataAcc
                         existingDevice.ArticleNumber = device.ArticleNumber;
                         existingDevice.Location = device.Location;
                         existingDevice.Quantity = device.Quantity;
+                        existingDevice.ProjectID = device.ProjectID;
 
                         if (existingDevice.ProducerID != device.ProducerID) 
                         {
@@ -96,6 +116,47 @@ namespace DataAccess.DataAcc
             }
 
             return true;
+        }
+
+        public async Task<bool> AddDeviceToProject(int projectId, Device device)
+        {
+            bool output = false;
+
+            try
+            {
+                using (var context = new WarehouseModel())
+                {
+
+                    var project = context.Projects.Include(x => x.Devices).FirstOrDefault(x => x.Id == projectId);
+
+                    if (project != null)
+                    {
+                        var deviceFromProject = project.Devices.FirstOrDefault(x => x.ArticleNumber == device.ArticleNumber);
+
+                        if(deviceFromProject != null)
+                        {
+                            deviceFromProject.Quantity += device.Quantity;
+                        }
+                        else
+                        {
+                            project.Devices.Add(device);
+                        }
+
+                        await context.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        output = false;
+                    } 
+                }
+            }
+            catch(Exception)
+            {
+                output = false;
+            }
+
+            output = true;
+            return output;
         }
         
     }
