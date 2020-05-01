@@ -12,6 +12,10 @@ namespace DataAccess.Entities
 
         public string Name { get; set; }
 
+        public string Status { get; set; }
+
+        public string Comment { get; set; }
+
         public int CustomerID { get; set; }
 
         public Customer Customer { get; set; }

@@ -82,6 +82,10 @@
     <Compile Include="Migrations\202004231549598_AddedRelationshipBetweenProjectAndDeviceTable.designer.cs">
       <DependentUpon>202004231549598_AddedRelationshipBetweenProjectAndDeviceTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005011004116_AddedTwoOptionalColumnsToProjectTable.cs" />
+    <Compile Include="Migrations\202005011004116_AddedTwoOptionalColumnsToProjectTable.designer.cs">
+      <DependentUpon>202005011004116_AddedTwoOptionalColumnsToProjectTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -101,6 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004231549598_AddedRelationshipBetweenProjectAndDeviceTable.resx">
       <DependentUpon>202004231549598_AddedRelationshipBetweenProjectAndDeviceTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005011004116_AddedTwoOptionalColumnsToProjectTable.resx">
+      <DependentUpon>202005011004116_AddedTwoOptionalColumnsToProjectTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -21,6 +21,20 @@ namespace DataAccess.EntitiesConfiguration
             .IsRequired()
             .HasMaxLength(255);
 
+            Property(c => c.Status)
+                .HasColumnName("Status")
+                .HasColumnType("varchar")
+                .HasColumnOrder(3)
+                .IsOptional()
+                .HasMaxLength(64);
+
+            Property(c => c.Comment)
+                .HasColumnName("Comment")
+                .HasColumnType("varchar")
+                .HasColumnOrder(4)
+                .IsOptional()
+                .HasMaxLength(1024);
+
             HasMany(c => c.Devices)
                 .WithRequired(c => c.Project)
                 .HasForeignKey(c => c.ProjectID);
