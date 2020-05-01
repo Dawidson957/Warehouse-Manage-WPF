@@ -93,6 +93,7 @@
     </ApplicationDefinition>
     <Compile Include="UserInterface\Bootstrapper.cs" />
     <Compile Include="UserInterface\EventModels\AddedNewDeviceToProjectEvent.cs" />
+    <Compile Include="UserInterface\EventModels\DeviceCredentialsChangedEvent.cs" />
     <Compile Include="UserInterface\EventModels\NewProjectAddedEvent.cs" />
     <Compile Include="UserInterface\Helpers\ICustomerEntityConversion.cs" />
     <Compile Include="UserInterface\Helpers\IDeviceEntityConversion.cs" />

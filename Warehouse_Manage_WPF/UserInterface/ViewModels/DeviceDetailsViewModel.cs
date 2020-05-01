@@ -9,6 +9,7 @@ using Warehouse_Manage_WPF.Validators;
 using Warehouse_Manage_WPF.UserInterface.Helpers;
 using Warehouse_Manage_WPF.UserInterface.Models;
 using DataAccess.DataAcc;
+using Warehouse_Manage_WPF.UserInterface.EventModels;
 
 namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
@@ -18,11 +19,14 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         private DeviceAccess _deviceAccess { get; set; }
 
+        private IEventAggregator _events { get; set; }
 
-        public DeviceDetailsViewModel(IWindowManager windowManager)
+
+        public DeviceDetailsViewModel(IWindowManager windowManager, IEventAggregator eventAggregator)
         {
             _producerAccess = new ProducerAccess();
             _deviceAccess = new DeviceAccess();
+            _events = eventAggregator;
         }
 
 
@@ -126,9 +130,18 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             }
         }
 
-        public void DeleteButton()
+        public async void DeleteButton()
         {
+            var resultTask = await _deviceAccess.DeleteDevice(Device.Id);
 
+            if(resultTask)
+            {
+                _events.PublishOnUIThread(new DeviceCredentialsChangedEvent());
+            }
+            else
+            {
+                MessageBox.Show("An error occured.");
+            }
         }
 
         #endregion

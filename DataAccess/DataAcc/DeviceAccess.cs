@@ -118,6 +118,39 @@ namespace DataAccess.DataAcc
             return true;
         }
 
+        public async Task<bool> DeleteDevice(int Id)
+        {
+            bool output = false;
+
+            try
+            {
+                using (var context = new WarehouseModel())
+                {
+                    var existingDevice = context.Devices.FirstOrDefault(x => x.Id == Id);
+
+                    if(existingDevice != null)
+                    {
+                        context.Devices.Remove(existingDevice);
+
+                        await context.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        output = false;
+                        return output;
+                    }
+                }
+            }
+            catch(Exception)
+            {
+                output = false;
+                return output;
+            }
+
+            output = true;
+            return output;
+        }
+
         public async Task<bool> AddDeviceToProject(int projectId, Device device)
         {
             bool output = false;
