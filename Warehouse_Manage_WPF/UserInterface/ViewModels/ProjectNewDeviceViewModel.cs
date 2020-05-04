@@ -162,7 +162,10 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
 		public void ClearButton()
 		{
-			// Clear form
+			DeviceName = "";
+			ArticleNumber = "";
+			Location = "";
+			Quantity = 1;
 		}
 
         #endregion
