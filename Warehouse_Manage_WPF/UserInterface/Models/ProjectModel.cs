@@ -15,6 +15,8 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
 
         public string Name { get; set; }
 
+        public string Status { get; set; }
+
         public string Comment { get; set; }
 
         public string CustomerName { get; set; }
@@ -24,6 +26,8 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
         {
             Id = project.Id;
             Name = project.Name;
+            Status = project.Status;
+            Comment = project.Comment;
             CustomerName = project.Customer.Name;
         }
 
@@ -33,6 +37,8 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
             {
                 Id = this.Id,
                 Name = this.Name,
+                Status = this.Status,
+                Comment = this.Comment,
                 CustomerID = await GetCustomerId(this.CustomerName)
             };
 
