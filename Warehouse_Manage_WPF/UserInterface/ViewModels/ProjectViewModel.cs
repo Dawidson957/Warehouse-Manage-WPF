@@ -89,6 +89,13 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			_windowManager.ShowDialog(ProjectAddDeviesFromWarehouseVM);
 		}
 
+		public void CloseProject()
+		{
+			var mainVM = (MainViewModel) this.Parent;
+			var projectListVM = _container.GetInstance<ProjectListViewModel>();
+			mainVM.ActivateItem(projectListVM);
+		}
+
 		#endregion
 
 
