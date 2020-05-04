@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using Caliburn.Micro;
 using DataAccess.DataAcc;
+using Warehouse_Manage_WPF.UserInterface.EventModels;
 using Warehouse_Manage_WPF.UserInterface.Models;
 
 namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
-    public class WarehouseViewModel : Screen
+    public class WarehouseViewModel : Screen, IHandle<DeviceCredentialsChangedEvent>
     {
         private SimpleContainer _simpleContainer { get; set; }
 
@@ -83,5 +84,14 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         #endregion
 
+
+        #region Events
+
+        public async void Handle(DeviceCredentialsChangedEvent deviceCredentialsChangedEvent)
+        {
+            await LoadDevices();
+        }
+
+        #endregion
     }
 }
