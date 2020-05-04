@@ -120,7 +120,10 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
                 var resultTask = await _deviceAccess.UpdateDevice(deviceEntity);
 
                 if (resultTask)
-                    MessageBox.Show("Device credentials has been changed successfully.");
+                {
+                    _events.PublishOnUIThread(new DeviceCredentialsChangedEvent());
+                    this.TryClose();
+                }
                 else
                     MessageBox.Show("An error occured.");
             }
@@ -137,6 +140,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             if(resultTask)
             {
                 _events.PublishOnUIThread(new DeviceCredentialsChangedEvent());
+                this.TryClose();
             }
             else
             {

@@ -43,14 +43,38 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
+                <!-- Row 0 -->
                 <TextBlock Grid.Row="0" Text="Informacje o projekcie" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="5 5 0 0" FontSize="18"/>
 
+                <!-- Row 1 -->
                 <Separator Grid.Row="1" Style="{StaticResource MaterialDesignSeparator}" Margin="5 0 5 0"/>
                 
+                <!-- Row 2 -->
+                <TextBlock Grid.Row="2" Text="Klient:" Margin="5 0 0 0"/>
                 
+                <!-- Row 3 -->
+                <TextBlock x:Name="CustomerName" Grid.Row="3" Text="Śnieżka Sp. z o.o." Margin="10 3 0 0"/>
+                
+                <!-- Row 4 -->
+                <TextBlock Text="Status projektu:" Grid.Row="4" Margin="5 10 0 0"/>
+                
+                <!-- Row 5 -->
+                <TextBlock x:Name="Status" Text="Otwarty" Grid.Row="5" Margin="10 3 0 0" />
+                
+                <!-- Row 6 -->
+                <TextBlock Text="Komentarz:" Grid.Row="6" Margin="5 10 0 0" />
+                
+                <!-- Row 7 -->
+                <TextBlock Text="Commment" Grid.Row="7" TextWrapping="Wrap" Margin="10 3 0 0"/>
+
             </Grid>
         </materialDesign:Card>
 

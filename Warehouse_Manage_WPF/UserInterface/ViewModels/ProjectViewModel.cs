@@ -10,7 +10,7 @@ using Warehouse_Manage_WPF.UserInterface.Models;
 
 namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
-    public class ProjectViewModel : Screen, IHandle<AddedNewDeviceToProjectEvent>
+    public class ProjectViewModel : Screen, IHandle<AddedNewDeviceToProjectEvent>, IHandle<DeviceCredentialsChangedEvent>
     {
 		private ProjectAccess _projectAccess { get; set; }
 
@@ -141,6 +141,11 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 		#region Events
 
 		public async void Handle(AddedNewDeviceToProjectEvent newDeviceAdded)
+		{
+			await LoadDevices();
+		}
+
+		public async void Handle(DeviceCredentialsChangedEvent deviceCredentialsChanged)
 		{
 			await LoadDevices();
 		}
