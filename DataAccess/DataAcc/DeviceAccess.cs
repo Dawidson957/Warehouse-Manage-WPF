@@ -61,25 +61,6 @@ namespace DataAccess.DataAcc
             return devices;
         }
 
-        public async Task<Device> GetDeviceById(int Id)
-        {
-            Device device = null;
-
-            try
-            {
-                using (var context = new WarehouseModel())
-                {
-                    device = await context.Devices.FirstOrDefaultAsync(x => x.Id == Id);
-                }
-            }
-            catch (Exception)
-            {
-
-            }
-
-            return device;
-        }
-
         public async Task<bool> UpdateDevice(Device device)
         {
             try
@@ -105,14 +86,13 @@ namespace DataAccess.DataAcc
                     }
                     else
                     {
-                        throw new Exception("No device found");
+                        return false;
                     } 
                 }
             }
-            catch(Exception ex)
+            catch(Exception)
             {
                 return false;
-                throw new Exception(ex.Message);
             }
 
             return true;
@@ -120,8 +100,6 @@ namespace DataAccess.DataAcc
 
         public async Task<bool> DeleteDevice(int Id)
         {
-            bool output = false;
-
             try
             {
                 using (var context = new WarehouseModel())
@@ -136,25 +114,20 @@ namespace DataAccess.DataAcc
                     }
                     else
                     {
-                        output = false;
-                        return output;
+                        return false;
                     }
                 }
             }
             catch(Exception)
             {
-                output = false;
-                return output;
+                return false;
             }
 
-            output = true;
-            return output;
+            return true;
         }
 
         public async Task<bool> AddDeviceToProject(int projectId, Device device)
         {
-            bool output = false;
-
             try
             {
                 using (var context = new WarehouseModel())
@@ -179,17 +152,16 @@ namespace DataAccess.DataAcc
                     }
                     else
                     {
-                        output = false;
+                        return false;
                     } 
                 }
             }
             catch(Exception)
             {
-                output = false;
+                return false;
             }
 
-            output = true;
-            return output;
+            return true;
         }
         
     }

@@ -25,7 +25,7 @@ namespace DataAccess.DataAcc
             }
             catch { }
 
-            return customers;
+            return customers.Count > 0 ? customers : null;
         }
 
         public async Task<List<string>> GetCustomersName()
@@ -39,17 +39,14 @@ namespace DataAccess.DataAcc
                     customersName = await (from s in context.Customers select s.Name).ToListAsync<string>();
                 }
             }
-            catch(Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            catch(Exception) { }
 
             return customersName.Count > 0 ? customersName : null;
         }
 
         public async Task<int> GetCustomerId(string name)
         {
-            int ID;
+            int ID = 0;
 
             try
             {
@@ -60,10 +57,7 @@ namespace DataAccess.DataAcc
                                 select s.Id).FirstOrDefaultAsync();
                 }
             }
-            catch(Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            catch(Exception) { }
 
             return ID;
         }
@@ -87,7 +81,10 @@ namespace DataAccess.DataAcc
                     }
                 }
             }
-            catch { }
+            catch(Exception)
+            {
+                return false;
+            }
 
             return true;
         }
@@ -114,7 +111,10 @@ namespace DataAccess.DataAcc
                     }
                 }
             }
-            catch { }
+            catch(Exception)
+            {
+                return false;
+            }
 
             return true;
         }
