@@ -103,6 +103,7 @@
     <Compile Include="UserInterface\Models\DeviceModel.cs" />
     <Compile Include="UserInterface\Models\ProducerModel.cs" />
     <Compile Include="UserInterface\Models\ProjectModel.cs" />
+    <Compile Include="UserInterface\ViewModels\CustomersViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\DeviceDetailsViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\MainViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\NewDeviceViewModel.cs" />
@@ -111,7 +112,11 @@
     <Compile Include="UserInterface\ViewModels\ProjectListViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\ProjectNewDeviceViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\ProjectViewModel.cs" />
+    <Compile Include="UserInterface\ViewModels\SettingsViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\WarehouseViewModel.cs" />
+    <Compile Include="UserInterface\Views\CustomersView.xaml.cs">
+      <DependentUpon>CustomersView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserInterface\Views\DeviceDetailsView.xaml.cs">
       <DependentUpon>DeviceDetailsView.xaml</DependentUpon>
     </Compile>
@@ -140,12 +145,19 @@
     <Compile Include="UserInterface\Views\ProjectView.xaml.cs">
       <DependentUpon>ProjectView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserInterface\Views\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserInterface\Views\WarehouseView.xaml.cs">
       <DependentUpon>WarehouseView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Validators\DeviceModelValidator.cs" />
     <Compile Include="Validators\ProducerValidator.cs" />
     <Compile Include="Validators\ProjectFormValidator.cs" />
+    <Page Include="UserInterface\Views\CustomersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserInterface\Views\DeviceDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -175,6 +187,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserInterface\Views\ProjectView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\Views\SettingsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

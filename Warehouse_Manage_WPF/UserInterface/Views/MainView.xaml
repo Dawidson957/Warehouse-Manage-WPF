@@ -62,11 +62,10 @@
                 <!-- Popup Menu -->
                 <materialDesign:PopupBox Margin="10" Foreground="White" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
                     <StackPanel Width="150">
-                        <Button Content="Account"/>
-                        <Button Content="Settings"/>
-                        <Button Content="Help"/>
+                        <Button Content="Zarządzanie" cal:Message.Attach="[Event Click] = [Action OpenSettings]"/>
+                        <Button Content="Pomoc"/>
                         <Separator/>
-                        <Button Content="Logout" cal:Message.Attach="[Event Click] = [Action CloseAppButton]"/>
+                        <Button Content="Wyjdź" cal:Message.Attach="[Event Click] = [Action CloseAppButton]"/>
                     </StackPanel>
                 </materialDesign:PopupBox>
             </StackPanel>
