@@ -6,19 +6,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Warehouse_Manage_WPF.UserInterface.EventModels;
 using Warehouse_Manage_WPF.UserInterface.Models;
 using Warehouse_Manage_WPF.Validators;
 
 namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
-    public class CustomersViewModel : Screen
+    public class CustomersViewModel : Screen, IHandle<CustomerCredentialsChangedEvent>
     {
         private CustomerAccess _customers;
 
-        public CustomersViewModel()
+        private IWindowManager _windowManager;
+
+        private SimpleContainer _container;
+
+        public CustomersViewModel(IWindowManager windowManager, SimpleContainer simpleContainer)
         {
             _customers = new CustomerAccess();
             NewCustomer = new CustomerModel();
+            _windowManager = windowManager;
+            _container = simpleContainer;
         }
 
         #region Window Operations
@@ -59,7 +66,10 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         {
             var customer = (CustomerModel)dataContext;
 
-            // TODO: Add window for editing customer details
+            var CustomerDetailsVM = _container.GetInstance<CustomerDetailsViewModel>();
+            CustomerDetailsVM.LoadCustomer(customer);
+
+            _windowManager.ShowDialog(CustomerDetailsVM);
         }
 
         #endregion
@@ -118,6 +128,15 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         #endregion
 
+
+        #region Events
+
+        public async void Handle(CustomerCredentialsChangedEvent customerCredentialsChangedEvent)
+        {
+            await LoadCustomers();
+        }
+
+        #endregion
 
 
     }

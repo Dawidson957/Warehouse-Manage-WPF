@@ -93,6 +93,7 @@
     </ApplicationDefinition>
     <Compile Include="UserInterface\Bootstrapper.cs" />
     <Compile Include="UserInterface\EventModels\AddedNewDeviceToProjectEvent.cs" />
+    <Compile Include="UserInterface\EventModels\CustomerCredentialsChangedEvent.cs" />
     <Compile Include="UserInterface\EventModels\DeviceCredentialsChangedEvent.cs" />
     <Compile Include="UserInterface\EventModels\NewProjectAddedEvent.cs" />
     <Compile Include="UserInterface\Helpers\ICustomerEntityConversion.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="UserInterface\Models\DeviceModel.cs" />
     <Compile Include="UserInterface\Models\ProducerModel.cs" />
     <Compile Include="UserInterface\Models\ProjectModel.cs" />
+    <Compile Include="UserInterface\ViewModels\CustomerDetailsViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\CustomersViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\DeviceDetailsViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\MainViewModel.cs" />
@@ -114,6 +116,9 @@
     <Compile Include="UserInterface\ViewModels\ProjectViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\SettingsViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\WarehouseViewModel.cs" />
+    <Compile Include="UserInterface\Views\CustomerDetailsView.xaml.cs">
+      <DependentUpon>CustomerDetailsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UserInterface\Views\CustomersView.xaml.cs">
       <DependentUpon>CustomersView.xaml</DependentUpon>
     </Compile>
@@ -155,6 +160,10 @@
     <Compile Include="Validators\DeviceModelValidator.cs" />
     <Compile Include="Validators\ProducerValidator.cs" />
     <Compile Include="Validators\ProjectFormValidator.cs" />
+    <Page Include="UserInterface\Views\CustomerDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UserInterface\Views\CustomersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
