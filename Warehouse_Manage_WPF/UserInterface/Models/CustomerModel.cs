@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccess.Entities;
+using Warehouse_Manage_WPF.UserInterface.Helpers;
 
 namespace Warehouse_Manage_WPF.UserInterface.Models
 {
-    public class CustomerModel
+    public class CustomerModel : ICustomerEntityConversion
     {
         public int Id { get; set; }
 
@@ -29,6 +30,18 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
         public CustomerModel()
         {
 
+        }
+
+        public Customer ConvertToCustomerEntity()
+        {
+            var customer = new Customer()
+            {
+                Name = this.Name,
+                Address = this.Address,
+                City = this.City
+            };
+
+            return customer;
         }
     }
 }

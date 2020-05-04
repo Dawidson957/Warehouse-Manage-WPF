@@ -151,6 +151,7 @@
     <Compile Include="UserInterface\Views\WarehouseView.xaml.cs">
       <DependentUpon>WarehouseView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Validators\CustomerFormValidator.cs" />
     <Compile Include="Validators\DeviceModelValidator.cs" />
     <Compile Include="Validators\ProducerValidator.cs" />
     <Compile Include="Validators\ProjectFormValidator.cs" />

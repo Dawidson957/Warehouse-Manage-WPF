@@ -5,7 +5,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Warehouse_Manage_WPF.UserInterface.Models;
+using Warehouse_Manage_WPF.Validators;
 
 namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
@@ -16,6 +18,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         public CustomersViewModel()
         {
             _customers = new CustomerAccess();
+            NewCustomer = new CustomerModel();
         }
 
         #region Window Operations
@@ -60,6 +63,61 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         }
 
         #endregion
+
+        #region New Customer Form
+
+        private CustomerModel _newCustomer;
+
+        public CustomerModel NewCustomer
+        {
+            get { return _newCustomer; }
+            set 
+            { 
+                _newCustomer = value;
+                NotifyOfPropertyChange(() => NewCustomer);
+            }
+        }
+
+        public async void SaveButton()
+        {
+            var customerFormValidator = new CustomerFormValidator();
+            var validationResult = customerFormValidator.Validate(NewCustomer);
+
+            if(validationResult.IsValid)
+            {
+                var customerEntity = NewCustomer.ConvertToCustomerEntity();
+                var resultTask = await _customers.AddCustomer(customerEntity);
+
+                if(resultTask)
+                {
+                    ClearFields();
+                    await LoadCustomers();
+                }
+                else
+                {
+                    MessageBox.Show("An error occured.");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Błąd walidacji danych.");
+            }
+        }
+
+        public void ClearButton()
+        {
+            ClearFields();
+        }
+
+        private void ClearFields()
+        {
+            NewCustomer.Name = "";
+            NewCustomer.Address = "";
+            NewCustomer.City = "";
+        }
+
+        #endregion
+
 
 
     }
