@@ -93,6 +93,7 @@
     </ApplicationDefinition>
     <Compile Include="UserInterface\Bootstrapper.cs" />
     <Compile Include="UserInterface\EventModels\AddedNewDeviceToProjectEvent.cs" />
+    <Compile Include="UserInterface\EventModels\ChangedProjectCredentialsEvent.cs" />
     <Compile Include="UserInterface\EventModels\CustomerCredentialsChangedEvent.cs" />
     <Compile Include="UserInterface\EventModels\DeviceCredentialsChangedEvent.cs" />
     <Compile Include="UserInterface\EventModels\NewProjectAddedEvent.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="UserInterface\ViewModels\NewDeviceViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\NewProjectViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\ProjectAddDevicesFromWarehouseViewModel.cs" />
+    <Compile Include="UserInterface\ViewModels\ProjectDetailsViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\ProjectListViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\ProjectNewDeviceViewModel.cs" />
     <Compile Include="UserInterface\ViewModels\ProjectViewModel.cs" />
@@ -140,6 +142,9 @@
     </Compile>
     <Compile Include="UserInterface\Views\ProjectAddDevicesFromWarehouseView.xaml.cs">
       <DependentUpon>ProjectAddDevicesFromWarehouseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UserInterface\Views\ProjectDetailsView.xaml.cs">
+      <DependentUpon>ProjectDetailsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="UserInterface\Views\ProjectListView.xaml.cs">
       <DependentUpon>ProjectListView.xaml</DependentUpon>
@@ -185,6 +190,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserInterface\Views\ProjectAddDevicesFromWarehouseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserInterface\Views\ProjectDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

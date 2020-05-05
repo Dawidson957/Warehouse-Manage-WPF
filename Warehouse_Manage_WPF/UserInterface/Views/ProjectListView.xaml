@@ -52,8 +52,8 @@
                     
                     <materialDesign:DataGridTextColumn Header="Nazwa projektu" MaxLength="50" Binding="{Binding Name}"/>
                     <materialDesign:DataGridTextColumn Header="Klient" MaxLength="30" Binding="{Binding CustomerName}"/>
-                    <materialDesign:DataGridTextColumn Header="Status" MaxLength="30" />
-                    <materialDesign:DataGridTextColumn Header="Komentarz" MaxLength="10" />
+                    <materialDesign:DataGridTextColumn Header="Status" MaxLength="30" Binding="{Binding Status}"/>
+                    <materialDesign:DataGridTextColumn Header="Komentarz" MaxLength="10" Binding="{Binding Comment}"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>

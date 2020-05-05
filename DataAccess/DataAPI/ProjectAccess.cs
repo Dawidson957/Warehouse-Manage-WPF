@@ -13,6 +13,25 @@ namespace DataAccess.DataAcc
     public class ProjectAccess : IProjectAccess
     {
 
+        public async Task<Project> GetProjectById(int Id)
+        {
+            Project project = null;
+
+            try
+            {
+                using (var context = new WarehouseModel())
+                {
+                    project = await context.Projects.FirstOrDefaultAsync(x => x.Id == Id);
+                }
+            }
+            catch(Exception)
+            {
+                return null;
+            }
+
+            return project;
+        }
+
         public async Task<List<Project>> GetProjectsInfo()
         {
             List<Project> projects = null;
@@ -50,6 +69,37 @@ namespace DataAccess.DataAcc
                 }
             }
             catch { }
+
+            return true;
+        }
+
+        public async Task<bool> UpdateProject(Project project)
+        {
+            try
+            {
+                using (var context = new WarehouseModel())
+                {
+                    var existingProject = context.Projects.FirstOrDefault(x => x.Id == project.Id);
+
+                    if(existingProject != null)
+                    {
+                        existingProject.Name = project.Name;
+                        existingProject.Status = project.Status;
+                        existingProject.CustomerID = project.CustomerID;
+                        existingProject.Comment = project.Comment;
+
+                        await context.SaveChangesAsync();
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch(Exception)
+            {
+                return false;
+            }
 
             return true;
         }

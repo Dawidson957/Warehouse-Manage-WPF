@@ -31,6 +31,7 @@
                 <StackPanel Width="250">
                     <Button Content="Dodaj nowe urządzenie" cal:Message.Attach="[Event Click] = [Action AddNewDevice]"/>
                     <Button Content="Dodaj urządzenie z magazynu" cal:Message.Attach="[Event Click] = [Action ExchangeDevices]"/>
+                    <Button Content="Edytuj" cal:Message.Attach="[Event Click] = [Action EditProject]"/>
                     <Separator/>
                     <Button Content="Zamknij projekt" cal:Message.Attach="[Event Click] = [Action CloseProject]"/>
                 </StackPanel>
@@ -68,19 +69,19 @@
                 <TextBlock Grid.Row="2" Text="Klient:" Margin="5 0 0 0"/>
                 
                 <!-- Row 3 -->
-                <TextBlock x:Name="CustomerName" Grid.Row="3" Text="Śnieżka Sp. z o.o." Margin="10 3 0 0"/>
+                <TextBlock x:Name="CustomerName" Grid.Row="3" Margin="10 3 0 0" TextWrapping="Wrap"/>
                 
                 <!-- Row 4 -->
                 <TextBlock Text="Status projektu:" Grid.Row="4" Margin="5 10 0 0"/>
                 
                 <!-- Row 5 -->
-                <TextBlock x:Name="Status" Text="Otwarty" Grid.Row="5" Margin="10 3 0 0" />
+                <TextBlock x:Name="ProjectStatus" Grid.Row="5" Margin="10 3 0 0" />
                 
                 <!-- Row 6 -->
                 <TextBlock Text="Komentarz:" Grid.Row="6" Margin="5 10 0 0" />
                 
                 <!-- Row 7 -->
-                <TextBlock Text="Commment" Grid.Row="7" TextWrapping="Wrap" Margin="10 3 0 0"/>
+                <TextBlock x:Name="Comment" Grid.Row="7" TextWrapping="Wrap" Margin="10 3 0 0"/>
 
             </Grid>
         </materialDesign:Card>

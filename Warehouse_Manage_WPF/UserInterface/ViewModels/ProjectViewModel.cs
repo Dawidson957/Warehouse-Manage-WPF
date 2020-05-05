@@ -5,12 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using Warehouse_Manage_WPF.UserInterface.EventModels;
 using Warehouse_Manage_WPF.UserInterface.Models;
 
 namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
-    public class ProjectViewModel : Screen, IHandle<AddedNewDeviceToProjectEvent>, IHandle<DeviceCredentialsChangedEvent>
+    public class ProjectViewModel : Screen, IHandle<AddedNewDeviceToProjectEvent>, IHandle<DeviceCredentialsChangedEvent>, IHandle<ChangedProjectCredentialsEvent>
     {
 		private SimpleContainer _container { get; set; }
 
@@ -40,14 +41,37 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			await LoadDevices();
 		}
 
-		public void LoadProject(ProjectModel projectModel)
+		public void LoadProject(ProjectModel project)
 		{
-			_project = projectModel;
+			projectModel = project;
+			LoadProjectInf();
+		}
+
+		private async Task LoadProjectInfo(int Id)
+		{
+			var project = await _projectAccess.GetProjectById(Id);
+
+			if(project != null)
+			{
+				projectModel = new ProjectModel(project);
+				LoadProjectInf();
+			}
+			else
+			{
+				MessageBox.Show("This project doesn't exists.");
+			}
+		}
+
+		private void LoadProjectInf()
+		{
+			CustomerName = projectModel.CustomerName;
+			ProjectStatus = projectModel.Status;
+			Comment = projectModel.Comment;
 		}
 
 		private async Task LoadDevices()
 		{
-			var devices = await _deviceAccess.GetDevicesAll(this._project.Id);
+			var devices = await _deviceAccess.GetDevicesAll(projectModel.Id);
 			ProjectDevices = new BindableCollection<DeviceModel>();
 
 			foreach (var device in devices)
@@ -79,7 +103,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 		public void AddNewDevice()
 		{
 			var ProjectNewDeviceVM = _container.GetInstance<ProjectNewDeviceViewModel>();
-			ProjectNewDeviceVM.SetProjectId(this._project.Id);
+			ProjectNewDeviceVM.SetProjectId(projectModel.Id);
 			_windowManager.ShowDialog(ProjectNewDeviceVM);
 		}
 
@@ -88,6 +112,14 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			var ProjectAddDeviesFromWarehouseVM = _container.GetInstance<ProjectAddDevicesFromWarehouseViewModel>();
 			await ProjectAddDeviesFromWarehouseVM.LoadProjectDevices(this.projectModel.Id);
 			_windowManager.ShowDialog(ProjectAddDeviesFromWarehouseVM);
+		}
+
+		public void EditProject()
+		{
+			// Show edit window
+			var projectDetailsVM = _container.GetInstance<ProjectDetailsViewModel>();
+			projectDetailsVM.LoadProject(projectModel);
+			_windowManager.ShowDialog(projectDetailsVM);
 		}
 
 		public void CloseProject()
@@ -102,7 +134,39 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
 		#region Project Information Card
 
+		private string _customerName;
+		private string _projectStatus;
+		private string _comment;
 
+		public string CustomerName
+		{
+			get { return _customerName; }
+			set 
+			{ 
+				_customerName = value;
+				NotifyOfPropertyChange(() => CustomerName);
+			}
+		}
+
+		public string ProjectStatus
+		{
+			get { return _projectStatus; }
+			set 
+			{ 
+				_projectStatus = value;
+				NotifyOfPropertyChange(() => ProjectStatus);
+			}
+		}
+
+		public string Comment
+		{
+			get { return _comment; }
+			set 
+			{ 
+				_comment = value;
+				NotifyOfPropertyChange(() => Comment);
+			}
+		}
 
 		#endregion
 
@@ -156,6 +220,15 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 		public async void Handle(DeviceCredentialsChangedEvent deviceCredentialsChanged)
 		{
 			await LoadDevices();
+		}
+
+		public async void Handle(ChangedProjectCredentialsEvent changedProjectCredentialsEvent)
+		{
+			try
+			{
+				await LoadProjectInfo(changedProjectCredentialsEvent.ProjectId);
+			}
+			catch(NullReferenceException) { }
 		}
 
 		#endregion

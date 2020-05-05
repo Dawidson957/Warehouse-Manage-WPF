@@ -18,6 +18,9 @@ namespace Warehouse_Manage_WPF.Validators
                 .MinimumLength(2)
                 .MaximumLength(255);
 
+            RuleFor(x => x.Status)
+                .MaximumLength(64);
+
             RuleFor(x => x.Comment)
                 .MaximumLength(512);
         }

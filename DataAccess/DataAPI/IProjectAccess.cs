@@ -8,5 +8,6 @@ namespace DataAccess.DataAcc
     {
         Task<bool> AddProject(Project project);
         Task<List<Project>> GetProjectsInfo();
+        Task<bool> UpdateProject(Project project);
     }
 }
