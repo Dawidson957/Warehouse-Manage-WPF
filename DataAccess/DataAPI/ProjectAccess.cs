@@ -21,7 +21,7 @@ namespace DataAccess.DataAcc
             {
                 using (var context = new WarehouseModel())
                 {
-                    project = await context.Projects.FirstOrDefaultAsync(x => x.Id == Id);
+                    project = await context.Projects.Include(x => x.Customer).FirstOrDefaultAsync(x => x.Id == Id);
                 }
             }
             catch(Exception)

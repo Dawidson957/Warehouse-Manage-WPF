@@ -73,13 +73,13 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             }
         }
 
-        public void MouseDoubleClick_DataGrid()
+        public async void MouseDoubleClick_DataGrid()
         {
             if (SelectedProject != null)
             {
                 var mainViewConductor = (MainViewModel)this.Parent;
                 var projectVM = _container.GetInstance<ProjectViewModel>();
-                projectVM.LoadProject(SelectedProject);
+                await projectVM.LoadProject2(SelectedProject.Id);
                 mainViewConductor.DeactivateItem(mainViewConductor.ActiveItem, true);
                 mainViewConductor.ActivateItem(projectVM);
             }

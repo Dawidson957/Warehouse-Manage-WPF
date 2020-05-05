@@ -35,16 +35,31 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
 		#region Window Operations
 
-		protected override async void OnViewLoaded(object view)
-		{
-			base.OnViewLoaded(view);
-			await LoadDevices();
-		}
 
 		public void LoadProject(ProjectModel project)
 		{
 			projectModel = project;
 			LoadProjectInf();
+		}
+
+		public async Task LoadProject2(int projectId)
+		{
+			var project = await _projectAccess.GetProjectById(projectId);
+
+			if(project != null)
+			{
+				projectModel = new ProjectModel(project);
+
+				CustomerName = projectModel.CustomerName;
+				ProjectStatus = projectModel.Status;
+				Comment = projectModel.Comment;
+
+				await LoadDevices();
+			}
+			else
+			{
+				MessageBox.Show("This project doesn't exists.");
+			}
 		}
 
 		private async Task LoadProjectInfo(int Id)
@@ -224,11 +239,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
 		public async void Handle(ChangedProjectCredentialsEvent changedProjectCredentialsEvent)
 		{
-			try
-			{
-				await LoadProjectInfo(changedProjectCredentialsEvent.ProjectId);
-			}
-			catch(NullReferenceException) { }
+			await LoadProject2(changedProjectCredentialsEvent.ProjectId);
 		}
 
 		#endregion
