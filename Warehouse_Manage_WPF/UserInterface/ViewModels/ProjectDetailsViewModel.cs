@@ -29,8 +29,8 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         {
             _container = simpleContainer;
             _events = eventAggregator;
-            _customerAccess = (CustomerAccess)_container.GetInstance(typeof(ICustomerAccess), typeof(CustomerAccess).ToString());
-            _projectAccess = (ProjectAccess)_container.GetInstance(typeof(IProjectAccess), typeof(ProjectAccess).ToString());
+            _customerAccess = _container.GetInstance<CustomerAccess>();
+            _projectAccess = _container.GetInstance<ProjectAccess>();
         }
 
         protected override async void OnViewLoaded(object view)

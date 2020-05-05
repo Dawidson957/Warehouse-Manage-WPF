@@ -24,8 +24,8 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 		public NewDeviceViewModel(SimpleContainer simpleContainer)
 		{
 			_container = simpleContainer;
-			producerAccess = (ProducerAccess)_container.GetInstance(typeof(IProducerAccess), typeof(ProducerAccess).ToString());
-			deviceAccess = (DeviceAccess)_container.GetInstance(typeof(IDeviceAccess), typeof(DeviceAccess).ToString());
+			producerAccess = _container.GetInstance<ProducerAccess>();
+			deviceAccess = _container.GetInstance<DeviceAccess>();
 		}
 
         #region Window Operations

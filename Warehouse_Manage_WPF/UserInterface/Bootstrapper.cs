@@ -23,11 +23,6 @@ namespace Warehouse_Manage_WPF.UserInterface
         {
             _container.Instance(_container);
 
-            _container.RegisterSingleton(typeof(IDeviceAccess), typeof(DeviceAccess).ToString(), typeof(DeviceAccess));
-            _container.RegisterSingleton(typeof(IProducerAccess), typeof(ProducerAccess).ToString(), typeof(ProducerAccess));
-            _container.RegisterSingleton(typeof(ICustomerAccess), typeof(CustomerAccess).ToString(), typeof(CustomerAccess));
-            _container.RegisterSingleton(typeof(IProjectAccess), typeof(ProjectAccess).ToString(), typeof(ProjectAccess));
-
             _container
                 .Singleton<IWindowManager, WindowManager>()
                 .Singleton<IEventAggregator, EventAggregator>();
@@ -38,6 +33,11 @@ namespace Warehouse_Manage_WPF.UserInterface
                 .ToList()
                 .ForEach(viewModelType => _container.RegisterPerRequest(
                     viewModelType, viewModelType.ToString(), viewModelType));
+
+            _container.RegisterPerRequest(typeof(DeviceAccess), typeof(DeviceAccess).ToString(), typeof(DeviceAccess));
+            _container.RegisterPerRequest(typeof(ProducerAccess), typeof(ProducerAccess).ToString(), typeof(ProducerAccess));
+            _container.RegisterPerRequest(typeof(CustomerAccess), typeof(CustomerAccess).ToString(), typeof(CustomerAccess));
+            _container.RegisterPerRequest(typeof(ProjectAccess), typeof(ProjectAccess).ToString(), typeof(ProjectAccess));
         }
 
         protected override object GetInstance(Type service, string key)

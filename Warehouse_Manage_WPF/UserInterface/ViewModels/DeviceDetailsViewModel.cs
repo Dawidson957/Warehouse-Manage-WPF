@@ -29,8 +29,8 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         {
             _container = simpleContainer;
             _events = eventAggregator;
-            _producerAccess = (ProducerAccess)_container.GetInstance(typeof(IProducerAccess), typeof(ProducerAccess).ToString());
-            _deviceAccess = (DeviceAccess)_container.GetInstance(typeof(IDeviceAccess), typeof(DeviceAccess).ToString());
+            _producerAccess = _container.GetInstance<ProducerAccess>();
+            _deviceAccess = _container.GetInstance<DeviceAccess>();
         }
 
 

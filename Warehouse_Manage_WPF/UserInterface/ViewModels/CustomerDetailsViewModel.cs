@@ -27,7 +27,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         {
             _container = simpleContainer;
             _events = eventAggregator;
-            _customers = (CustomerAccess)_container.GetInstance(typeof(ICustomerAccess), typeof(CustomerAccess).ToString());
+            _customers = _container.GetInstance<CustomerAccess>();
         }
 
         public void LoadCustomer(CustomerModel customerModel)

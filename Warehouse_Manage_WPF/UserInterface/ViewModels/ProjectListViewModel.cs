@@ -24,7 +24,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         public ProjectListViewModel(SimpleContainer simpleContainer, IWindowManager windowManager, IEventAggregator eventAggregator)
         {
             _container = simpleContainer;
-            _projectAccess = (ProjectAccess)_container.GetInstance(typeof(IProjectAccess), typeof(ProjectAccess).ToString());
+            _projectAccess = _container.GetInstance<ProjectAccess>();
             _windowManager = windowManager;
             eventAggregator.Subscribe(this);
         }

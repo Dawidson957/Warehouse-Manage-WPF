@@ -25,8 +25,8 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 		public ProjectViewModel(SimpleContainer simpleContainer, IEventAggregator eventAggregator, IWindowManager windowManager)
 		{
 			_container = simpleContainer;
-			_projectAccess = (ProjectAccess)_container.GetInstance(typeof(IProjectAccess), typeof(ProjectAccess).ToString());
-			_deviceAccess = (DeviceAccess)_container.GetInstance(typeof(IDeviceAccess), typeof(DeviceAccess).ToString());
+			_projectAccess = _container.GetInstance<ProjectAccess>();
+			_deviceAccess = _container.GetInstance<DeviceAccess>();
 
 			_windowManager = windowManager;
 			eventAggregator.Subscribe(this);

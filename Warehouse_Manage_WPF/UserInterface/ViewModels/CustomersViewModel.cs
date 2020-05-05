@@ -25,7 +25,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         {
             _container = simpleContainer;
             _windowManager = windowManager;
-            _customers = (CustomerAccess)_container.GetInstance(typeof(ICustomerAccess), typeof(CustomerAccess).ToString());
+            _customers = _container.GetInstance<CustomerAccess>();
             NewCustomer = new CustomerModel();
         }
 

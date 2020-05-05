@@ -28,7 +28,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         {
             _container = container;
             _windowManager = windowManager;
-            _deviceAccess = (DeviceAccess)_container.GetInstance(typeof(IDeviceAccess), typeof(DeviceAccess).ToString());
+            _deviceAccess = _container.GetInstance<DeviceAccess>();
             InitializeComboBox();
         }
 
