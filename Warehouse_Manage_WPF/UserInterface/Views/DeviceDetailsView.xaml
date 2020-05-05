@@ -5,9 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:Warehouse_Manage_WPF.UserInterface.Views"
-        xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
-        Title="DeviceDetailsView" Height="400" Width="300">
+        Title="Dane urządzenia" Height="400" Width="300" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -19,63 +18,41 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
 
         <!-- Row 0 -->
-        <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource MaterialDesignHeadline2TextBlock}" Margin="0 10 0 0" 
-                   Grid.ColumnSpan="7" HorizontalAlignment="Center" Text="Device Details" FontSize="36"  />
+        <TextBlock Text="Dane urządzenia" Grid.Row="0" Style="{StaticResource MaterialDesignHeadline2TextBlock}" 
+                    Margin="0 10 0 0" HorizontalAlignment="Center" FontSize="36" />
 
         <!-- Row 1 -->
-        <TextBox Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" 
-                 Width="200"  Margin="20 10 0 0"
-                 x:Name="Device_Name"
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 materialDesign:HintAssist.Hint="Nazwa urządzenia"/>
+        <TextBox Grid.Row="1" x:Name="Device_Name" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 Width="200" Margin="20 10 0 0" materialDesign:HintAssist.Hint="Nazwa urządzenia" />
 
         <!-- Row 2 -->
-        <TextBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" 
-                 Width="200"  Margin="20 10 0 0"
-                 x:Name="Device_ArticleNumber"
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 materialDesign:HintAssist.Hint="Numer artykułu"/>
+        <TextBox Grid.Row="2" x:Name="Device_ArticleNumber" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 Width="200"  Margin="20 10 0 0" materialDesign:HintAssist.Hint="Numer artykułu" />
 
         <!-- Row 3 -->
-        <ComboBox Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3"
-                  Width="200" Margin="20 10 0 0" IsEditable="True"
-                  x:Name="Producers"
-                  SelectedItem="{Binding Device.ProducerName, Mode=TwoWay}"
-                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                  materialDesign:HintAssist.Hint="Producent"
-                  />
+        <ComboBox Grid.Row="3" x:Name="Producers" Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
+                  Width="200" Margin="20 10 0 0" IsEditable="True" materialDesign:HintAssist.Hint="Producent"
+                  SelectedItem="{Binding Device.ProducerName, Mode=TwoWay}" />
 
         <!-- Row 4 -->
-        <TextBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" 
-                 Width="200"  Margin="20 10 0 0"
-                 x:Name="Device_Quantity"
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 materialDesign:HintAssist.Hint="Ilość"/>
+        <TextBox Grid.Row="4" x:Name="Device_Quantity" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 Width="200"  Margin="20 10 0 0" materialDesign:HintAssist.Hint="Ilość" />
 
         <!-- Row 5 -->
-        <TextBox Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="3" 
-                 Width="200"  Margin="20 10 0 0"
-                 x:Name="Device_Location"
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 materialDesign:HintAssist.Hint="Lokalizacja"/>
+        <TextBox Grid.Row="5" x:Name="Device_Location" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 Width="200"  Margin="20 10 0 0" materialDesign:HintAssist.Hint="Lokalizacja" />
 
         <!-- Row 6 -->
         <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Height="50" Margin="20 10 0 0">
-            <Button x:Name="Delete" Content="Usuń" 
-                Width="100" Margin="0 0 10 0"
-                Style="{StaticResource MaterialDesignFlatButton}"
-                cal:Message.Attach="[Event Click] = [Action DeleteButton]"/>
 
-            <Button x:Name="Submit" Content="Zapisz" VerticalAlignment="Center"
-                Width="150" Style="{StaticResource MaterialDesignFlatButton}"
-                cal:Message.Attach="[Event Click] = [Action SubmitButton]"/>
+            <Button x:Name="DeleteButton" Content="Usuń" Style="{StaticResource MaterialDesignFlatButton}"
+                Width="100" Margin="0 0 10 0" />
+
+            <Button x:Name="SubmitButton" Content="Zapisz"  Style="{StaticResource MaterialDesignFlatButton}"
+                VerticalAlignment="Center" Width="150" />
         </StackPanel>
+        
     </Grid>
 </Window>

@@ -16,15 +16,20 @@
 
         <!-- Row 0 -->
         <DockPanel Grid.Row="0" VerticalAlignment="Top" Height="60" Margin="1 5 1 5">
+            
+            <!-- Left Title -->
             <TextBlock Text="Projekty" HorizontalAlignment="Left" Style="{StaticResource MaterialDesignHeadline1TextBlock}" FontSize="32" Margin="5 10 0 0"/>
 
+            <!-- PopUp Notification -->
             <materialDesign:Snackbar x:Name="SnackbarStatus" Margin="120 0 0 0" MessageQueue="{materialDesign:MessageQueue}" Width="300"
                          cal:Message.Attach="[Event Loaded] = [Action SnackbarLoaded($source)]"/>
             
-            <Button x:Name="AddNewProject" Content="Nowy projekt" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignFlatButton}" Margin="0 0 10 0" FontSize="16"/>
+            <!-- New Project Button -->
+            <Button x:Name="AddNewProject" Content="Nowy projekt" HorizontalAlignment="Right" Style="{StaticResource MaterialDesignFlatButton}" 
+                    Margin="0 0 10 0" FontSize="16"/>
         </DockPanel>
 
-        <!-- Row 1 -->
+        <!-- Row 1 (Projects DataGrid) -->
         <Grid Grid.Row="1" Margin="1 1 1 1">
             <DataGrid x:Name="Projects" Margin="1 1 1 1"  
                           CanUserAddRows="False" CanUserSortColumns="True" AutoGenerateColumns="False" IsReadOnly="True" 
@@ -35,6 +40,8 @@
                           cal:Message.Attach="[Event MouseDoubleClick] = [Action MouseDoubleClick_DataGrid]">
 
                 <DataGrid.Columns>
+                    
+                    <!-- Radio button for proper selecting an element -->
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -42,6 +49,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+                    
                     <materialDesign:DataGridTextColumn Header="Nazwa projektu" MaxLength="50" Binding="{Binding Name}"/>
                     <materialDesign:DataGridTextColumn Header="Klient" MaxLength="30" Binding="{Binding CustomerName}"/>
                     <materialDesign:DataGridTextColumn Header="Status" MaxLength="30" />

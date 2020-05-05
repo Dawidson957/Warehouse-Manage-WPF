@@ -50,14 +50,12 @@
         </EventTrigger>
     </Window.Triggers>
 
+    <!-- Main Grid -->
     <Grid>
         
         <!-- Top Menu -->
         <DockPanel Height="70" VerticalAlignment="Top" Background="#FF194EDE">
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Right">
-
-                <!-- Currently logged in username -->
-                <TextBlock Text="Gracjan Bryt" VerticalAlignment="Center" Foreground="White" FontSize="18"/>
 
                 <!-- Popup Menu -->
                 <materialDesign:PopupBox Margin="10" Foreground="White" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
@@ -68,6 +66,7 @@
                         <Button Content="Wyjdź" cal:Message.Attach="[Event Click] = [Action CloseAppButton]"/>
                     </StackPanel>
                 </materialDesign:PopupBox>
+                
             </StackPanel>
         </DockPanel>
 
@@ -118,15 +117,7 @@
                         </StackPanel>
                     </ListViewItem>
 
-                    <!-- Fourth Item (Udostępnij) -->
-                    <ListViewItem Height="60" Foreground="White" >
-                        <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="ShareVariant" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
-                            <TextBlock Text="Udostępnij" VerticalAlignment="Center" Margin="20 10" FontSize="16"/>
-                        </StackPanel>
-                    </ListViewItem>
-
-                    <!-- Fifth Item (GitHub) -->
+                    <!-- Fourth Item (GitHub) -->
                     <ListViewItem Height="60" Foreground="White">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="GithubBox" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
@@ -137,9 +128,10 @@
             </StackPanel>
         </Grid>
 
-        <!-- Main Grid for UserControl -->
+        <!-- Main Grid -->
         <Grid x:Name="MainGrid" Width="1010" Height="520" Background="White" Margin="65 75 5 5" HorizontalAlignment="Right" VerticalAlignment="Bottom">
             <ContentControl x:Name="ActiveItem"/>
         </Grid>
+        
     </Grid>
 </Window>

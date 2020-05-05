@@ -20,9 +20,13 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
+        <!-- Row 0 -->
         <DockPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+            
+            <!-- Project Title -->
             <TextBlock Text="{Binding projectModel.Name}" Style="{StaticResource MaterialDesignHeadline1TextBlock}" FontSize="30"  Margin="10 10 0 0" HorizontalAlignment="Left"/>
 
+            <!-- TODO: Change Button action to normal -->
             <materialDesign:PopupBox Margin="0 10 10 0" Foreground="Black" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" HorizontalAlignment="Right" >
                 <StackPanel Width="250">
                     <Button Content="Dodaj nowe urządzenie" cal:Message.Attach="[Event Click] = [Action AddNewDevice]"/>
@@ -31,10 +35,13 @@
                     <Button Content="Zamknij projekt" cal:Message.Attach="[Event Click] = [Action CloseProject]"/>
                 </StackPanel>
             </materialDesign:PopupBox>
+            
         </DockPanel>
         
+        <!-- Row 1 -->
         <Separator Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignSeparator}" Margin="5 0 5 0"/>
 
+        <!-- Row 2 (Project info Card) -->
         <materialDesign:Card Grid.Row="2" Grid.Column="0" Width="200" Height="300" Margin="10 10 0 0" VerticalAlignment="Top" materialDesign:ShadowAssist.ShadowDepth="Depth3">
             <Grid>
                 <Grid.RowDefinitions>
@@ -78,19 +85,23 @@
             </Grid>
         </materialDesign:Card>
 
+        <!-- Row 2 (Project devices DataGrid) -->
         <materialDesign:Card Grid.Row="2" Grid.Column="1" Width="540" Height="400" VerticalAlignment="Top" Margin="20 10 0 0" materialDesign:ShadowAssist.ShadowDepth="Depth3">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
+                <!-- Row 0 (Title) -->
                 <TextBlock Grid.Row="0" Text="Lista urządzeń" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="5 5 0 0" FontSize="20"/>
 
+                <!-- Row 1 -->
                 <Separator Grid.Row="1" Style="{StaticResource MaterialDesignSeparator}" Margin="5 0 5 0"/>
 
+                <!-- Row 2 (Devices DataGrid) -->
                 <Grid Grid.Row="2" Margin="1 1 1 1">
                     <DataGrid x:Name="ProjectDevices" Margin="1 1 1 1"  
                           CanUserAddRows="False" CanUserSortColumns="True" AutoGenerateColumns="False" IsReadOnly="True" 
@@ -100,6 +111,8 @@
                           cal:Message.Attach="[Event MouseDoubleClick] = [Action MouseDoubleClick_DataGrid]">
 
                         <DataGrid.Columns>
+
+                            <!-- Radio button for proper selecting an element -->
                             <DataGridTemplateColumn>
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -107,7 +120,7 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                             </DataGridTemplateColumn>
-                            <materialDesign:DataGridTextColumn Header="Poz." MaxLength="5" Binding="{Binding Id}"/>
+
                             <materialDesign:DataGridTextColumn Header="Nazwa" MaxLength="50" Binding="{Binding Name}"/>
                             <materialDesign:DataGridTextColumn Header="Numer artykułu" MaxLength="30" Binding="{Binding ArticleNumber}"/>
                             <materialDesign:DataGridTextColumn Header="Producent" MaxLength="30" Binding="{Binding ProducerName}"/>
@@ -115,7 +128,9 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
+                
             </Grid>
         </materialDesign:Card>
+        
     </Grid>
 </UserControl>

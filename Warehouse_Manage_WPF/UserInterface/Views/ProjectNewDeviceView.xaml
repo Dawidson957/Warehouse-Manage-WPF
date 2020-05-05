@@ -7,11 +7,9 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
-        Title="Nowe urządzenie" Height="420" Width="300">
+        Title="Nowe urządzenie" Height="420" Width="300" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
@@ -47,9 +45,10 @@
                          materialDesign:HintAssist.Hint="Ilość" Margin="0 15 0 0"/>
         
         <!-- Row 6 -->
-        <StackPanel Orientation="Horizontal" Grid.Row="7" Margin="0 20 0 0" HorizontalAlignment="Center" >
+        <StackPanel Orientation="Horizontal" Grid.Row="6" Margin="0 20 0 0" HorizontalAlignment="Center" >
             <Button x:Name="SaveButton" Content="Zapisz" Width="80" Style="{StaticResource MaterialDesignFlatButton}" Margin="0 0 30 0"/>
             <Button x:Name="ClearButton" Content="Wyczyść" Width="100" Style="{StaticResource MaterialDesignFlatButton}" />
         </StackPanel>
+        
     </Grid>
 </Window>

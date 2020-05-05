@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:Warehouse_Manage_WPF.UserInterface.Views"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:viewmodel="clr-namespace:Warehouse_Manage_WPF.UserInterface.ViewModels"
-        xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
         Title="Zarządzanie" Height="500" Width="1000" ResizeMode="NoResize">
     <Grid>
@@ -15,28 +14,35 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <StackPanel Width="150" HorizontalAlignment="Left" Grid.Column="0" >
+        <!-- Column 0 (Left menu) -->
+        <StackPanel Grid.Column="0" Width="150" HorizontalAlignment="Left" >
             <TextBlock Text="Menu" HorizontalAlignment="Center" Style="{StaticResource MaterialDesignHeadline1TextBlock}" FontSize="30" Margin="0 10 0 0"/>
 
             <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled" Margin="0 20 0 0">
 
+                <!-- First element -->
                 <ListViewItem Height="50" Foreground="White">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="AccountBoxMultipleOutline" Width="25" Height="25" Foreground="Black" VerticalAlignment="Center"/>
                         <TextBlock Text="Klienci" VerticalAlignment="Center" FontSize="16" Foreground="Black" Margin="10 0 0 0"/>
                     </StackPanel>
                 </ListViewItem>
+                
+                <!-- Second element -->
                 <ListViewItem Height="50" Foreground="White">
                     <StackPanel Orientation="Horizontal">
                         <materialDesign:PackIcon Kind="CityVariantOutline" Width="25" Height="25" Foreground="Black" VerticalAlignment="Center"/>
                         <TextBlock Text="Producenci" VerticalAlignment="Center" FontSize="16" Foreground="Black" Margin="10 0 0 0"/>
                     </StackPanel>
                 </ListViewItem>
+                
             </ListView>
         </StackPanel>
 
-        <Grid x:Name="ViewGrid" Grid.Column="1" Margin="5">
+        <!-- Column 1 -->
+        <Grid Grid.Column="1" Margin="5">
             <ContentControl x:Name="ActiveItem" />
         </Grid>
+        
     </Grid>
 </Window>

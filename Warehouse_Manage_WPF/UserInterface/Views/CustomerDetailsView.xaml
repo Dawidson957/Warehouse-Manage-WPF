@@ -6,10 +6,9 @@
         xmlns:local="clr-namespace:Warehouse_Manage_WPF.UserInterface.Views"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="CustomerDetailsView" Height="300" Width="300">
+        Title="CustomerDetailsView" Height="300" Width="300" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />

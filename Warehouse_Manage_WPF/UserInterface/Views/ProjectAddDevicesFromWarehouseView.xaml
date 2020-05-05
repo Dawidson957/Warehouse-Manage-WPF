@@ -7,7 +7,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
-        Title="Dodaj z magazynu" Height="500" Width="1000">
+        Title="Wymiana urządzeń" Height="500" Width="1000" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -22,21 +22,35 @@
         
         <!-- Row 0 -->
         <DockPanel Grid.Row="0" Grid.ColumnSpan="3" VerticalAlignment="Top" Height="50">
-            <TextBlock Text="Dodaj z magazynu" HorizontalAlignment="Left" FontSize="30" Style="{StaticResource MaterialDesignHeadline1TextBlock}" VerticalAlignment="Center" Margin="10 0 0 0"/>
+            
+            <!-- Left Title -->
+            <TextBlock Text="Wymiana urządzeń" HorizontalAlignment="Left" FontSize="30" Style="{StaticResource MaterialDesignHeadline1TextBlock}" 
+                       VerticalAlignment="Center" Margin="10 0 0 0"/>
+            
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 0 20 0">
-                <ComboBox Width="70" ItemsSource="{Binding Quantity, Mode=TwoWay}" SelectedItem="{Binding SelectedQuantity}" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Ilość" />
-                <ComboBox Width="250" ItemsSource="{Binding comboSource}" SelectedItem="{Binding ComboSelectedItem}" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Kierunek" Margin="20 0 0 0" />
-                <Button Content="Przenieś" x:Name="MoveDevice" Style="{StaticResource MaterialDesignFlatButton}" Width="100" VerticalAlignment="Center" Margin="20 0 0 0"  />
+                <ComboBox ItemsSource="{Binding Quantity, Mode=TwoWay}" SelectedItem="{Binding SelectedQuantity}" 
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Ilość" Width="70" />
+
+                <ComboBox ItemsSource="{Binding comboSource}" SelectedItem="{Binding ComboSelectedItem}" Margin="20 0 0 0"
+                          Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Kierunek" Width="250" />
+                
+                <Button Content="Przenieś" x:Name="MoveDevice" Style="{StaticResource MaterialDesignFlatButton}" Width="100" 
+                        VerticalAlignment="Center" Margin="20 0 0 0"  />
             </StackPanel>
         </DockPanel>
 
         <!-- Row 1 -->
         <Separator Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignSeparator}" Margin="5 0 5 0" />
 
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="Magazyn" Style="{StaticResource MaterialDesignHeadline1TextBlock}" FontSize="24" HorizontalAlignment="Center" />
+        <!-- Row 2 -->
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Magazyn" Style="{StaticResource MaterialDesignHeadline1TextBlock}" 
+                   FontSize="24" HorizontalAlignment="Center" />
 
-        <TextBlock Grid.Row="2" Grid.Column="1" Text="Projekt" Style="{StaticResource MaterialDesignHeadline1TextBlock}" FontSize="24" HorizontalAlignment="Center" />
+        <!-- Row 2 -->
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="Projekt" Style="{StaticResource MaterialDesignHeadline1TextBlock}" 
+                   FontSize="24" HorizontalAlignment="Center" />
 
+        <!-- Row 3 (Warehouse DataGrid) -->
         <Grid Grid.Row="3" Grid.Column="0" Margin="5 10 5 5" Width="490">
             <DataGrid x:Name="WarehouseDevices" Margin="1 1 1 1"  
                           CanUserAddRows="False" CanUserSortColumns="True" AutoGenerateColumns="False" IsReadOnly="True" 
@@ -47,6 +61,8 @@
                           cal:Message.Attach="[Event MouseDoubleClick] = [Action WarehouseDevice_DoubleClick]">
 
                 <DataGrid.Columns>
+                    
+                    <!-- Radio button for proper selecting element -->
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -54,7 +70,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <materialDesign:DataGridTextColumn Header="Poz." MaxLength="10" Binding="{Binding Id}"/>
+                    
                     <materialDesign:DataGridTextColumn Header="Nazwa" MaxLength="50" Binding="{Binding Name}"/>
                     <materialDesign:DataGridTextColumn Header="Numer artykułu" MaxLength="30" Binding="{Binding ArticleNumber}"/>
                     <materialDesign:DataGridTextColumn Header="Producent" MaxLength="30" Binding="{Binding ProducerName}"/>
@@ -64,6 +80,7 @@
             </DataGrid>
         </Grid>
 
+        <!-- Row 3 (Project DataGrid) -->
         <Grid Grid.Row="3" Grid.Column="1" Margin="5 10 5 5" Width="480">
             <DataGrid x:Name="ProjectDevices" Margin="1 1 1 1"  
                           CanUserAddRows="False" CanUserSortColumns="True" AutoGenerateColumns="False" IsReadOnly="True" 
@@ -74,6 +91,8 @@
                           cal:Message.Attach="[Event MouseDoubleClick] = [Action ProjectDevice_DoubleClick]">
 
                 <DataGrid.Columns>
+
+                    <!-- Radio button for proper selecting element -->
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -81,7 +100,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <materialDesign:DataGridTextColumn Header="Poz." MaxLength="10" Binding="{Binding Id}"/>
+                   
                     <materialDesign:DataGridTextColumn Header="Nazwa" MaxLength="50" Binding="{Binding Name}"/>
                     <materialDesign:DataGridTextColumn Header="Numer artykułu" MaxLength="30" Binding="{Binding ArticleNumber}"/>
                     <materialDesign:DataGridTextColumn Header="Producent" MaxLength="30" Binding="{Binding ProducerName}"/>

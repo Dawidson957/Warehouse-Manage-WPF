@@ -8,6 +8,7 @@
              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" Background="White"
              d:DesignHeight="450" d:DesignWidth="800">
+    
     <Grid Margin="1 1 1 1">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -34,6 +35,8 @@
                           cal:Message.Attach="[Event MouseDoubleClick] = [Action MouseDoubleClick_DataGrid]">
 
                 <DataGrid.Columns>
+                    
+                    <!-- Radio Button for proper selecting item -->
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -41,6 +44,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
+                    
                     <materialDesign:DataGridTextColumn Header="Poz." MaxLength="10" Binding="{Binding Id}"/>
                     <materialDesign:DataGridTextColumn Header="Nazwa" MaxLength="50" Binding="{Binding Name}"/>
                     <materialDesign:DataGridTextColumn Header="Numer artykułu" MaxLength="30" Binding="{Binding ArticleNumber}"/>
@@ -50,5 +54,6 @@
                 </DataGrid.Columns>
             </DataGrid>
         </Grid>
+        
     </Grid>
 </UserControl>

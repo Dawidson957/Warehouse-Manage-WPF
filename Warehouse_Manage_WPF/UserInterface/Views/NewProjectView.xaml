@@ -15,8 +15,6 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
-            <RowDefinition Height="auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         
@@ -24,38 +22,24 @@
         <TextBlock Grid.Row="0" Text="Nowy projekt" Style="{StaticResource MaterialDesignHeadline2TextBlock}" Margin="0 10 0 0" HorizontalAlignment="Center" FontSize="36" />
         
         <!-- Row 1 -->
-        <TextBox Grid.Row="1" 
-                 Width="200"  Margin="0 15 0 0"
-                 x:Name="ProjectName" 
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 materialDesign:HintAssist.Hint="Nazwa projektu"/>
+        <TextBox x:Name="ProjectName" Grid.Row="1" Width="200" Margin="0 15 0 0" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 materialDesign:HintAssist.Hint="Nazwa projektu" />
 
         <!-- Row 2 -->
-        <TextBox Grid.Row="2" 
-                 Width="200"  Margin="0 15 0 0"
-                 x:Name="Comment" 
-                 Style="{StaticResource MaterialDesignFloatingHintTextBox}"
-                 materialDesign:HintAssist.Hint="Komentarz"/>
+        <TextBox x:Name="Comment" Grid.Row="2" Width="200" Margin="0 15 0 0" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                 materialDesign:HintAssist.Hint="Komentarz" />
         
 
         <!-- Row 3 -->
-        <ComboBox Grid.Row="3" 
-                  Width="200" Margin="0 15 0 0" IsEditable="True"
-                  x:Name="CustomersName"
-                  SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}"
-                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" 
-                  materialDesign:HintAssist.Hint="Klient"
-                  />
+        <ComboBox x:Name="CustomersName" Grid.Row="3" Width="200" Margin="0 15 0 0" IsEditable="True"
+                  Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Klient" 
+                  SelectedItem="{Binding SelectedCustomer, Mode=TwoWay}" />
 
+        <!-- Row 4 -->
         <StackPanel Orientation="Horizontal" Grid.Row="4" Height="50" Margin="20 20 0 0">
-            <Button x:Name="ClearForm" Content="Wyczyść" 
-                Width="100" Margin="0 0 10 0"
-                Style="{StaticResource MaterialDesignFlatButton}"
-                cal:Message.Attach="[Event Click] = [Action DeleteButton]"/>
-
-            <Button x:Name="CreateProject" Content="Utwórz" VerticalAlignment="Center"
-                Width="150" Style="{StaticResource MaterialDesignFlatButton}"
-                cal:Message.Attach="[Event Click] = [Action SubmitButton]"/>
+            <Button x:Name="DeleteButton" Content="Wyczyść" Width="100" Margin="0 0 10 0" Style="{StaticResource MaterialDesignFlatButton}" />
+            <Button x:Name="SubmitButton" Content="Utwórz" VerticalAlignment="Center" Width="150" Style="{StaticResource MaterialDesignFlatButton}" />
         </StackPanel>
+        
     </Grid>
 </Window>

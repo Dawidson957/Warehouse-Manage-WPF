@@ -15,6 +15,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
+        <!-- Column 0 (List of customers) -->
         <materialDesign:Card Grid.Column="0" Width="450" Height="400" VerticalAlignment="Top" Margin="20 20 20 0">
             <ScrollViewer ScrollViewer.VerticalScrollBarVisibility="Hidden">
                 <StackPanel>
@@ -36,10 +37,10 @@
             </ScrollViewer>
         </materialDesign:Card>
 
+        <!-- Column 1 (New customer form) -->
         <materialDesign:Card Grid.Column="1" Width="300" Height="270" VerticalAlignment="Top" Margin="0 20 0 0">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
@@ -69,7 +70,9 @@
                     <Button x:Name="SaveButton" Content="Zapisz" Width="80" Style="{StaticResource MaterialDesignFlatButton}" Margin="0 0 30 0"/>
                     <Button x:Name="ClearButton" Content="Wyczyść" Width="100" Style="{StaticResource MaterialDesignFlatButton}" />
                 </StackPanel>
+                
             </Grid>
         </materialDesign:Card>
+        
     </Grid>
 </UserControl>

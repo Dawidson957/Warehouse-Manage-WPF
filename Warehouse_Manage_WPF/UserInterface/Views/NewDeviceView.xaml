@@ -9,6 +9,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="500" d:DesignWidth="800" Background="White" >
 
+    <!-- Main Grid -->
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -21,15 +22,17 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Nowe urządzenie" Style="{StaticResource MaterialDesignHeadline1TextBlock}" FontSize="30" Grid.Row="0" Margin="10 10 0 0" />
+        <!-- Row 0 (Title) -->
+        <TextBlock Grid.Row="0" Text="Nowe urządzenie" Style="{StaticResource MaterialDesignHeadline1TextBlock}" FontSize="30" Margin="10 10 0 0" />
 
-        <materialDesign:Snackbar x:Name="SnackbarDevice" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"
-                          MessageQueue="{materialDesign:MessageQueue}" Width="400"
-                         cal:Message.Attach="[Event Loaded] = [Action SnackbarLoaded($source)]"/>
-
-        <Separator Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignSeparator}" Margin="5 0 5 0"
-                   />
-
+        <!-- Row 0 (PopUp Notification) -->
+        <materialDesign:Snackbar x:Name="SnackbarDevice" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Top" HorizontalAlignment="Center" 
+                          MessageQueue="{materialDesign:MessageQueue}" Width="400" cal:Message.Attach="[Event Loaded] = [Action SnackbarLoaded($source)]"/>
+        
+        <!-- Row 1 -->
+        <Separator Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource MaterialDesignSeparator}" Margin="5 0 5 0" />
+        
+        <!-- Row 2 (New Device Form) -->
         <materialDesign:Card Grid.Row="2" Grid.Column="0" Height="370" Width="300" Margin="20 15 0 0" materialDesign:ShadowAssist.ShadowDepth="Depth3">
             <Grid>
                 <Grid.RowDefinitions>
@@ -44,36 +47,43 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
-
+                
+                <!-- Row 0 (Title) -->
                 <TextBlock Grid.Row="0" Text="Dane urządzenia" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="5 5 0 0" FontSize="20"/>
 
+                <!-- Row 1 -->
                 <Separator Grid.Row="1" Style="{StaticResource MaterialDesignSeparator}" Margin="5 0 5 0"/>
 
+                <!-- Row 2 -->
                 <TextBox x:Name="DeviceName" Grid.Row="2" Width="250" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="Nazwa" />
 
+                <!-- Row 3 -->
                 <TextBox x:Name="ArticleNumber" Grid.Row="3" Width="250" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="Numer artykułu" Margin="0 15 0 0"/>
 
+                <!-- Row 4 -->
                 <ComboBox x:Name="ProducersName" Grid.Row="4" Width="250" Style="{StaticResource MaterialDesignFloatingHintComboBox}"
                           materialDesign:HintAssist.Hint="Producent" Margin="0 20 0 0" SelectedItem="{Binding SelectedProducerName}" />
 
+                <!-- Row 5 -->
                 <TextBox x:Name="Location" Grid.Row="5" Width="250" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="Lokalizacja" Margin="0 15 0 0"/>
 
+                <!-- Row 6 -->
                 <TextBox x:Name="Quantity" Grid.Row="6" Width="250" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="Ilość" Margin="0 15 0 0"/>
 
+                <!-- Row 7 -->
                 <StackPanel Orientation="Horizontal" Grid.Row="7" Margin="0 20 0 0" HorizontalAlignment="Center" >
                     <Button x:Name="SaveButton" Content="Zapisz" Width="80" Style="{StaticResource MaterialDesignFlatButton}" Margin="0 0 30 0"/>
                     <Button x:Name="ClearButton" Content="Wyczyść" Width="100" Style="{StaticResource MaterialDesignFlatButton}" />
                 </StackPanel>
 
-
-
             </Grid>
         </materialDesign:Card>
 
+        <!-- Row 2 (New Producer Form) -->
         <materialDesign:Card Grid.Row="2" Grid.Column="1" Height="200" Width="250" Margin="30 15 0 0" materialDesign:ShadowAssist.ShadowDepth="Depth3"
                              VerticalAlignment="Top">
             <Grid>
@@ -85,19 +95,26 @@
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
+                <!-- Row 0 (Title) -->
                 <TextBlock Grid.Row="0" Text="Nowy producent" Style="{StaticResource MaterialDesignHeadline5TextBlock}" Margin="5 5 0 0" FontSize="20"/>
 
+                <!-- Row 1 -->
                 <Separator Grid.Row="1" Style="{StaticResource MaterialDesignSeparator}" Margin="5 0 5 0"/>
 
+                <!-- Row 2 -->
                 <TextBox x:Name="ProducerName" Grid.Row="2" Width="200" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="Nazwa" />
 
+                <!-- Row 3 -->
                 <TextBox x:Name="URL" Grid.Row="3" Width="200" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                          materialDesign:HintAssist.Hint="URL" Margin="0 15 0 0" />
 
-                <Button x:Name="SaveNewProducer" Content="Zapisz" Grid.Row="4" Width="80" Style="{StaticResource MaterialDesignFlatButton}" Margin="0 15 0 0" HorizontalAlignment="Center"/>
+                <!-- Row 4 -->
+                <Button x:Name="SaveNewProducer" Content="Zapisz" Grid.Row="4" Width="80" Style="{StaticResource MaterialDesignFlatButton}" 
+                        Margin="0 15 0 0" HorizontalAlignment="Center"/>
 
             </Grid>
         </materialDesign:Card>
+        
     </Grid>
 </UserControl>
