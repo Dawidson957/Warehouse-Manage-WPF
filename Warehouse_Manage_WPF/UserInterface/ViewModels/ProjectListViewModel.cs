@@ -14,9 +14,9 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
     public class ProjectListViewModel : Screen, IHandle<NewProjectAddedEvent>
     {
-        private ProjectAccess _projectAccess { get; set; }
-        
         private SimpleContainer _container { get; set; }
+
+        private ProjectAccess _projectAccess { get; set; }
 
         private IWindowManager _windowManager { get; set; }
        
@@ -24,7 +24,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         public ProjectListViewModel(SimpleContainer simpleContainer, IWindowManager windowManager, IEventAggregator eventAggregator)
         {
             _container = simpleContainer;
-            _projectAccess = new ProjectAccess();
+            _projectAccess = (ProjectAccess)_container.GetInstance(typeof(IProjectAccess), typeof(ProjectAccess).ToString());
             _windowManager = windowManager;
             eventAggregator.Subscribe(this);
         }

@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.DataAcc
 {
-    public class DeviceAccess
+    public class DeviceAccess : IDeviceAccess
     {
-        
+
         public async Task<bool> AddDevice(Device device)
         {
             try
@@ -32,7 +32,7 @@ namespace DataAccess.DataAcc
                     await context.SaveChangesAsync();
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
             }
@@ -53,7 +53,7 @@ namespace DataAccess.DataAcc
                         .Where(x => x.ProjectID == projectId).ToListAsync<Device>();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
@@ -68,8 +68,8 @@ namespace DataAccess.DataAcc
                 using (var context = new WarehouseModel())
                 {
                     var existingDevice = await context.Devices.FirstOrDefaultAsync(x => x.Id == device.Id);
-                    
-                    if(existingDevice != null)
+
+                    if (existingDevice != null)
                     {
                         existingDevice.Name = device.Name;
                         existingDevice.ArticleNumber = device.ArticleNumber;
@@ -77,7 +77,7 @@ namespace DataAccess.DataAcc
                         existingDevice.Quantity = device.Quantity;
                         existingDevice.ProjectID = device.ProjectID;
 
-                        if (existingDevice.ProducerID != device.ProducerID) 
+                        if (existingDevice.ProducerID != device.ProducerID)
                         {
                             existingDevice.ProducerID = device.ProducerID;
                         }
@@ -87,10 +87,10 @@ namespace DataAccess.DataAcc
                     else
                     {
                         return false;
-                    } 
+                    }
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
             }
@@ -106,7 +106,7 @@ namespace DataAccess.DataAcc
                 {
                     var existingDevice = context.Devices.FirstOrDefault(x => x.Id == Id);
 
-                    if(existingDevice != null)
+                    if (existingDevice != null)
                     {
                         context.Devices.Remove(existingDevice);
 
@@ -118,7 +118,7 @@ namespace DataAccess.DataAcc
                     }
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
             }
@@ -139,7 +139,7 @@ namespace DataAccess.DataAcc
                     {
                         var deviceFromProject = project.Devices.FirstOrDefault(x => x.ArticleNumber == device.ArticleNumber);
 
-                        if(deviceFromProject != null)
+                        if (deviceFromProject != null)
                         {
                             deviceFromProject.Quantity += device.Quantity;
                         }
@@ -153,16 +153,16 @@ namespace DataAccess.DataAcc
                     else
                     {
                         return false;
-                    } 
+                    }
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
             }
 
             return true;
         }
-        
+
     }
 }

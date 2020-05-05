@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace DataAccess.DataAcc
 {
-    public class ProducerAccess
+    public class ProducerAccess : IProducerAccess
     {
-        
+
         public async Task<List<string>> GetProducerNamesAll()
         {
-           List<string> producers = null;
+            List<string> producers = null;
 
             try
             {
@@ -23,11 +23,11 @@ namespace DataAccess.DataAcc
                     producers = await (from s in context.Producers select s.Name).ToListAsync<string>();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-            
+
             return producers.Count > 0 ? producers : null;
         }
 
@@ -50,7 +50,7 @@ namespace DataAccess.DataAcc
                     }
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
             }
@@ -66,18 +66,18 @@ namespace DataAccess.DataAcc
             {
                 using (var context = new WarehouseModel())
                 {
-                    Id = await (from s in context.Producers 
-                                where s.Name == name 
+                    Id = await (from s in context.Producers
+                                where s.Name == name
                                 select s.Id).FirstOrDefaultAsync();
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
 
             return Id;
         }
-        
+
     }
 }

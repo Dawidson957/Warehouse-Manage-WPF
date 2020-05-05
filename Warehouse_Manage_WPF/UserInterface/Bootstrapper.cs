@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Caliburn.Micro;
+using DataAccess.DataAcc;
 using Warehouse_Manage_WPF.UserInterface.ViewModels;
 
 namespace Warehouse_Manage_WPF.UserInterface
@@ -21,6 +22,11 @@ namespace Warehouse_Manage_WPF.UserInterface
         protected override void Configure()
         {
             _container.Instance(_container);
+
+            _container.RegisterSingleton(typeof(IDeviceAccess), typeof(DeviceAccess).ToString(), typeof(DeviceAccess));
+            _container.RegisterSingleton(typeof(IProducerAccess), typeof(ProducerAccess).ToString(), typeof(ProducerAccess));
+            _container.RegisterSingleton(typeof(ICustomerAccess), typeof(CustomerAccess).ToString(), typeof(CustomerAccess));
+            _container.RegisterSingleton(typeof(IProjectAccess), typeof(ProjectAccess).ToString(), typeof(ProjectAccess));
 
             _container
                 .Singleton<IWindowManager, WindowManager>()

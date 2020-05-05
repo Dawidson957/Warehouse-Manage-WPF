@@ -53,10 +53,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataAcc\CustomerAccess.cs" />
-    <Compile Include="DataAcc\DeviceAccess.cs" />
-    <Compile Include="DataAcc\ProducerAccess.cs" />
-    <Compile Include="DataAcc\ProjectAccess.cs" />
+    <Compile Include="DataAPI\CustomerAccess.cs" />
+    <Compile Include="DataAPI\DeviceAccess.cs" />
+    <Compile Include="DataAPI\ICustomerAccess.cs" />
+    <Compile Include="DataAPI\IDeviceAccess.cs" />
+    <Compile Include="DataAPI\IProducerAccess.cs" />
+    <Compile Include="DataAPI\IProjectAccess.cs" />
+    <Compile Include="DataAPI\ProducerAccess.cs" />
+    <Compile Include="DataAPI\ProjectAccess.cs" />
     <Compile Include="EntitiesConfiguration\CustomerConfiguration.cs" />
     <Compile Include="EntitiesConfiguration\DeviceConfiguration.cs" />
     <Compile Include="EntitiesConfiguration\ProducerConfiguration.cs" />

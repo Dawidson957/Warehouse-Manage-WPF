@@ -15,18 +15,22 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
     public class DeviceDetailsViewModel : Screen
     {
+        private SimpleContainer _container { get; set; }
+
+        private IEventAggregator _events { get; set; }
+
         private ProducerAccess _producerAccess { get; set; }
 
         private DeviceAccess _deviceAccess { get; set; }
 
-        private IEventAggregator _events { get; set; }
 
 
-        public DeviceDetailsViewModel(IWindowManager windowManager, IEventAggregator eventAggregator)
+        public DeviceDetailsViewModel(SimpleContainer simpleContainer, IWindowManager windowManager, IEventAggregator eventAggregator)
         {
-            _producerAccess = new ProducerAccess();
-            _deviceAccess = new DeviceAccess();
+            _container = simpleContainer;
             _events = eventAggregator;
+            _producerAccess = (ProducerAccess)_container.GetInstance(typeof(IProducerAccess), typeof(ProducerAccess).ToString());
+            _deviceAccess = (DeviceAccess)_container.GetInstance(typeof(IDeviceAccess), typeof(DeviceAccess).ToString());
         }
 
 

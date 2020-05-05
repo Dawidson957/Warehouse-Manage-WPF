@@ -14,18 +14,19 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
     public class CustomersViewModel : Screen, IHandle<CustomerCredentialsChangedEvent>
     {
-        private CustomerAccess _customers;
+        private SimpleContainer _container { get; set; }
 
-        private IWindowManager _windowManager;
+        private CustomerAccess _customers { get; set; }
 
-        private SimpleContainer _container;
+        private IWindowManager _windowManager { get; set; }
 
-        public CustomersViewModel(IWindowManager windowManager, SimpleContainer simpleContainer)
+
+        public CustomersViewModel(SimpleContainer simpleContainer, IWindowManager windowManager)
         {
-            _customers = new CustomerAccess();
-            NewCustomer = new CustomerModel();
-            _windowManager = windowManager;
             _container = simpleContainer;
+            _windowManager = windowManager;
+            _customers = (CustomerAccess)_container.GetInstance(typeof(ICustomerAccess), typeof(CustomerAccess).ToString());
+            NewCustomer = new CustomerModel();
         }
 
         #region Window Operations

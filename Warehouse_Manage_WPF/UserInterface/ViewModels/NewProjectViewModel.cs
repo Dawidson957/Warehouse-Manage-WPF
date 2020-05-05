@@ -14,6 +14,8 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
     public class NewProjectViewModel : Screen
     {
+		private SimpleContainer _container { get; set; }
+
 		private CustomerAccess _customerAccess { get; set; }
 
 		private ProjectAccess _projectAccess { get; set; }
@@ -21,11 +23,12 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 		private IEventAggregator _events { get; set; }
 
 
-		public NewProjectViewModel(IEventAggregator eventAggregator)
+		public NewProjectViewModel(SimpleContainer simpleContainer, IEventAggregator eventAggregator)
 		{
-			_customerAccess = new CustomerAccess();
-			_projectAccess = new ProjectAccess();
+			_container = simpleContainer;
 			_events = eventAggregator;
+			_customerAccess = (CustomerAccess)_container.GetInstance(typeof(ICustomerAccess), typeof(CustomerAccess).ToString());
+			_projectAccess = (ProjectAccess)_container.GetInstance(typeof(IProjectAccess), typeof(ProjectAccess).ToString());
 		}
 
 

@@ -13,26 +13,26 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
     public class ProjectAddDevicesFromWarehouseViewModel : Screen
     {
-        private DeviceAccess _deviceAccess;
+        private SimpleContainer _container { get; set; }
+
+        private DeviceAccess _deviceAccess { get; set; }
+
+        private IWindowManager _windowManager { get; set; }
+
+        private int _projectId { get; set; }
 
         private const int _warehouseProjectId = 5;
 
-        private int _projectId;
-
-        private SimpleContainer _container;
-
-        private IWindowManager _windowManager;
 
         public ProjectAddDevicesFromWarehouseViewModel(SimpleContainer container, IWindowManager windowManager)
         {
-            _deviceAccess = new DeviceAccess();
-            InitializeComboBox();
             _container = container;
             _windowManager = windowManager;
+            _deviceAccess = (DeviceAccess)_container.GetInstance(typeof(IDeviceAccess), typeof(DeviceAccess).ToString());
+            InitializeComboBox();
         }
 
         
-
         #region Window Operations
 
         protected override async void OnViewLoaded(object view)

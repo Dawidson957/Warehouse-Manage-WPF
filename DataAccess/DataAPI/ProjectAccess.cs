@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace DataAccess.DataAcc
 {
-    
-    public class ProjectAccess
+
+    public class ProjectAccess : IProjectAccess
     {
-        
+
         public async Task<List<Project>> GetProjectsInfo()
         {
             List<Project> projects = null;
@@ -37,7 +37,7 @@ namespace DataAccess.DataAcc
                 {
                     var existingProject = context.Projects.FirstOrDefault(x => x.Name == project.Name);
 
-                    if(existingProject == null)
+                    if (existingProject == null)
                     {
                         context.Projects.Add(project);
 
@@ -53,6 +53,6 @@ namespace DataAccess.DataAcc
 
             return true;
         }
-        
+
     }
 }

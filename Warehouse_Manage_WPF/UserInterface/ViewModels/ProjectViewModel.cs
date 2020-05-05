@@ -12,21 +12,22 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
     public class ProjectViewModel : Screen, IHandle<AddedNewDeviceToProjectEvent>, IHandle<DeviceCredentialsChangedEvent>
     {
+		private SimpleContainer _container { get; set; }
+
 		private ProjectAccess _projectAccess { get; set; }
 
 		private DeviceAccess _deviceAccess { get; set; }
 
 		private IWindowManager _windowManager { get; set; }
 
-		private SimpleContainer _container { get; set; }
 
-
-		public ProjectViewModel(IEventAggregator eventAggregator, IWindowManager windowManager, SimpleContainer simpleContainer)
+		public ProjectViewModel(SimpleContainer simpleContainer, IEventAggregator eventAggregator, IWindowManager windowManager)
 		{
-			_projectAccess = new ProjectAccess();
-			_deviceAccess = new DeviceAccess();
-			_windowManager = windowManager;
 			_container = simpleContainer;
+			_projectAccess = (ProjectAccess)_container.GetInstance(typeof(IProjectAccess), typeof(ProjectAccess).ToString());
+			_deviceAccess = (DeviceAccess)_container.GetInstance(typeof(IDeviceAccess), typeof(DeviceAccess).ToString());
+
+			_windowManager = windowManager;
 			eventAggregator.Subscribe(this);
 		}
 

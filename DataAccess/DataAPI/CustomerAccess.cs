@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.DataAcc
 {
-    public class CustomerAccess
+    public class CustomerAccess : ICustomerAccess
     {
-        
+
         public async Task<List<Customer>> GetCustomers()
         {
             List<Customer> customers = null;
@@ -39,7 +39,7 @@ namespace DataAccess.DataAcc
                     customersName = await (from s in context.Customers select s.Name).ToListAsync<string>();
                 }
             }
-            catch(Exception) { }
+            catch (Exception) { }
 
             return customersName.Count > 0 ? customersName : null;
         }
@@ -57,7 +57,7 @@ namespace DataAccess.DataAcc
                                 select s.Id).FirstOrDefaultAsync();
                 }
             }
-            catch(Exception) { }
+            catch (Exception) { }
 
             return ID;
         }
@@ -81,7 +81,7 @@ namespace DataAccess.DataAcc
                     }
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
             }
@@ -97,7 +97,7 @@ namespace DataAccess.DataAcc
                 {
                     var existingCustomer = context.Customers.FirstOrDefault(x => x.Id == customer.Id);
 
-                    if(existingCustomer != null)
+                    if (existingCustomer != null)
                     {
                         existingCustomer.Name = customer.Name;
                         existingCustomer.Address = customer.Address;
@@ -111,13 +111,13 @@ namespace DataAccess.DataAcc
                     }
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return false;
             }
 
             return true;
         }
-        
+
     }
 }

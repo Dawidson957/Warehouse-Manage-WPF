@@ -13,7 +13,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
     public class WarehouseViewModel : Screen, IHandle<DeviceCredentialsChangedEvent>
     {
-        private SimpleContainer _simpleContainer { get; set; }
+        private SimpleContainer _container { get; set; }
 
         private IWindowManager _windowManager { get; set; }
 
@@ -25,9 +25,9 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         public WarehouseViewModel(SimpleContainer simpleContainer, IWindowManager windowManager)
         {
-            _simpleContainer = simpleContainer;
+            _container = simpleContainer;
             _windowManager = windowManager;
-            _deviceAccess = new DeviceAccess();
+            _deviceAccess = (DeviceAccess)_container.GetInstance(typeof(IDeviceAccess), typeof(DeviceAccess).ToString());
         }
 
 
@@ -74,7 +74,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         {
             if (SelectedDevice != null)
             {
-                DeviceDetailsViewModel deviceDetailsVM = _simpleContainer.GetInstance<DeviceDetailsViewModel>();
+                DeviceDetailsViewModel deviceDetailsVM = _container.GetInstance<DeviceDetailsViewModel>();
                 deviceDetailsVM.LoadDevice(SelectedDevice);
                 _windowManager.ShowDialog(deviceDetailsVM);
             }

@@ -14,15 +14,18 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
     public class NewDeviceViewModel : Screen
     {
+		private SimpleContainer _container { get; set; }
+
 		private ProducerAccess producerAccess { get; set; }
 
 		private DeviceAccess deviceAccess { get; set; }
 		
 
-		public NewDeviceViewModel()
+		public NewDeviceViewModel(SimpleContainer simpleContainer)
 		{
-			producerAccess = new ProducerAccess();
-			deviceAccess = new DeviceAccess();
+			_container = simpleContainer;
+			producerAccess = (ProducerAccess)_container.GetInstance(typeof(IProducerAccess), typeof(ProducerAccess).ToString());
+			deviceAccess = (DeviceAccess)_container.GetInstance(typeof(IDeviceAccess), typeof(DeviceAccess).ToString());
 		}
 
         #region Window Operations
