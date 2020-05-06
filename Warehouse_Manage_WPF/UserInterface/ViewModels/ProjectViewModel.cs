@@ -15,18 +15,25 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
     {
 		private SimpleContainer _container { get; set; }
 
-		private ProjectAccess _projectAccess { get; set; }
+		private IProjectAccess _projectAccess { get; set; }
 
-		private DeviceAccess _deviceAccess { get; set; }
+		private IDeviceAccess _deviceAccess { get; set; }
+
+		private ICustomerAccess _customerAccess { get; set; }
+
+		private IProducerAccess _producerAccess { get; set; }
 
 		private IWindowManager _windowManager { get; set; }
 
 
-		public ProjectViewModel(SimpleContainer simpleContainer, IEventAggregator eventAggregator, IWindowManager windowManager)
+		public ProjectViewModel(SimpleContainer simpleContainer, IEventAggregator eventAggregator, IWindowManager windowManager, 
+			IProjectAccess projectAccess, IDeviceAccess deviceAccess, ICustomerAccess customerAccess, IProducerAccess producerAccess)
 		{
 			_container = simpleContainer;
-			_projectAccess = _container.GetInstance<ProjectAccess>();
-			_deviceAccess = _container.GetInstance<DeviceAccess>();
+			_projectAccess = projectAccess;
+			_deviceAccess = deviceAccess;
+			_customerAccess = customerAccess;
+			_producerAccess = producerAccess;
 
 			_windowManager = windowManager;
 			eventAggregator.Subscribe(this);
@@ -48,7 +55,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
 			if(project != null)
 			{
-				projectModel = new ProjectModel(project);
+				projectModel = new ProjectModel(project, _customerAccess);
 
 				CustomerName = projectModel.CustomerName;
 				ProjectStatus = projectModel.Status;
@@ -68,7 +75,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
 			if(project != null)
 			{
-				projectModel = new ProjectModel(project);
+				projectModel = new ProjectModel(project, _customerAccess);
 				LoadProjectInf();
 			}
 			else
@@ -90,7 +97,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			ProjectDevices = new BindableCollection<DeviceModel>();
 
 			foreach (var device in devices)
-				ProjectDevices.Add(new DeviceModel(device));
+				ProjectDevices.Add(new DeviceModel(device, _producerAccess));
 		}
 
 		#endregion

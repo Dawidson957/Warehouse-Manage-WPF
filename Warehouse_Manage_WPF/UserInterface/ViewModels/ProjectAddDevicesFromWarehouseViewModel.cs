@@ -15,7 +15,9 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
     {
         private SimpleContainer _container { get; set; }
 
-        private DeviceAccess _deviceAccess { get; set; }
+        private IDeviceAccess _deviceAccess { get; set; }
+
+        private IProducerAccess _producerAccess { get; set; }
 
         private IWindowManager _windowManager { get; set; }
 
@@ -24,11 +26,12 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         private const int _warehouseProjectId = 5;
 
 
-        public ProjectAddDevicesFromWarehouseViewModel(SimpleContainer container, IWindowManager windowManager)
+        public ProjectAddDevicesFromWarehouseViewModel(SimpleContainer container, IWindowManager windowManager, IDeviceAccess deviceAccess, IProducerAccess producerAccess)
         {
             _container = container;
             _windowManager = windowManager;
-            _deviceAccess = _container.GetInstance<DeviceAccess>();
+            _deviceAccess = deviceAccess;
+            _producerAccess = producerAccess;
             InitializeComboBox();
         }
 
@@ -47,7 +50,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             WarehouseDevices = new BindableCollection<DeviceModel>();
 
             foreach (var device in devices)
-                WarehouseDevices.Add(new DeviceModel(device));
+                WarehouseDevices.Add(new DeviceModel(device, _producerAccess));
         }
 
         public async Task LoadProjectDevices(int projectId)
@@ -57,7 +60,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             _projectId = projectId;
 
             foreach (var device in devices)
-                ProjectDevices.Add(new DeviceModel(device));
+                ProjectDevices.Add(new DeviceModel(device, _producerAccess));
         }
 
         #endregion

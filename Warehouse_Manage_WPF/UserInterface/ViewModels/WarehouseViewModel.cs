@@ -17,17 +17,20 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         private IWindowManager _windowManager { get; set; }
 
-        private DeviceAccess _deviceAccess { get; set; }
+        private IDeviceAccess _deviceAccess { get; set; }
+
+        private IProducerAccess _producerAccess;
 
         // Warehouse project Id
         private const int ProjectId = 5;
 
 
-        public WarehouseViewModel(SimpleContainer simpleContainer, IWindowManager windowManager)
+        public WarehouseViewModel(SimpleContainer simpleContainer, IWindowManager windowManager, IDeviceAccess deviceAccess, IProducerAccess producerAccess)
         {
             _container = simpleContainer;
             _windowManager = windowManager;
-            _deviceAccess = _container.GetInstance<DeviceAccess>();
+            _deviceAccess = deviceAccess;
+            _producerAccess = producerAccess;
         }
 
 
@@ -46,7 +49,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
             foreach (var device in devices)
             {
-                Devices.Add(new DeviceModel(device));
+                Devices.Add(new DeviceModel(device, _producerAccess));
             }
         }
 

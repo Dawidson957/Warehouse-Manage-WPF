@@ -19,18 +19,19 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         private IEventAggregator _events { get; set; }
 
-        private ProducerAccess _producerAccess { get; set; }
+        private IProducerAccess _producerAccess { get; set; }
 
-        private DeviceAccess _deviceAccess { get; set; }
+        private IDeviceAccess _deviceAccess { get; set; }
 
 
 
-        public DeviceDetailsViewModel(SimpleContainer simpleContainer, IWindowManager windowManager, IEventAggregator eventAggregator)
+        public DeviceDetailsViewModel(SimpleContainer simpleContainer, IWindowManager windowManager, IEventAggregator eventAggregator,
+                                      IProducerAccess producerAccess, IDeviceAccess deviceAccess)
         {
             _container = simpleContainer;
             _events = eventAggregator;
-            _producerAccess = _container.GetInstance<ProducerAccess>();
-            _deviceAccess = _container.GetInstance<DeviceAccess>();
+            _producerAccess = producerAccess;
+            _deviceAccess = deviceAccess;
         }
 
 

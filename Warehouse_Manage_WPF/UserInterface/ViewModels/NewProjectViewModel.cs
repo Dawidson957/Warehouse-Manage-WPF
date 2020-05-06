@@ -16,19 +16,20 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
     {
 		private SimpleContainer _container { get; set; }
 
-		private CustomerAccess _customerAccess { get; set; }
+		private ICustomerAccess _customerAccess { get; set; }
 
-		private ProjectAccess _projectAccess { get; set; }
+		private IProjectAccess _projectAccess { get; set; }
 
 		private IEventAggregator _events { get; set; }
 
 
-		public NewProjectViewModel(SimpleContainer simpleContainer, IEventAggregator eventAggregator)
+		public NewProjectViewModel(SimpleContainer simpleContainer, IEventAggregator eventAggregator, 
+							       IProjectAccess projectAccess, ICustomerAccess customerAccess)
 		{
 			_container = simpleContainer;
 			_events = eventAggregator;
-			_customerAccess = _container.GetInstance<CustomerAccess>();
-			_projectAccess = _container.GetInstance<ProjectAccess>();
+			_customerAccess = customerAccess;
+			_projectAccess = projectAccess;
 		}
 
 
@@ -105,7 +106,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 		public async void CreateProject()
 		{
 			var projectFormValidator = new ProjectFormValidator();
-			var projectModel = new ProjectModel()
+			var projectModel = new ProjectModel(_customerAccess)
 			{
 				Name = this.ProjectName,
 				Comment = this.Comment,

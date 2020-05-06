@@ -18,16 +18,16 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         private IEventAggregator _events { get; set; }
 
-        private CustomerAccess _customers { get; set; }
+        private ICustomerAccess _customers { get; set; }
 
         private int _customerId { get; set; }
 
 
-        public CustomerDetailsViewModel(SimpleContainer simpleContainer, IEventAggregator eventAggregator)
+        public CustomerDetailsViewModel(SimpleContainer simpleContainer, IEventAggregator eventAggregator, ICustomerAccess customerAccess)
         {
             _container = simpleContainer;
             _events = eventAggregator;
-            _customers = _container.GetInstance<CustomerAccess>();
+            _customers = customerAccess;
         }
 
         public void LoadCustomer(CustomerModel customerModel)

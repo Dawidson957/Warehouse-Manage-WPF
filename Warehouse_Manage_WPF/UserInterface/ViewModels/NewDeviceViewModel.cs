@@ -16,16 +16,16 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
     {
 		private SimpleContainer _container { get; set; }
 
-		private ProducerAccess producerAccess { get; set; }
+		private IProducerAccess _producerAccess { get; set; }
 
-		private DeviceAccess deviceAccess { get; set; }
+		private IDeviceAccess _deviceAccess { get; set; }
 		
 
-		public NewDeviceViewModel(SimpleContainer simpleContainer)
+		public NewDeviceViewModel(SimpleContainer simpleContainer, IProducerAccess producerAccess, IDeviceAccess deviceAccess)
 		{
 			_container = simpleContainer;
-			producerAccess = _container.GetInstance<ProducerAccess>();
-			deviceAccess = _container.GetInstance<DeviceAccess>();
+			_producerAccess = producerAccess;
+			_deviceAccess = deviceAccess;
 		}
 
         #region Window Operations
@@ -38,7 +38,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
 		private async Task LoadProducers()
 		{
-			var producersFromAPI = await producerAccess.GetProducerNamesAll();
+			var producersFromAPI = await _producerAccess.GetProducerNamesAll();
 			ProducersName = new BindableCollection<string>(producersFromAPI);
 		}
 
@@ -111,7 +111,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			if (result.IsValid)
 			{
 				var producerEntity = producer.ConvertToProducerEntity();
-				var resultTask = await producerAccess.AddProducer(producerEntity);
+				var resultTask = await _producerAccess.AddProducer(producerEntity);
 				SnackbarNotification.MessageQueue = new SnackbarMessageQueue();
 				string message = null;
 
@@ -220,7 +220,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
 		public async void SaveButton()
 		{
-			var device = new DeviceModel
+			var device = new DeviceModel(_producerAccess)
 			{
 				Name = DeviceName,
 				ArticleNumber = ArticleNumber,
@@ -236,7 +236,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			{
 				var deviceEntity = await device.ConvertToDeviceEntity();
 				deviceEntity.ProjectID = 5;
-				var resultTask = await deviceAccess.AddDevice(deviceEntity);
+				var resultTask = await _deviceAccess.AddDevice(deviceEntity);
 				SnackbarNotification.MessageQueue = new SnackbarMessageQueue();
 				string message = null;
 

@@ -16,20 +16,20 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
     {
 		private SimpleContainer _container { get; set; }
 
-		private ProducerAccess _producerAccess { get; set; }
+		private IProducerAccess _producerAccess { get; set; }
 
-		private DeviceAccess _deviceAccess { get; set; }
+		private IDeviceAccess _deviceAccess { get; set; }
 
 		private int ProjectId { get; set; }
 
 		private IEventAggregator _events { get; set; }
 
 
-		public ProjectNewDeviceViewModel(SimpleContainer simpleContainer, IEventAggregator eventAggregator)
+		public ProjectNewDeviceViewModel(SimpleContainer simpleContainer, IEventAggregator eventAggregator, IDeviceAccess deviceAccess, IProducerAccess producerAccess)
 		{
 			_container = simpleContainer;
-			_producerAccess = _container.GetInstance<ProducerAccess>();
-			_deviceAccess = _container.GetInstance<DeviceAccess>();
+			_producerAccess = producerAccess;
+			_deviceAccess = deviceAccess;
 			_events = eventAggregator;
 		}
 
@@ -129,7 +129,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
 		public async void SaveButton()
 		{
-			var device = new DeviceModel
+			var device = new DeviceModel(_producerAccess)
 			{
 				Name = DeviceName,
 				ArticleNumber = ArticleNumber,

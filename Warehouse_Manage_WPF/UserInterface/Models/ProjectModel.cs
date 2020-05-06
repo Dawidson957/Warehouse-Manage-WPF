@@ -11,6 +11,8 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
 {
     public class ProjectModel : IProjectEntityConversion
     {
+        private ICustomerAccess _customerAccess { get; set; }
+
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -22,13 +24,14 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
         public string CustomerName { get; set; }
 
 
-        public ProjectModel(Project project)
+        public ProjectModel(Project project, ICustomerAccess customerAccess)
         {
             Id = project.Id;
             Name = project.Name;
             Status = project.Status;
             Comment = project.Comment;
             CustomerName = project.Customer.Name;
+            _customerAccess = customerAccess;
         }
 
         public async Task<Project> ConvertToProjectEntity()
@@ -47,12 +50,14 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
 
         public async Task<int> GetCustomerId(string customerName)
         {
-            var customerAccess = new CustomerAccess();
-            int customerId = await customerAccess.GetCustomerId(customerName);
+            int customerId = await _customerAccess.GetCustomerId(customerName);
 
             return customerId;
         }
 
-        public ProjectModel() { }
+        public ProjectModel(ICustomerAccess customerAccess) 
+        {
+            _customerAccess = customerAccess;
+        }
     }
 }

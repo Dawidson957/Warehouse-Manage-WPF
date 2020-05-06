@@ -16,15 +16,19 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
     {
         private SimpleContainer _container { get; set; }
 
-        private ProjectAccess _projectAccess { get; set; }
+        private IProjectAccess _projectAccess { get; set; }
+
+        private ICustomerAccess _customerAccess { get; set; }
 
         private IWindowManager _windowManager { get; set; }
        
 
-        public ProjectListViewModel(SimpleContainer simpleContainer, IWindowManager windowManager, IEventAggregator eventAggregator)
+        public ProjectListViewModel(SimpleContainer simpleContainer, IWindowManager windowManager, IEventAggregator eventAggregator, 
+            IProjectAccess projectAccess, ICustomerAccess customerAccess)
         {
             _container = simpleContainer;
-            _projectAccess = _container.GetInstance<ProjectAccess>();
+            _projectAccess = projectAccess;
+            _customerAccess = customerAccess;
             _windowManager = windowManager;
             eventAggregator.Subscribe(this);
         }
@@ -48,7 +52,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             Projects = new BindableCollection<ProjectModel>();
 
             foreach (var projectEnt in projectEnts)
-                Projects.Add(new ProjectModel(projectEnt));
+                Projects.Add(new ProjectModel(projectEnt, _customerAccess));
 
 
             Console.WriteLine("Loaded Projects");

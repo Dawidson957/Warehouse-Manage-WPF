@@ -16,16 +16,16 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
     {
         private SimpleContainer _container { get; set; }
 
-        private CustomerAccess _customers { get; set; }
+        private ICustomerAccess _customers { get; set; }
 
         private IWindowManager _windowManager { get; set; }
 
 
-        public CustomersViewModel(SimpleContainer simpleContainer, IWindowManager windowManager)
+        public CustomersViewModel(SimpleContainer simpleContainer, IWindowManager windowManager, ICustomerAccess customerAccess)
         {
             _container = simpleContainer;
             _windowManager = windowManager;
-            _customers = _container.GetInstance<CustomerAccess>();
+            _customers = customerAccess;
             NewCustomer = new CustomerModel();
         }
 

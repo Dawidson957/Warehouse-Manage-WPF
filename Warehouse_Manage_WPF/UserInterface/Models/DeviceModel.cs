@@ -6,11 +6,14 @@ using System.Text;
 using System.Threading.Tasks;
 using DataAccess.Entities;
 using Warehouse_Manage_WPF.UserInterface.Helpers;
+using Caliburn.Micro;
 
 namespace Warehouse_Manage_WPF.UserInterface.Models
 {
     public class DeviceModel : IDeviceEntityConversion
     {
+        private IProducerAccess prodAcces;
+
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -59,13 +62,12 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
 
         public async Task<int> GetProducerId(string Name)
         {
-            var producerAcces = new ProducerAccess();
-            int Id = await producerAcces.GetProducerId(this.ProducerName);
+            int Id = await prodAcces.GetProducerId(this.ProducerName);
 
             return Id;
         }
 
-        public DeviceModel(Device device)
+        public DeviceModel(Device device, IProducerAccess producerAccess)
         {
             Id = device.Id;
             Name = device.Name;
@@ -74,11 +76,12 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
             Location = device.Location;
             Quantity = device.Quantity;
             ProjectId = device.ProjectID;
+            prodAcces = producerAccess;
         }
 
-        public DeviceModel()
+        public DeviceModel(IProducerAccess producerAccess)
         {
-
+            prodAcces = producerAccess;
         }
 
         // Copy constructor
@@ -91,6 +94,7 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
             Location = deviceModel.Location;
             Quantity = deviceModel.Quantity;
             ProjectId = deviceModel.ProjectId;
+            prodAcces = deviceModel.prodAcces;
         }
     }
 }

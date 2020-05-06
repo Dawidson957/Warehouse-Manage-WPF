@@ -18,19 +18,19 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         private IEventAggregator _events { get; set; }
 
-        private CustomerAccess _customerAccess { get; set; }
+        private ICustomerAccess _customerAccess { get; set; }
 
-        private ProjectAccess _projectAccess { get; set; }
+        private IProjectAccess _projectAccess { get; set; }
 
         private ProjectModel _project { get; set; }
 
 
-        public ProjectDetailsViewModel(SimpleContainer simpleContainer, IEventAggregator eventAggregator)
+        public ProjectDetailsViewModel(SimpleContainer simpleContainer, IEventAggregator eventAggregator, ICustomerAccess customerAccess, IProjectAccess projectAccess)
         {
             _container = simpleContainer;
             _events = eventAggregator;
-            _customerAccess = _container.GetInstance<CustomerAccess>();
-            _projectAccess = _container.GetInstance<ProjectAccess>();
+            _customerAccess = customerAccess;
+            _projectAccess = projectAccess;
         }
 
         protected override async void OnViewLoaded(object view)
@@ -158,7 +158,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         public async void SaveButton()
         {
-            var projectModel = new ProjectModel()
+            var projectModel = new ProjectModel(_customerAccess)
             {
                 Id = _project.Id,
                 Name = ProjectName,
