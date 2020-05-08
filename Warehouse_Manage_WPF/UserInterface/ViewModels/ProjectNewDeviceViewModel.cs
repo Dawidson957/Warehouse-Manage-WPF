@@ -14,8 +14,6 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
     public class ProjectNewDeviceViewModel : Screen
     {
-		private SimpleContainer _container { get; set; }
-
 		private IProducerAccess _producerAccess { get; set; }
 
 		private IDeviceAccess _deviceAccess { get; set; }
@@ -25,9 +23,8 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 		private IEventAggregator _events { get; set; }
 
 
-		public ProjectNewDeviceViewModel(SimpleContainer simpleContainer, IEventAggregator eventAggregator, IDeviceAccess deviceAccess, IProducerAccess producerAccess)
+		public ProjectNewDeviceViewModel(IEventAggregator eventAggregator, IDeviceAccess deviceAccess, IProducerAccess producerAccess)
 		{
-			_container = simpleContainer;
 			_producerAccess = producerAccess;
 			_deviceAccess = deviceAccess;
 			_events = eventAggregator;
@@ -51,7 +48,10 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 		private async Task LoadProducers()
 		{
 			var producers = await _producerAccess.GetProducerNamesAll();
-			Producers = new BindableCollection<string>(producers);
+			Producers = new BindableCollection<string>();
+
+			foreach (var name in producers)
+				Producers.Add(name);
 		}
 
 		#endregion
@@ -171,7 +171,17 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			Quantity = 1;
 		}
 
-        #endregion
+		#endregion
 
+
+		#region Only For Tests
+
+		public bool DeviceValidationResult { get; private set; } = false;
+
+		public bool DeviceAddResult { get; private set; } = false;
+
+		public async void LoadProducers_Run() { await LoadProducers(); }
+
+        #endregion
     }
 }

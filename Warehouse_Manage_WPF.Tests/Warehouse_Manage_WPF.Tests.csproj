@@ -133,6 +133,7 @@
     <Compile Include="UserInterfaceTests\ViewModelsTests\NewDeviceViewModel_Tests.cs" />
     <Compile Include="UserInterfaceTests\ViewModelsTests\NewProjectViewModel_Tests.cs" />
     <Compile Include="UserInterfaceTests\ViewModelsTests\ProjectDetailsViewModel_Tests.cs" />
+    <Compile Include="UserInterfaceTests\ViewModelsTests\ProjectNewDeviceViewModel_Tests.cs" />
     <Compile Include="UserInterfaceTests\ViewModelsTests\WarehouseViewModel_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
