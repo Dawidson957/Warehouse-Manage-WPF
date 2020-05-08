@@ -15,8 +15,6 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
     public class DeviceDetailsViewModel : Screen
     {
-        private SimpleContainer _container { get; set; }
-
         private IEventAggregator _events { get; set; }
 
         private IProducerAccess _producerAccess { get; set; }
@@ -25,10 +23,8 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
 
 
-        public DeviceDetailsViewModel(SimpleContainer simpleContainer, IWindowManager windowManager, IEventAggregator eventAggregator,
-                                      IProducerAccess producerAccess, IDeviceAccess deviceAccess)
+        public DeviceDetailsViewModel(IEventAggregator eventAggregator, IProducerAccess producerAccess, IDeviceAccess deviceAccess)
         {
-            _container = simpleContainer;
             _events = eventAggregator;
             _producerAccess = producerAccess;
             _deviceAccess = deviceAccess;
@@ -51,38 +47,10 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         private async Task LoadProducers()
         {
             var producersName = await _producerAccess.GetProducerNamesAll();
-            Producers = new BindableCollection<string>(producersName);
-        }
+            Producers = new BindableCollection<string>();
 
-        public override void CanClose(Action<bool> callback)
-        {
-            if (SomethingChangedFlag)
-            {
-                MessageBoxResult result = MessageBox.Show("Czy chcesz zapisać zmiany?", "Title", MessageBoxButton.YesNo);
-
-                if (result == MessageBoxResult.Yes)
-                    return;
-                else
-                    callback(true);
-            }
-            else
-                callback(true);
-        }
-
-        #endregion
-
-
-        #region Helpers
-
-        private bool _somethingChangedFlag;
-
-        public bool SomethingChangedFlag
-        {
-            get { return _somethingChangedFlag; }
-            set
-            {
-                _somethingChangedFlag = value;
-            }
+            foreach (var name in producersName)
+                Producers.Add(name);
         }
 
         #endregion
@@ -119,10 +87,16 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             var deviceValidator = new DeviceModelValidator();
             var validationResult = deviceValidator.Validate(Device);
 
+            // For testing
+            DeviceValidationResult = validationResult.IsValid;
+
             if (validationResult.IsValid)
             {
                 var deviceEntity = await Device.ConvertToDeviceEntity();
                 var resultTask = await _deviceAccess.UpdateDevice(deviceEntity);
+
+                // For testing
+                DeviceUpdateResult = resultTask;
 
                 if (resultTask)
                 {
@@ -142,6 +116,9 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         {
             var resultTask = await _deviceAccess.DeleteDevice(Device.Id);
 
+            // For testing
+            DeviceDeleteResult = resultTask;
+
             if(resultTask)
             {
                 _events.PublishOnUIThread(new DeviceCredentialsChangedEvent());
@@ -152,6 +129,17 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
                 MessageBox.Show("An error occured.");
             }
         }
+
+        #endregion
+
+
+        #region For testing
+
+        public bool DeviceValidationResult { get; private set; } = false;
+
+        public bool DeviceUpdateResult { get; private set; } = false;
+
+        public bool DeviceDeleteResult { get; private set; } = false;
 
         #endregion
     }
