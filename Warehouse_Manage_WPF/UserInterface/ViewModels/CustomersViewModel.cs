@@ -94,10 +94,16 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             var customerFormValidator = new CustomerFormValidator();
             var validationResult = customerFormValidator.Validate(NewCustomer);
 
+            // For testing
+            CustomerValidationResult = validationResult.IsValid;
+
             if(validationResult.IsValid)
             {
                 var customerEntity = NewCustomer.ConvertToCustomerEntity();
                 var resultTask = await _customers.AddCustomer(customerEntity);
+
+                // For testing
+                CustomerAddResult = resultTask;
 
                 if(resultTask)
                 {
@@ -140,5 +146,14 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         #endregion
 
 
+        #region Only For Tests
+
+        public bool CustomerValidationResult { get; private set; } = false;
+
+        public bool CustomerAddResult { get; private set; } = false;
+
+        public async void LoadCustomers_Run() { await LoadCustomers(); }
+
+        #endregion
     }
 }

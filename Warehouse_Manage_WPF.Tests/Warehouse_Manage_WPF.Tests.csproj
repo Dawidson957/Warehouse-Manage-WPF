@@ -127,6 +127,7 @@
     <Compile Include="UserInterfaceTests\ModelsTests\ProducerModelTests.cs" />
     <Compile Include="UserInterfaceTests\ModelsTests\ProjectModelTests.cs" />
     <Compile Include="UserInterfaceTests\ViewModelsTests\CustomerDetailsViewModel_Tests.cs" />
+    <Compile Include="UserInterfaceTests\ViewModelsTests\CustomersViewModel_Tests.cs" />
     <Compile Include="UserInterfaceTests\ViewModelsTests\DeviceDetailsViewModel_Tests.cs" />
     <Compile Include="UserInterfaceTests\ViewModelsTests\MainViewModel_Tests.cs" />
     <Compile Include="UserInterfaceTests\ViewModelsTests\NewDeviceViewModel_Tests.cs" />
