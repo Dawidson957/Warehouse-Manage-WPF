@@ -14,25 +14,22 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
     public class CustomerDetailsViewModel : Screen
     {
-        private SimpleContainer _container { get; set; }
-
         private IEventAggregator _events { get; set; }
 
         private ICustomerAccess _customers { get; set; }
 
-        private int _customerId { get; set; }
+        public int customerId { get; private set; }
 
 
-        public CustomerDetailsViewModel(SimpleContainer simpleContainer, IEventAggregator eventAggregator, ICustomerAccess customerAccess)
+        public CustomerDetailsViewModel(IEventAggregator eventAggregator, ICustomerAccess customerAccess)
         {
-            _container = simpleContainer;
             _events = eventAggregator;
             _customers = customerAccess;
         }
 
         public void LoadCustomer(CustomerModel customerModel)
         {
-            _customerId = customerModel.Id;
+            customerId = customerModel.Id;
             CustomerName = customerModel.Name;
             CustomerAddress = customerModel.Address;
             CustomerCity = customerModel.City;
@@ -88,12 +85,18 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             var customerFormValidator = new CustomerFormValidator();
             var validationResult = customerFormValidator.Validate(customerModel);
 
+            // For testing
+            CustomerValidationResult = validationResult.IsValid;
+
             if(validationResult.IsValid)
             {
                 var customerEntity = customerModel.ConvertToCustomerEntity();
-                customerEntity.Id = _customerId;
+                customerEntity.Id = customerId;
 
                 var resultTask = await _customers.UpdateCustomer(customerEntity);
+
+                // For testing
+                CustomerUpdateResult = resultTask;
 
                 if(resultTask)
                 {
@@ -110,6 +113,15 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
                 MessageBox.Show("Błąd walidacji danych");
             }
         }
+
+        #endregion
+
+
+        #region Only For Tests
+
+        public bool CustomerValidationResult { get; private set; } = false;
+
+        public bool CustomerUpdateResult { get; private set; } = false;
 
         #endregion
     }
