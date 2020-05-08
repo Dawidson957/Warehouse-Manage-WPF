@@ -14,8 +14,6 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
     public class NewProjectViewModel : Screen
     {
-		private SimpleContainer _container { get; set; }
-
 		private ICustomerAccess _customerAccess { get; set; }
 
 		private IProjectAccess _projectAccess { get; set; }
@@ -23,10 +21,8 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 		private IEventAggregator _events { get; set; }
 
 
-		public NewProjectViewModel(SimpleContainer simpleContainer, IEventAggregator eventAggregator, 
-							       IProjectAccess projectAccess, ICustomerAccess customerAccess)
+		public NewProjectViewModel(IEventAggregator eventAggregator, IProjectAccess projectAccess, ICustomerAccess customerAccess)
 		{
-			_container = simpleContainer;
 			_events = eventAggregator;
 			_customerAccess = customerAccess;
 			_projectAccess = projectAccess;
@@ -44,7 +40,12 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 		private async Task LoadCustomers()
 		{
 			var customersName = await _customerAccess.GetCustomersName();
-			CustomersName = new BindableCollection<string>(customersName);
+			CustomersName = new BindableCollection<string>();
+
+			foreach(var name in CustomersName)
+			{
+				CustomersName.Add(name);
+			}
 		}
 
         #endregion
@@ -129,18 +130,27 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 				}
 				else
 				{
-					// TODO: Handle case when project is not added
 					MessageBox.Show("Wystapil blad");
 				}
 			}
 			else
 			{
-				//TODO: Handle case when validation is not success
 				MessageBox.Show("blad walidacji danych");
 			}
 		}
 
-        #endregion
+		#endregion
 
+
+
+		#region Only For Tests
+
+		public bool ProjectValidationResult { get; private set; } = false;
+
+		public bool ProjectAddResult { get; private set; } = false;
+
+		public async void LoadCustomers_Run() { await LoadCustomers(); }
+
+        #endregion
     }
 }
