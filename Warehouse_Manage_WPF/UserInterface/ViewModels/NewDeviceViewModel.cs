@@ -14,19 +14,17 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
     public class NewDeviceViewModel : Screen
     {
-		private SimpleContainer _container { get; set; }
-
 		private IProducerAccess _producerAccess { get; set; }
 
 		private IDeviceAccess _deviceAccess { get; set; }
-		
 
-		public NewDeviceViewModel(SimpleContainer simpleContainer, IProducerAccess producerAccess, IDeviceAccess deviceAccess)
+
+        public NewDeviceViewModel(IProducerAccess producerAccess, IDeviceAccess deviceAccess)
 		{
-			_container = simpleContainer;
 			_producerAccess = producerAccess;
 			_deviceAccess = deviceAccess;
 		}
+
 
         #region Window Operations
 
@@ -39,7 +37,10 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 		private async Task LoadProducers()
 		{
 			var producersFromAPI = await _producerAccess.GetProducerNamesAll();
-			ProducersName = new BindableCollection<string>(producersFromAPI);
+			ProducersName = new BindableCollection<string>();
+
+			foreach (var producer in producersFromAPI)
+				ProducersName.Add(producer);
 		}
 
         #endregion
@@ -106,16 +107,18 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
 			var producerValidator = new ProducerValidator();
 			var result = producerValidator.Validate(producer);
-			
+
+			// For tests
+			NewProducerValidationResult = result.IsValid;
 
 			if (result.IsValid)
 			{
 				var producerEntity = producer.ConvertToProducerEntity();
-				var resultTask = await _producerAccess.AddProducer(producerEntity);
+				SaveNewProducerResult = await _producerAccess.AddProducer(producerEntity);
 				SnackbarNotification.MessageQueue = new SnackbarMessageQueue();
 				string message = null;
 
-				if (resultTask)
+				if (SaveNewProducerResult)
 				{
 					message = "Producent dodany poprawnie.";
 				}
@@ -137,8 +140,8 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
 		public void ClearProducerForm()
 		{
-			ProducerName = "";
-			URL = "";
+			this.ProducerName = "";
+			this.URL = "";
 		}
 
 		#endregion
@@ -232,15 +235,18 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			var deviceValidator = new DeviceModelValidator();
 			var result = deviceValidator.Validate(device);
 
+			// For testing
+			NewDeviceValidationResult = result.IsValid;
+
 			if (result.IsValid)
 			{
 				var deviceEntity = await device.ConvertToDeviceEntity();
 				deviceEntity.ProjectID = 5;
-				var resultTask = await _deviceAccess.AddDevice(deviceEntity);
+				SaveNewDeviceResult = await _deviceAccess.AddDevice(deviceEntity);
 				SnackbarNotification.MessageQueue = new SnackbarMessageQueue();
 				string message = null;
 
-				if (resultTask)
+				if (SaveNewDeviceResult)
 				{
 					message = "Urządzenie zostało dodane poprawnie.";
 				}
@@ -271,6 +277,19 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			Location = "";
 			Quantity = 0;
 		}
+
+		#endregion
+
+
+		#region For testing
+
+		public bool SaveNewProducerResult { get; private set; } = false;
+
+		public bool NewProducerValidationResult { get; private set; } = false;
+
+		public bool SaveNewDeviceResult { get; private set; } = false;
+
+		public bool NewDeviceValidationResult { get; private set; } = false;
 
 		#endregion
 
