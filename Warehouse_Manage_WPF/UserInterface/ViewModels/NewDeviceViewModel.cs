@@ -291,6 +291,11 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
 		public bool NewDeviceValidationResult { get; private set; } = false;
 
+		public async void LoadProducersRun()
+		{
+			await LoadProducers();
+		}
+
 		#endregion
 
 	}

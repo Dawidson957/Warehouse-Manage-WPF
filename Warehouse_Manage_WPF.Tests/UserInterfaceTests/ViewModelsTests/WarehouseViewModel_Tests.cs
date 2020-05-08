@@ -56,20 +56,17 @@ namespace Warehouse_Manage_WPF.Tests.UserInterfaceTests.ViewModelsTests
             var warehouseVM = new WarehouseViewModel(simpleContainer, windowManager, deviceAccess, producerAccess);
 
             // Assert
-            if(warehouseVM.IsInitialized)
-            {
-                Assert.Equal(expectedDeviceList.Count, warehouseVM.Devices.Count);
-                Assert.IsType<BindableCollection<DeviceModel>>(warehouseVM.Devices);
+            Assert.Equal(expectedDeviceList.Count, warehouseVM.Devices.Count);
+            Assert.IsType<BindableCollection<DeviceModel>>(warehouseVM.Devices);
 
-                // Check first device credentials
-                Assert.Equal(expectedDeviceList[0].Id, warehouseVM.Devices[0].Id);
-                Assert.Equal(expectedDeviceList[0].Name, warehouseVM.Devices[0].Name);
-                Assert.Equal(expectedDeviceList[0].ArticleNumber, warehouseVM.Devices[0].ArticleNumber);
-                Assert.Equal(expectedDeviceList[0].Producer.Name, warehouseVM.Devices[0].ProducerName);
-                Assert.Equal(expectedDeviceList[0].ProjectID, warehouseVM.Devices[0].ProjectId);
-                Assert.Equal(expectedDeviceList[0].Location, warehouseVM.Devices[0].Location);
-                Assert.Equal(expectedDeviceList[0].Quantity, warehouseVM.Devices[0].Quantity);
-            }
+            // Check first device credentials
+            Assert.Equal(expectedDeviceList[0].Id, warehouseVM.Devices[0].Id);
+            Assert.Equal(expectedDeviceList[0].Name, warehouseVM.Devices[0].Name);
+            Assert.Equal(expectedDeviceList[0].ArticleNumber, warehouseVM.Devices[0].ArticleNumber);
+            Assert.Equal(expectedDeviceList[0].Producer.Name, warehouseVM.Devices[0].ProducerName);
+            Assert.Equal(expectedDeviceList[0].ProjectID, warehouseVM.Devices[0].ProjectId);
+            Assert.Equal(expectedDeviceList[0].Location, warehouseVM.Devices[0].Location);
+            Assert.Equal(expectedDeviceList[0].Quantity, warehouseVM.Devices[0].Quantity);
         }
 
 

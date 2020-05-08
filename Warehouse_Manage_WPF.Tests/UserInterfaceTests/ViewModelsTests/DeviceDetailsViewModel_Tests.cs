@@ -88,39 +88,14 @@ namespace Warehouse_Manage_WPF.Tests.UserInterfaceTests.ViewModelsTests
 
             // Act
             var deviceDetailsVM = new DeviceDetailsViewModel(_eventAggregator, _producerAccess, _deviceAccess);
+            deviceDetailsVM.LoadProducersRun();
 
             // Assert
-            if (deviceDetailsVM.IsInitialized)
-            {
-                Assert.IsType<BindableCollection<string>>(deviceDetailsVM.Producers);
-                Assert.Equal(producersNameList.Count, deviceDetailsVM.Producers.Count);
-                Assert.Equal(producersNameList[0], deviceDetailsVM.Producers[0]);
-                Assert.Equal(producersNameList[3], deviceDetailsVM.Producers[3]);
-            }
-        }
-
-        [Fact]
-        public void LoadProducers_EmptyList_Test()
-        {
-            // Arrange
-            List<string> producersList = null;
-
-            var producerAccessMock = new Mock<IProducerAccess>();
-            producerAccessMock
-                .Setup(x => x.GetProducerNamesAll())
-                .ReturnsAsync(producersList);
-
-            var producerAccess = producerAccessMock.Object;
-
-            // Act
-            var deviceDetailsVM = new DeviceDetailsViewModel(_eventAggregator, producerAccess, _deviceAccess);
-
-            // Assert
-            if (deviceDetailsVM.IsInitialized)
-            {
-                Assert.IsType<BindableCollection<string>>(deviceDetailsVM.Producers);
-                Assert.Empty(deviceDetailsVM.Producers);
-            }
+            Assert.IsType<BindableCollection<string>>(deviceDetailsVM.Producers);
+            Assert.Equal(producersNameList.Count, deviceDetailsVM.Producers.Count);
+            Assert.Equal(producersNameList[0], deviceDetailsVM.Producers[0]);
+            Assert.Equal(producersNameList[3], deviceDetailsVM.Producers[3]);
+            
         }
 
         [Fact]
@@ -140,19 +115,14 @@ namespace Warehouse_Manage_WPF.Tests.UserInterfaceTests.ViewModelsTests
 
             var deviceDetailsVM = new DeviceDetailsViewModel(_eventAggregator, _producerAccess, _deviceAccess);
             deviceDetailsVM.Device = deviceModel;
+            deviceDetailsVM.LoadProducersRun();
 
             // Act
-            if(deviceDetailsVM.IsInitialized)
-            {
-                await deviceDetailsVM.SubmitButton();
-            }
-
+            await deviceDetailsVM.SubmitButton();
+            
             // Assert
-            if(deviceDetailsVM.IsInitialized)
-            {
-                Assert.True(deviceDetailsVM.DeviceValidationResult);
-                Assert.True(deviceDetailsVM.DeviceUpdateResult);
-            }
+            Assert.True(deviceDetailsVM.DeviceValidationResult);
+            Assert.True(deviceDetailsVM.DeviceUpdateResult);
         }
 
         [Fact]
@@ -172,18 +142,13 @@ namespace Warehouse_Manage_WPF.Tests.UserInterfaceTests.ViewModelsTests
 
             var deviceDetailsVM = new DeviceDetailsViewModel(_eventAggregator, _producerAccess, _deviceAccess);
             deviceDetailsVM.Device = deviceModel;
+            deviceDetailsVM.LoadProducersRun();
 
             // Act
-            if(deviceDetailsVM.IsInitialized)
-            {
-                deviceDetailsVM.DeleteButton();
-            }
-
+            deviceDetailsVM.DeleteButton();
+            
             // Assert
-            if(deviceDetailsVM.IsInitialized)
-            {
-                Assert.True(deviceDetailsVM.DeviceDeleteResult);
-            }
+            Assert.True(deviceDetailsVM.DeviceDeleteResult);
         }
 
 

@@ -57,13 +57,12 @@ namespace Warehouse_Manage_WPF.Tests.UserInterfaceTests.ViewModelsTests
 
             // Act
             var newDeviceVM = new NewDeviceViewModel(_producerAccess, _deviceAccess);
+            newDeviceVM.LoadProducersRun();
 
             // Assert
-            if (newDeviceVM.IsInitialized)
-            {
-                Assert.IsType<BindableCollection<string>>(newDeviceVM.ProducersName);
-                Assert.True(producerNames.Count == newDeviceVM.ProducersName.Count);
-            }
+            Assert.IsType<BindableCollection<string>>(newDeviceVM.ProducersName);
+            Assert.True(producerNames.Count == newDeviceVM.ProducersName.Count);
+            
         }
 
         [Fact]
@@ -73,11 +72,8 @@ namespace Warehouse_Manage_WPF.Tests.UserInterfaceTests.ViewModelsTests
             var newDeviceVM = new NewDeviceViewModel(_producerAccess, _deviceAccess);
 
             // Assert
-            if (newDeviceVM.IsInitialized)
-            {
-                Assert.IsType<Snackbar>(newDeviceVM.SnackbarNotification);
-                Assert.Null(newDeviceVM.SnackbarNotification.MessageQueue);
-            }
+            Assert.IsType<Snackbar>(newDeviceVM.SnackbarNotification);
+            Assert.Null(newDeviceVM.SnackbarNotification.MessageQueue);
         }
 
         [Fact]
@@ -92,20 +88,15 @@ namespace Warehouse_Manage_WPF.Tests.UserInterfaceTests.ViewModelsTests
             newDeviceVM.URL = validProducerURL;
 
             // Act
-            if (newDeviceVM.IsInitialized)
-            {
-                newDeviceVM.SaveNewProducer();
-            }
-
+            newDeviceVM.SaveNewProducer();
+            
             // Assert
-            if(newDeviceVM.IsInitialized)
-            {
-                Assert.Equal(validProducerName, newDeviceVM.ProducerName);
-                Assert.Equal(validProducerURL, newDeviceVM.URL);
-                Assert.IsType<SnackbarMessageQueue>(newDeviceVM.SnackbarNotification.MessageQueue);
-                Assert.True(newDeviceVM.SaveNewProducerResult);
-                Assert.True(newDeviceVM.NewProducerValidationResult);
-            }
+            Assert.Equal(validProducerName, newDeviceVM.ProducerName);
+            Assert.Equal(validProducerURL, newDeviceVM.URL);
+            Assert.IsType<SnackbarMessageQueue>(newDeviceVM.SnackbarNotification.MessageQueue);
+            Assert.True(newDeviceVM.SaveNewProducerResult);
+            Assert.True(newDeviceVM.NewProducerValidationResult);
+            
         }
 
         [Theory]
@@ -118,18 +109,13 @@ namespace Warehouse_Manage_WPF.Tests.UserInterfaceTests.ViewModelsTests
             newDeviceVM.URL = url;
 
             // Act
-            if (newDeviceVM.IsInitialized)
-            {
-                newDeviceVM.SaveNewProducer();
-            }
+            newDeviceVM.SaveNewProducer();
 
             // Assert
-            if(newDeviceVM.IsInitialized)
-            {
-                Assert.IsType<SnackbarMessageQueue>(newDeviceVM.SnackbarNotification.MessageQueue);
-                Assert.False(newDeviceVM.SaveNewProducerResult);
-                Assert.False(newDeviceVM.NewProducerValidationResult);
-            }
+            Assert.IsType<SnackbarMessageQueue>(newDeviceVM.SnackbarNotification.MessageQueue);
+            Assert.False(newDeviceVM.SaveNewProducerResult);
+            Assert.False(newDeviceVM.NewProducerValidationResult);
+            
         }
 
         [Fact]
@@ -169,18 +155,12 @@ namespace Warehouse_Manage_WPF.Tests.UserInterfaceTests.ViewModelsTests
             newDeviceVM.Quantity = validQuantity;
 
             // Act
-            if(newDeviceVM.IsInitialized)
-            {
-                newDeviceVM.SaveButton();
-            }
+            newDeviceVM.SaveButton();
             
             // Assert
-            if(newDeviceVM.IsInitialized)
-            {
-                Assert.True(newDeviceVM.NewDeviceValidationResult);
-                Assert.True(newDeviceVM.SaveNewDeviceResult);
-                Assert.IsType<SnackbarMessageQueue>(newDeviceVM.SnackbarNotification.MessageQueue);
-            }
+            Assert.True(newDeviceVM.NewDeviceValidationResult);
+            Assert.True(newDeviceVM.SaveNewDeviceResult);
+            Assert.IsType<SnackbarMessageQueue>(newDeviceVM.SnackbarNotification.MessageQueue);
         }
 
         [Theory]
@@ -199,18 +179,12 @@ namespace Warehouse_Manage_WPF.Tests.UserInterfaceTests.ViewModelsTests
             newDeviceVM.Quantity = quantity;
 
             // Act
-            if(newDeviceVM.IsInitialized)
-            {
-                newDeviceVM.SaveButton();
-            }
-
+            newDeviceVM.SaveButton();
+            
             // Assert
-            if(newDeviceVM.IsInitialized)
-            {
-                Assert.IsType<SnackbarMessageQueue>(newDeviceVM.SnackbarNotification.MessageQueue);
-                Assert.False(newDeviceVM.NewDeviceValidationResult);
-                Assert.False(newDeviceVM.SaveNewDeviceResult);
-            }
+            Assert.IsType<SnackbarMessageQueue>(newDeviceVM.SnackbarNotification.MessageQueue);
+            Assert.False(newDeviceVM.NewDeviceValidationResult);
+            Assert.False(newDeviceVM.SaveNewDeviceResult);
         }
 
         [Fact]

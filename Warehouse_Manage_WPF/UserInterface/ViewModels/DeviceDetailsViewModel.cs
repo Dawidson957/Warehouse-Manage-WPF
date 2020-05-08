@@ -141,6 +141,11 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         public bool DeviceDeleteResult { get; private set; } = false;
 
+        public async void LoadProducersRun()
+        {
+            await LoadProducers();
+        }
+
         #endregion
     }
 }
