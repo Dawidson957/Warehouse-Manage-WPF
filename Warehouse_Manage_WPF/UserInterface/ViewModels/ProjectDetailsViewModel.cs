@@ -14,20 +14,17 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
     public class ProjectDetailsViewModel : Screen
     {
-        private SimpleContainer _container { get; set; }
-
         private IEventAggregator _events { get; set; }
 
         private ICustomerAccess _customerAccess { get; set; }
 
         private IProjectAccess _projectAccess { get; set; }
 
-        private ProjectModel _project { get; set; }
+        public ProjectModel project { get; private set; }
 
 
-        public ProjectDetailsViewModel(SimpleContainer simpleContainer, IEventAggregator eventAggregator, ICustomerAccess customerAccess, IProjectAccess projectAccess)
+        public ProjectDetailsViewModel(IEventAggregator eventAggregator, ICustomerAccess customerAccess, IProjectAccess projectAccess)
         {
-            _container = simpleContainer;
             _events = eventAggregator;
             _customerAccess = customerAccess;
             _projectAccess = projectAccess;
@@ -43,7 +40,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         public void LoadProject(ProjectModel projectModel)
         {
-            _project = projectModel;
+            project = projectModel;
         }
 
         private async Task LoadCustomers()
@@ -66,24 +63,24 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         private void SetFormValues()
         {
-            if(_project.Status != null)
+            if(project.Status != null)
             {
-                if(ProjectStatus.Contains(_project.Status))
+                if(ProjectStatus.Contains(project.Status))
                 {
-                    SelectedProjectStatus = _project.Status;
+                    SelectedProjectStatus = project.Status;
                 }
             }
 
-            if(_project.CustomerName != null)
+            if(project.CustomerName != null)
             {
-                if(Customers.Contains(_project.CustomerName))
+                if(Customers.Contains(project.CustomerName))
                 {
-                    SelectedProjectCustomer = _project.CustomerName;
+                    SelectedProjectCustomer = project.CustomerName;
                 }
             }
 
-            ProjectName = _project.Name;
-            Comment = _project.Comment;
+            ProjectName = project.Name;
+            Comment = project.Comment;
         }
 
         #region Project Form
@@ -160,7 +157,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         {
             var projectModel = new ProjectModel(_customerAccess)
             {
-                Id = _project.Id,
+                Id = project.Id,
                 Name = ProjectName,
                 Status = SelectedProjectStatus,
                 CustomerName = SelectedProjectCustomer,
@@ -170,14 +167,20 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             var projectFormValidator = new ProjectFormValidator();
             var validationResult = projectFormValidator.Validate(projectModel);
 
+            // For tests
+            ProjectValidationResult = validationResult.IsValid;
+
             if(validationResult.IsValid)
             {
                 var projectEntity = await projectModel.ConvertToProjectEntity();
                 var resultTask = await _projectAccess.UpdateProject(projectEntity);
 
+                // For tests
+                UpdateProjectResult = resultTask;
+
                 if(resultTask)
                 {
-                    _events.PublishOnUIThread(new ChangedProjectCredentialsEvent(_project.Id));
+                    _events.PublishOnUIThread(new ChangedProjectCredentialsEvent(project.Id));
                     this.TryClose();
                 }
                 else
@@ -191,7 +194,20 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             }
         }
 
+        #endregion
 
+
+        #region Only For Tests
+
+        public bool ProjectValidationResult { get; private set; } = false;
+
+        public bool UpdateProjectResult { get; private set; } = false;
+
+        public async void LoadCustomers_Run() { await LoadCustomers(); }
+
+        public void LoadProjectStatus_Run() { LoadProjectStatus(); }
+
+        public void SetFormValues_Run() { SetFormValues(); }
 
         #endregion
     }

@@ -120,6 +120,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BootstrapperTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserInterfaceTests\ModelsTests\CustomerModelTests.cs" />
     <Compile Include="UserInterfaceTests\ModelsTests\DeviceModelTests.cs" />
@@ -128,6 +129,7 @@
     <Compile Include="UserInterfaceTests\ViewModelsTests\DeviceDetailsViewModel_Tests.cs" />
     <Compile Include="UserInterfaceTests\ViewModelsTests\MainViewModel_Tests.cs" />
     <Compile Include="UserInterfaceTests\ViewModelsTests\NewDeviceViewModel_Tests.cs" />
+    <Compile Include="UserInterfaceTests\ViewModelsTests\ProjectDetailsViewModel_Tests.cs" />
     <Compile Include="UserInterfaceTests\ViewModelsTests\WarehouseViewModel_Tests.cs" />
   </ItemGroup>
   <ItemGroup>
