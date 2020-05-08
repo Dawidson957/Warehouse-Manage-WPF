@@ -58,5 +58,13 @@ namespace Warehouse_Manage_WPF.UserInterface
         {
             DisplayRootViewFor<MainViewModel>();
         }
+
+        public SimpleContainer GetContainer
+        {
+            get
+            {
+                return _container;
+            }
+        }
     }
 }

@@ -119,6 +119,8 @@
     <Compile Include="UserInterfaceTests\ModelsTests\DeviceModelTests.cs" />
     <Compile Include="UserInterfaceTests\ModelsTests\ProducerModelTests.cs" />
     <Compile Include="UserInterfaceTests\ModelsTests\ProjectModelTests.cs" />
+    <Compile Include="UserInterfaceTests\ViewModelsTests\MainViewModel_Tests.cs" />
+    <Compile Include="UserInterfaceTests\ViewModelsTests\NewDeviceViewModel_Tests.cs" />
     <Compile Include="UserInterfaceTests\ViewModelsTests\WarehouseViewModel_Tests.cs" />
   </ItemGroup>
   <ItemGroup>

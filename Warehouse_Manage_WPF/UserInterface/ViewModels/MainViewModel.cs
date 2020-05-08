@@ -29,17 +29,17 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         public void NewDeviceViewOpen()
         {
-            ActivateItem(_simpleContainer.GetInstance<NewDeviceViewModel>());
+            ChangeActiveItem(_simpleContainer.GetInstance<NewDeviceViewModel>(), true);
         }
 
         public void WarehouseViewOpen()
         {
-            ActivateItem(_simpleContainer.GetInstance<WarehouseViewModel>());
+            ChangeActiveItem(_simpleContainer.GetInstance<WarehouseViewModel>(), true);
         }
 
         public void ProjectListViewOpen()
         {
-            this.ActivateItem(_simpleContainer.GetInstance<ProjectListViewModel>());
+            ChangeActiveItem(_simpleContainer.GetInstance<ProjectListViewModel>(), true);
         }
 
         #endregion

@@ -73,16 +73,20 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             }
         }
 
-        public void MouseDoubleClick_DataGrid()
+        public void SelectDeviceClick()
         {
             if (SelectedDevice != null)
             {
                 DeviceDetailsViewModel deviceDetailsVM = _container.GetInstance<DeviceDetailsViewModel>();
                 deviceDetailsVM.LoadDevice(SelectedDevice);
                 _windowManager.ShowDialog(deviceDetailsVM);
+
             }
             else
+            {
                 MessageBox.Show("No device found.");
+            }
+                
         }
 
         #endregion

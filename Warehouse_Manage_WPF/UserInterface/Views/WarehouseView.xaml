@@ -32,7 +32,7 @@
                           materialDesign:DataGridAssist.CellPadding="13 8 8 8" 
                           materialDesign:DataGridAssist.ColumnHeaderPadding="8"
                           SelectedItem="{Binding Path=SelectedDevice, Mode=TwoWay}"
-                          cal:Message.Attach="[Event MouseDoubleClick] = [Action MouseDoubleClick_DataGrid]">
+                          cal:Message.Attach="[Event MouseDoubleClick] = [Action SelectDeviceClick]">
 
                 <DataGrid.Columns>
                     
