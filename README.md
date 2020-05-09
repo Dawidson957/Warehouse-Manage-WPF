@@ -8,7 +8,7 @@ common data. The App has a ability to create projects, add devices to them or mo
 * [Material Design In XAML](http://materialdesigninxaml.net/) - Material Design UI Library
 * [Fluent Validation](https://fluentvalidation.net/) - Validation Library
 
-### Frameworks Versions
+### Frameworks Version
 * .NET Framework - 4.7.2
 * Caliburn Micro - 3.2.0
 * Entity Framework - 6.4.0
