@@ -2,9 +2,7 @@
 using DataAccess.DataAcc;
 using MaterialDesignThemes.Wpf;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Warehouse_Manage_WPF.UserInterface.EventModels;
@@ -53,9 +51,6 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
             foreach (var projectEnt in projectEnts)
                 Projects.Add(new ProjectModel(projectEnt, _customerAccess));
-
-
-            Console.WriteLine("Loaded Projects");
         }
 
         #endregion

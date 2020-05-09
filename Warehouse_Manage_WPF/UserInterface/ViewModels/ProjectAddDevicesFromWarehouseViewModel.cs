@@ -2,8 +2,6 @@
 using DataAccess.DataAcc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -71,9 +69,19 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         public BindableCollection<KeyValuePair<int, string>> comboSource { get; set; }
 
         private BindableCollection<int> _quantity;
-
-
         private int _selectedQuantity;
+        private KeyValuePair<int, string> _comboSelectedItem;
+
+
+        public BindableCollection<int> Quantity
+        {
+            get { return _quantity; }
+            set
+            {
+                _quantity = value;
+                NotifyOfPropertyChange(() => Quantity);
+            }
+        }
 
         public int SelectedQuantity
         {
@@ -86,34 +94,42 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             }
         }
 
-
-        public BindableCollection<int> Quantity
+        public KeyValuePair<int, string> ComboSelectedItem
         {
-            get { return _quantity; }
-            set 
-            { 
-                _quantity = value;
-                NotifyOfPropertyChange(() => Quantity);
+            get
+            {
+                return _comboSelectedItem;
             }
+            set
+            {
+                _comboSelectedItem = value;
+                NotifyOfPropertyChange(() => ComboSelectedItem);
+                NotifyOfPropertyChange(() => CanMoveDevice);
+            }
+        }
+
+        private void InitializeComboBox()
+        {
+            comboSource = new BindableCollection<KeyValuePair<int, string>>();
+            comboSource.Add(new KeyValuePair<int, string>(1, "Magazyn -> Projekt"));
+            comboSource.Add(new KeyValuePair<int, string>(2, "Projekt -> Magazyn"));
         }
 
         private void setQuantity()
         {
             int maxQuantity = 1;
 
-            if(ComboSelectedItem.Key == 1)
+            if (ComboSelectedItem.Key == 1)
             {
-                // Set quantity on warehouse selected item
                 try
                 {
                     maxQuantity = WarehouseSelectedDevice.Quantity;
                 }
-                catch(NullReferenceException) { }
-                
+                catch (NullReferenceException) { }
+
             }
-            else if(ComboSelectedItem.Key == 2)
+            else if (ComboSelectedItem.Key == 2)
             {
-                // Set quantity to project selected item
                 try
                 {
                     maxQuantity = ProjectSelectedDevice.Quantity;
@@ -130,29 +146,6 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
             for (int i = 1; i <= maxQuantity; i++)
                 Quantity.Add(i);
-        }
-
-        private void InitializeComboBox()
-        {
-            comboSource = new BindableCollection<KeyValuePair<int, string>>();
-            comboSource.Add(new KeyValuePair<int, string>(1, "Magazyn -> Projekt"));
-            comboSource.Add(new KeyValuePair<int, string>(2, "Projekt -> Magazyn"));
-        }
-
-        private KeyValuePair<int, string> _comboSelectedItem;
-
-        public KeyValuePair<int, string> ComboSelectedItem
-        {
-            get 
-            { 
-                return _comboSelectedItem; 
-            }
-            set 
-            { 
-                _comboSelectedItem = value;
-                NotifyOfPropertyChange(() => ComboSelectedItem);
-                NotifyOfPropertyChange(() => CanMoveDevice);
-            }
         }
 
         public bool CanMoveDevice
@@ -223,7 +216,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             }
             else
             {
-                MessageBox.Show("An error occured during exchanging devices");
+                MessageBox.Show("Wystąpił błąd podczas wymiany urządzeń. Spróbuj ponownie");
             }
         }
 

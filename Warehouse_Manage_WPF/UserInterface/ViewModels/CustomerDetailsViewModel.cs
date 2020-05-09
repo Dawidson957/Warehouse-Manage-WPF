@@ -1,10 +1,5 @@
 ﻿using Caliburn.Micro;
 using DataAccess.DataAcc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using Warehouse_Manage_WPF.UserInterface.EventModels;
 using Warehouse_Manage_WPF.UserInterface.Models;
@@ -105,7 +100,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
                 }
                 else
                 {
-                    MessageBox.Show("An error occured");
+                    MessageBox.Show("Błąd podczas zapisu danych. Spróbuj ponownie");
                 }
             }
             else

@@ -1,18 +1,13 @@
 ﻿using Caliburn.Micro;
 using DataAccess.DataAcc;
 using MaterialDesignThemes.Wpf;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using Warehouse_Manage_WPF.UserInterface.Models;
 using Warehouse_Manage_WPF.Validators;
 
 namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
-    public class NewDeviceViewModel : Screen
+	public class NewDeviceViewModel : Screen
     {
 		private IProducerAccess _producerAccess { get; set; }
 
@@ -68,9 +63,6 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         #endregion
 
 
-        /// <summary>
-        /// Controls for adding new producer form
-        /// </summary>
         #region NewProducerForm
 
         private string _producerName;
@@ -147,9 +139,6 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 		#endregion
 
 
-		/// <summary>
-		/// Controls for adding new device form
-		/// </summary>
 		#region NewDeviceForm
 
 		private string _deviceName;
@@ -159,7 +148,6 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 		private string _location;
 		private int _quantity;
 		
-
 
 		public string DeviceName
 		{

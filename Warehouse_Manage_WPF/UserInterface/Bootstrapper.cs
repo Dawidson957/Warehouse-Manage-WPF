@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using Caliburn.Micro;
 using DataAccess.DataAcc;
@@ -31,6 +29,7 @@ namespace Warehouse_Manage_WPF.UserInterface
                 .Singleton<IProjectAccess, ProjectAccess>()
                 .Singleton<ICustomerAccess, CustomerAccess>();
 
+            // Register all ViewModels in App
             GetType().Assembly.GetTypes()
                 .Where(type => type.IsClass)
                 .Where(type => type.Name.EndsWith("ViewModel"))

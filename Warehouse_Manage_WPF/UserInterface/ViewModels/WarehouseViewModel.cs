@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows;
 using Caliburn.Micro;
 using DataAccess.DataAcc;
@@ -84,7 +80,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             }
             else
             {
-                MessageBox.Show("No device found.");
+                MessageBox.Show("Błąd ładowania urządzenia. Spróbuj ponownie");
             }
                 
         }

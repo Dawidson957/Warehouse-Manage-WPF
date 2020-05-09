@@ -1,9 +1,5 @@
 ﻿using Caliburn.Micro;
 using DataAccess.DataAcc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Warehouse_Manage_WPF.UserInterface.EventModels;
@@ -11,7 +7,7 @@ using Warehouse_Manage_WPF.UserInterface.Models;
 
 namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
-    public class ProjectViewModel : Screen, IHandle<AddedNewDeviceToProjectEvent>, IHandle<DeviceCredentialsChangedEvent>, IHandle<ChangedProjectCredentialsEvent>
+	public class ProjectViewModel : Screen, IHandle<AddedNewDeviceToProjectEvent>, IHandle<DeviceCredentialsChangedEvent>, IHandle<ChangedProjectCredentialsEvent>
     {
 		private SimpleContainer _container { get; set; }
 
@@ -58,7 +54,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			}
 			else
 			{
-				MessageBox.Show("This project doesn't exists.");
+				MessageBox.Show("Podany projekt nie istnieje");
 			}
 		}
 

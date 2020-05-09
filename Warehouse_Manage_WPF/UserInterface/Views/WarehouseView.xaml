@@ -45,7 +45,6 @@
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                     
-                    <materialDesign:DataGridTextColumn Header="Poz." MaxLength="10" Binding="{Binding Id}"/>
                     <materialDesign:DataGridTextColumn Header="Nazwa" MaxLength="50" Binding="{Binding Name}"/>
                     <materialDesign:DataGridTextColumn Header="Numer artykułu" MaxLength="30" Binding="{Binding ArticleNumber}"/>
                     <materialDesign:DataGridTextColumn Header="Producent" MaxLength="30" Binding="{Binding ProducerName}"/>

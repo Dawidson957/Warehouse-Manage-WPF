@@ -1,9 +1,5 @@
 ﻿using Caliburn.Micro;
 using DataAccess.DataAcc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Warehouse_Manage_WPF.UserInterface.EventModels;
@@ -29,6 +25,9 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             _customerAccess = customerAccess;
             _projectAccess = projectAccess;
         }
+
+
+        #region Window Operations
 
         protected override async void OnViewLoaded(object view)
         {
@@ -82,6 +81,9 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             ProjectName = project.Name;
             Comment = project.Comment;
         }
+
+        #endregion
+
 
         #region Project Form
 
@@ -181,11 +183,11 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
                 if(resultTask)
                 {
                     _events.PublishOnUIThread(new ChangedProjectCredentialsEvent(project.Id));
-                    this.TryClose();
+                    TryClose();
                 }
                 else
                 {
-                    MessageBox.Show("An error occured.");
+                    MessageBox.Show("Wystąpił błąd podczas zapisu danych. Spróbuj ponownie");
                 }
             }
             else

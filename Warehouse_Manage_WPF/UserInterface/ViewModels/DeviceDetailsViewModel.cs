@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Caliburn.Micro;
 using System.Windows;
 using Warehouse_Manage_WPF.Validators;
-using Warehouse_Manage_WPF.UserInterface.Helpers;
 using Warehouse_Manage_WPF.UserInterface.Models;
 using DataAccess.DataAcc;
 using Warehouse_Manage_WPF.UserInterface.EventModels;
@@ -104,11 +99,11 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
                     this.TryClose();
                 }
                 else
-                    MessageBox.Show("An error occured.");
+                    MessageBox.Show("Wystąpił błąd podczas zapisu danych. Spróbuj ponownie");
             }
             else
             {
-                MessageBox.Show("Bad credentials.");
+                MessageBox.Show("Błąd walidacji danych");
             }
         }
 
@@ -126,7 +121,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             }
             else
             {
-                MessageBox.Show("An error occured.");
+                MessageBox.Show("Wystąpił błąd podczas zapisu danych. Spróbuj ponownie");
             }
         }
 

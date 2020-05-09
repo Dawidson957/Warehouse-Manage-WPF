@@ -1,12 +1,7 @@
 ﻿using DataAccess.DataAcc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using DataAccess.Entities;
 using Warehouse_Manage_WPF.UserInterface.Helpers;
-using Caliburn.Micro;
 
 namespace Warehouse_Manage_WPF.UserInterface.Models
 {
@@ -27,6 +22,36 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
         public int Quantity { get; set; }
 
         public int ProjectId { get; set; }
+
+
+        public DeviceModel(Device device, IProducerAccess producerAccess)
+        {
+            Id = device.Id;
+            Name = device.Name;
+            ArticleNumber = device.ArticleNumber;
+            ProducerName = device.Producer.Name;
+            Location = device.Location;
+            Quantity = device.Quantity;
+            ProjectId = device.ProjectID;
+            prodAcces = producerAccess;
+        }
+
+        public DeviceModel(IProducerAccess producerAccess)
+        {
+            prodAcces = producerAccess;
+        }
+
+        public DeviceModel(DeviceModel deviceModel)
+        {
+            Id = deviceModel.Id;
+            Name = deviceModel.Name;
+            ArticleNumber = deviceModel.ArticleNumber;
+            ProducerName = deviceModel.ProducerName;
+            Location = deviceModel.Location;
+            Quantity = deviceModel.Quantity;
+            ProjectId = deviceModel.ProjectId;
+            prodAcces = deviceModel.prodAcces;
+        }
 
         public async Task<Device> ConvertToDeviceEntity(bool clearIDs = false)
         {
@@ -65,36 +90,6 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
             int Id = await prodAcces.GetProducerId(this.ProducerName);
 
             return Id;
-        }
-
-        public DeviceModel(Device device, IProducerAccess producerAccess)
-        {
-            Id = device.Id;
-            Name = device.Name;
-            ArticleNumber = device.ArticleNumber;
-            ProducerName = device.Producer.Name;
-            Location = device.Location;
-            Quantity = device.Quantity;
-            ProjectId = device.ProjectID;
-            prodAcces = producerAccess;
-        }
-
-        public DeviceModel(IProducerAccess producerAccess)
-        {
-            prodAcces = producerAccess;
-        }
-
-        // Copy constructor
-        public DeviceModel(DeviceModel deviceModel)
-        {
-            Id = deviceModel.Id;
-            Name = deviceModel.Name;
-            ArticleNumber = deviceModel.ArticleNumber;
-            ProducerName = deviceModel.ProducerName;
-            Location = deviceModel.Location;
-            Quantity = deviceModel.Quantity;
-            ProjectId = deviceModel.ProjectId;
-            prodAcces = deviceModel.prodAcces;
         }
     }
 }

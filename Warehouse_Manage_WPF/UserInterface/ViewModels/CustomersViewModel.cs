@@ -1,9 +1,5 @@
 ﻿using Caliburn.Micro;
 using DataAccess.DataAcc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Warehouse_Manage_WPF.UserInterface.EventModels;
@@ -28,6 +24,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             _customers = customerAccess;
             NewCustomer = new CustomerModel();
         }
+
 
         #region Window Operations
 
@@ -75,6 +72,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         #endregion
 
+
         #region New Customer Form
 
         private CustomerModel _newCustomer;
@@ -112,7 +110,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
                 }
                 else
                 {
-                    MessageBox.Show("An error occured.");
+                    MessageBox.Show("Wystąpił błąd podczas zapisu danych. Spróbuj ponownie");
                 }
             }
             else

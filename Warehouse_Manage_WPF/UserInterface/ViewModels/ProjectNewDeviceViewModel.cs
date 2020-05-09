@@ -1,9 +1,5 @@
 ﻿using Caliburn.Micro;
 using DataAccess.DataAcc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Warehouse_Manage_WPF.UserInterface.EventModels;
@@ -12,7 +8,7 @@ using Warehouse_Manage_WPF.Validators;
 
 namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
-    public class ProjectNewDeviceViewModel : Screen
+	public class ProjectNewDeviceViewModel : Screen
     {
 		private IProducerAccess _producerAccess { get; set; }
 
@@ -150,7 +146,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 				if(resultTask)
 				{
 					_events.PublishOnUIThread(new AddedNewDeviceToProjectEvent());
-					this.TryClose();
+					TryClose();
 				}
 				else
 				{
@@ -159,7 +155,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			}
 			else
 			{
-				MessageBox.Show("Błąd walidacji");
+				MessageBox.Show("Błąd walidacji danych");
 			}
 		}
 

@@ -1,9 +1,5 @@
 ﻿using Caliburn.Micro;
 using DataAccess.DataAcc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Warehouse_Manage_WPF.UserInterface.EventModels;
@@ -12,7 +8,7 @@ using Warehouse_Manage_WPF.Validators;
 
 namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
-    public class NewProjectViewModel : Screen
+	public class NewProjectViewModel : Screen
     {
 		private ICustomerAccess _customerAccess { get; set; }
 
@@ -109,33 +105,31 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			var projectFormValidator = new ProjectFormValidator();
 			var projectModel = new ProjectModel(_customerAccess)
 			{
-				Name = this.ProjectName,
-				Comment = this.Comment,
-				CustomerName = this.SelectedCustomer
+				Name = ProjectName,
+				Comment = Comment,
+				CustomerName = SelectedCustomer
 			};
 
 			var validationResult = projectFormValidator.Validate(projectModel);
 
 			if(validationResult.IsValid)
 			{
-				// Save Project
 				var projectEntity = await projectModel.ConvertToProjectEntity();
-
 				var addProjectResult = await _projectAccess.AddProject(projectEntity);
 
 				if(addProjectResult)
 				{
 					_events.PublishOnUIThread(new NewProjectAddedEvent());
-					this.TryClose();
+					TryClose();
 				}
 				else
 				{
-					MessageBox.Show("Wystapil blad");
+					MessageBox.Show("Wystąpił błąd podczas zapisu danych. Spróbuj ponownie");
 				}
 			}
 			else
 			{
-				MessageBox.Show("blad walidacji danych");
+				MessageBox.Show("Błąd walidacji danych");
 			}
 		}
 

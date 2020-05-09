@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Caliburn.Micro;
-using Warehouse_Manage_WPF.UserInterface.Models;
-using System.Windows;
-using System.Windows.Input;
+﻿using Caliburn.Micro;
 
 namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {

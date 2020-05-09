@@ -1,8 +1,4 @@
 ﻿using DataAccess.DataAcc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using DataAccess.Entities;
 using Warehouse_Manage_WPF.UserInterface.Helpers;
@@ -34,6 +30,11 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
             _customerAccess = customerAccess;
         }
 
+        public ProjectModel(ICustomerAccess customerAccess)
+        {
+            _customerAccess = customerAccess;
+        }
+
         public async Task<Project> ConvertToProjectEntity()
         {
             var projectEntity = new Project
@@ -53,11 +54,6 @@ namespace Warehouse_Manage_WPF.UserInterface.Models
             int customerId = await _customerAccess.GetCustomerId(customerName);
 
             return customerId;
-        }
-
-        public ProjectModel(ICustomerAccess customerAccess) 
-        {
-            _customerAccess = customerAccess;
         }
     }
 }
