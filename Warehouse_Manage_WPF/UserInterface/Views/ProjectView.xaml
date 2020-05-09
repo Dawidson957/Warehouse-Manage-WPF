@@ -26,14 +26,14 @@
             <!-- Project Title -->
             <TextBlock Text="{Binding projectModel.Name}" Style="{StaticResource MaterialDesignHeadline1TextBlock}" FontSize="30"  Margin="10 10 0 0" HorizontalAlignment="Left"/>
 
-            <!-- TODO: Change Button action to normal -->
+            <!-- PopUp Menu -->
             <materialDesign:PopupBox Margin="0 10 10 0" Foreground="Black" PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" HorizontalAlignment="Right" >
                 <StackPanel Width="250">
-                    <Button Content="Dodaj nowe urządzenie" cal:Message.Attach="[Event Click] = [Action AddNewDevice]"/>
-                    <Button Content="Dodaj urządzenie z magazynu" cal:Message.Attach="[Event Click] = [Action ExchangeDevices]"/>
-                    <Button Content="Edytuj" cal:Message.Attach="[Event Click] = [Action EditProject]"/>
+                    <Button x:Name="AddNewDevice" Content="Dodaj nowe urządzenie" />
+                    <Button x:Name="ExchangeDevices" Content="Dodaj urządzenie z magazynu" />
+                    <Button x:Name="EditProject" Content="Edytuj" />
                     <Separator/>
-                    <Button Content="Zamknij projekt" cal:Message.Attach="[Event Click] = [Action CloseProject]"/>
+                    <Button x:Name="CloseProject" Content="Zamknij projekt" />
                 </StackPanel>
             </materialDesign:PopupBox>
             

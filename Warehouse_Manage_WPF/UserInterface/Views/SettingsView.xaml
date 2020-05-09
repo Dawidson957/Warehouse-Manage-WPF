@@ -27,15 +27,7 @@
                         <TextBlock Text="Klienci" VerticalAlignment="Center" FontSize="16" Foreground="Black" Margin="10 0 0 0"/>
                     </StackPanel>
                 </ListViewItem>
-                
-                <!-- Second element -->
-                <ListViewItem Height="50" Foreground="White">
-                    <StackPanel Orientation="Horizontal">
-                        <materialDesign:PackIcon Kind="CityVariantOutline" Width="25" Height="25" Foreground="Black" VerticalAlignment="Center"/>
-                        <TextBlock Text="Producenci" VerticalAlignment="Center" FontSize="16" Foreground="Black" Margin="10 0 0 0"/>
-                    </StackPanel>
-                </ListViewItem>
-                
+
             </ListView>
         </StackPanel>
 
