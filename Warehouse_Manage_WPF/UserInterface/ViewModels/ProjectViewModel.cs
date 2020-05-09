@@ -42,14 +42,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
 		#region Window Operations
 
-
-		public void LoadProject(ProjectModel project)
-		{
-			projectModel = project;
-			LoadProjectInf();
-		}
-
-		public async Task LoadProject2(int projectId)
+		public async Task LoadProject(int projectId)
 		{
 			var project = await _projectAccess.GetProjectById(projectId);
 
@@ -67,28 +60,6 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			{
 				MessageBox.Show("This project doesn't exists.");
 			}
-		}
-
-		private async Task LoadProjectInfo(int Id)
-		{
-			var project = await _projectAccess.GetProjectById(Id);
-
-			if(project != null)
-			{
-				projectModel = new ProjectModel(project, _customerAccess);
-				LoadProjectInf();
-			}
-			else
-			{
-				MessageBox.Show("This project doesn't exists.");
-			}
-		}
-
-		private void LoadProjectInf()
-		{
-			CustomerName = projectModel.CustomerName;
-			ProjectStatus = projectModel.Status;
-			Comment = projectModel.Comment;
 		}
 
 		private async Task LoadDevices()
@@ -132,13 +103,12 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 		public async void ExchangeDevices()
 		{
 			var ProjectAddDeviesFromWarehouseVM = _container.GetInstance<ProjectAddDevicesFromWarehouseViewModel>();
-			await ProjectAddDeviesFromWarehouseVM.LoadProjectDevices(this.projectModel.Id);
+			await ProjectAddDeviesFromWarehouseVM.LoadProjectDevices(projectModel.Id);
 			_windowManager.ShowDialog(ProjectAddDeviesFromWarehouseVM);
 		}
 
 		public void EditProject()
 		{
-			// Show edit window
 			var projectDetailsVM = _container.GetInstance<ProjectDetailsViewModel>();
 			projectDetailsVM.LoadProject(projectModel);
 			_windowManager.ShowDialog(projectDetailsVM);
@@ -246,11 +216,17 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
 		public async void Handle(ChangedProjectCredentialsEvent changedProjectCredentialsEvent)
 		{
-			await LoadProject2(changedProjectCredentialsEvent.ProjectId);
+			await LoadProject(changedProjectCredentialsEvent.ProjectId);
 		}
 
-		#endregion
+        #endregion
 
-	}
+
+        #region Only For Testing
+
+		public async void LoadDevices_Run() { await LoadDevices(); }
+
+        #endregion
+    }
 }
 
