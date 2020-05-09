@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Warehouse_Manage_WPF.Tests", "Warehouse_Manage_WPF.Tests\Warehouse_Manage_WPF.Tests.csproj", "{F3113F36-5891-4B6C-8748-55B5EF5558C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Tests", "DataAccess.Tests\DataAccess.Tests.csproj", "{2D72739F-C139-48C1-A24C-66520EACCA77}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,10 +27,6 @@ Global
 		{F3113F36-5891-4B6C-8748-55B5EF5558C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3113F36-5891-4B6C-8748-55B5EF5558C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3113F36-5891-4B6C-8748-55B5EF5558C3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2D72739F-C139-48C1-A24C-66520EACCA77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2D72739F-C139-48C1-A24C-66520EACCA77}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2D72739F-C139-48C1-A24C-66520EACCA77}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2D72739F-C139-48C1-A24C-66520EACCA77}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

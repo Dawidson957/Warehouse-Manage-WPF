@@ -83,7 +83,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             {
                 var mainViewConductor = (MainViewModel)this.Parent;
                 var projectVM = _container.GetInstance<ProjectViewModel>();
-                await projectVM.LoadProject2(SelectedProject.Id);
+                await projectVM.LoadProject(SelectedProject.Id);
                 mainViewConductor.DeactivateItem(mainViewConductor.ActiveItem, true);
                 mainViewConductor.ActivateItem(projectVM);
             }

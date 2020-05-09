@@ -19,11 +19,5 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             var customersVM = _container.GetInstance<CustomersViewModel>();
             ActivateItem(customersVM);
         }
-
-        protected override void OnViewLoaded(object view)
-        {
-            base.OnViewLoaded(view);
-            Console.WriteLine("Active item: " + this.ActiveItem.ToString());
-        }
     }
 }
