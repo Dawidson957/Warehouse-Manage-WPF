@@ -118,7 +118,7 @@
                     </ListViewItem>
 
                     <!-- Fourth Item (GitHub) -->
-                    <ListViewItem Height="60" Foreground="White">
+                    <ListViewItem Height="60" Foreground="White" cal:Message.Attach="[Event PreviewMouseLeftButtonDown] = [Action OpenGitHub]">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="GithubBox" Width="25" Height="25" Margin="10" VerticalAlignment="Center"/>
                             <TextBlock Text="GitHub" VerticalAlignment="Center" Margin="20 10" FontSize="16"/>

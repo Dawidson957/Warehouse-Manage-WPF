@@ -42,6 +42,12 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             ChangeActiveItem(_simpleContainer.GetInstance<ProjectListViewModel>(), true);
         }
 
+        public void OpenGitHub()
+        {
+            string URL = "https://github.com/Dawidson957/Warehouse-Manage-WPF";
+            System.Diagnostics.Process.Start(URL);
+        }
+
         #endregion
 
 
