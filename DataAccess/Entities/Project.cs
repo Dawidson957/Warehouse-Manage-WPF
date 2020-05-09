@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace DataAccess.Entities
 {
@@ -21,6 +17,5 @@ namespace DataAccess.Entities
         public Customer Customer { get; set; }
 
         public virtual ICollection<Device> Devices { get; set; }
-
     }
 }

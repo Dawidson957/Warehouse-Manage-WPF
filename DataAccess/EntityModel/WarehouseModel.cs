@@ -1,9 +1,7 @@
 namespace DataAccess.EntityModel
 {
     using DataAccess.Entities;
-    using System;
     using System.Data.Entity;
-    using System.Linq;
     using DataAccess.EntitiesConfiguration;
 
     public class WarehouseModel : DbContext
@@ -24,11 +22,12 @@ namespace DataAccess.EntityModel
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
             modelBuilder.Configurations.Add(new CustomerConfiguration());
             modelBuilder.Configurations.Add(new DeviceConfiguration());
             modelBuilder.Configurations.Add(new ProducerConfiguration());
             modelBuilder.Configurations.Add(new ProjectConfiguration());
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

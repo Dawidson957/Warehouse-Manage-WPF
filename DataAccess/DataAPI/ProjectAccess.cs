@@ -4,12 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccess.DataAcc
 {
-
     public class ProjectAccess : IProjectAccess
     {
 
@@ -103,6 +101,5 @@ namespace DataAccess.DataAcc
 
             return true;
         }
-
     }
 }

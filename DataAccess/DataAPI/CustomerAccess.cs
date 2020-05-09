@@ -4,14 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccess.DataAcc
 {
     public class CustomerAccess : ICustomerAccess
     {
-
         public async Task<List<Customer>> GetCustomers()
         {
             List<Customer> customers = null;

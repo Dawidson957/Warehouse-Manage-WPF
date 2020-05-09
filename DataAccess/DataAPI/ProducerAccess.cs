@@ -4,14 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DataAccess.DataAcc
 {
     public class ProducerAccess : IProducerAccess
     {
-
         public async Task<List<string>> GetProducerNamesAll()
         {
             List<string> producers = null;
@@ -78,6 +76,5 @@ namespace DataAccess.DataAcc
 
             return Id;
         }
-
     }
 }
