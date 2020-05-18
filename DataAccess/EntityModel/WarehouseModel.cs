@@ -7,7 +7,7 @@ namespace DataAccess.EntityModel
     public class WarehouseModel : DbContext
     {
         public WarehouseModel()
-            : base("name=WarehouseModel1")
+            : base("name=WarehouseDBAzure")
         {
         }
 
