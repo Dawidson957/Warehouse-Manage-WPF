@@ -65,29 +65,12 @@ namespace Warehouse_Manage_WPF.Tests.UserInterfaceTests.ViewModelsTests
             var mainVM = new MainViewModel(_container, windowManager);
 
             // Act
-            if(mainVM.IsInitialized)
-            {
-                mainVM.NewDeviceViewOpen();
-            }
+            mainVM.NewDeviceViewOpen();
+            
 
             // Assert
             Assert.IsType<NewDeviceViewModel>(mainVM.ActiveItem);
         }
 
-        [Fact]
-        public void ProjectListViewOpen_Test()
-        {
-            // Arrange
-            var mainVM = new MainViewModel(_container, windowManager);
-
-            // Act
-            if (mainVM.IsInitialized)
-            {
-                mainVM.ProjectListViewOpen();
-            }
-
-            // Assert
-            Assert.IsType<ProjectListViewModel>(mainVM.ActiveItem);
-        }
     }
 }

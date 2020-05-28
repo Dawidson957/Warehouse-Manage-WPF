@@ -65,16 +65,16 @@ namespace Warehouse_Manage_WPF.Tests.UserInterfaceTests.ViewModelsTests
             
         }
 
-        [Fact]
-        public void LoadSnackbar_Test()
-        {
-            // Act 
-            var newDeviceVM = new NewDeviceViewModel(_producerAccess, _deviceAccess);
+        //[Fact]
+        //public void LoadSnackbar_Test()
+        //{
+        //    // Act 
+        //    var newDeviceVM = new NewDeviceViewModel(_producerAccess, _deviceAccess);
 
-            // Assert
-            Assert.IsType<Snackbar>(newDeviceVM.SnackbarNotification);
-            Assert.Null(newDeviceVM.SnackbarNotification.MessageQueue);
-        }
+        //    // Assert
+        //    Assert.IsType<Snackbar>(newDeviceVM.SnackbarNotification);
+        //    Assert.Null(newDeviceVM.SnackbarNotification.MessageQueue);
+        //}
 
         [Fact]
         public void SaveNewProducer_Test()

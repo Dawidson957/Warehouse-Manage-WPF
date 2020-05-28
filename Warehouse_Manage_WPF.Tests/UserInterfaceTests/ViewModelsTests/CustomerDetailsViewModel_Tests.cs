@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using Caliburn.Micro;
 using DataAccess.DataAcc;
 using DataAccess.Entities;
 using Moq;
+using Warehouse_Manage_WPF.UserInterface;
 using Warehouse_Manage_WPF.UserInterface.Models;
 using Warehouse_Manage_WPF.UserInterface.ViewModels;
 using Xunit;
@@ -31,6 +35,7 @@ namespace Warehouse_Manage_WPF.Tests.UserInterfaceTests.ViewModelsTests
             var eventAggregatorMock = new Mock<IEventAggregator>();
             _events = eventAggregatorMock.Object;
         }
+
 
         [Fact]
         public void LoadCustomer_Test()
