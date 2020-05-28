@@ -80,8 +80,8 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         public CustomerModel NewCustomer
         {
             get { return _newCustomer; }
-            set 
-            { 
+            set
+            {
                 _newCustomer = value;
                 NotifyOfPropertyChange(() => NewCustomer);
             }
@@ -95,7 +95,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             // For testing
             CustomerValidationResult = validationResult.IsValid;
 
-            if(validationResult.IsValid)
+            if (validationResult.IsValid)
             {
                 var customerEntity = NewCustomer.ConvertToCustomerEntity();
                 var resultTask = await _customers.AddCustomer(customerEntity);
@@ -103,7 +103,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
                 // For testing
                 CustomerAddResult = resultTask;
 
-                if(resultTask)
+                if (resultTask)
                 {
                     ClearFields();
                     await LoadCustomers();
@@ -153,5 +153,6 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         public async void LoadCustomers_Run() { await LoadCustomers(); }
 
         #endregion
+
     }
 }

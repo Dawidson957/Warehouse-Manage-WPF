@@ -12,5 +12,6 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
             var customersVM = _container.GetInstance<CustomersViewModel>();
             ActivateItem(customersVM);
         }
+
     }
 }

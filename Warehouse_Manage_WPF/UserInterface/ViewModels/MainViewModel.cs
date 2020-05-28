@@ -8,7 +8,6 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
         private IWindowManager _windowManager { get; set; }
 
-
         public MainViewModel(SimpleContainer simpleContainer, IWindowManager windowManager)
         {
             _simpleContainer = simpleContainer;

@@ -8,7 +8,7 @@ using Warehouse_Manage_WPF.UserInterface.Models;
 namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 {
 	public class ProjectViewModel : Screen, IHandle<AddedNewDeviceToProjectEvent>, IHandle<DeviceCredentialsChangedEvent>, IHandle<ChangedProjectCredentialsEvent>
-    {
+	{
 		private SimpleContainer _container { get; set; }
 
 		private IProjectAccess _projectAccess { get; set; }
@@ -22,7 +22,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 		private IWindowManager _windowManager { get; set; }
 
 
-		public ProjectViewModel(SimpleContainer simpleContainer, IEventAggregator eventAggregator, IWindowManager windowManager, 
+		public ProjectViewModel(SimpleContainer simpleContainer, IEventAggregator eventAggregator, IWindowManager windowManager,
 			IProjectAccess projectAccess, IDeviceAccess deviceAccess, ICustomerAccess customerAccess, IProducerAccess producerAccess)
 		{
 			_container = simpleContainer;
@@ -42,7 +42,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 		{
 			var project = await _projectAccess.GetProjectById(projectId);
 
-			if(project != null)
+			if (project != null)
 			{
 				projectModel = new ProjectModel(project, _customerAccess);
 
@@ -112,7 +112,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
 		public void CloseProject()
 		{
-			var mainVM = (MainViewModel) this.Parent;
+			var mainVM = (MainViewModel)this.Parent;
 			var projectListVM = _container.GetInstance<ProjectListViewModel>();
 			mainVM.ActivateItem(projectListVM);
 		}
@@ -129,8 +129,8 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 		public string CustomerName
 		{
 			get { return _customerName; }
-			set 
-			{ 
+			set
+			{
 				_customerName = value;
 				NotifyOfPropertyChange(() => CustomerName);
 			}
@@ -139,8 +139,8 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 		public string ProjectStatus
 		{
 			get { return _projectStatus; }
-			set 
-			{ 
+			set
+			{
 				_projectStatus = value;
 				NotifyOfPropertyChange(() => ProjectStatus);
 			}
@@ -149,8 +149,8 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 		public string Comment
 		{
 			get { return _comment; }
-			set 
-			{ 
+			set
+			{
 				_comment = value;
 				NotifyOfPropertyChange(() => Comment);
 			}
@@ -178,7 +178,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 		public DeviceModel SelectedDevice
 		{
 			get { return _selectedDevice; }
-			set 
+			set
 			{
 				_selectedDevice = value;
 				NotifyOfPropertyChange(() => SelectedDevice);
@@ -187,7 +187,7 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 
 		public void MouseDoubleClick_DataGrid()
 		{
-			if(SelectedDevice != null)
+			if (SelectedDevice != null)
 			{
 				var deviceDetailsVM = _container.GetInstance<DeviceDetailsViewModel>();
 				deviceDetailsVM.LoadDevice(SelectedDevice);
@@ -215,14 +215,15 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
 			await LoadProject(changedProjectCredentialsEvent.ProjectId);
 		}
 
-        #endregion
+		#endregion
 
 
-        #region Only For Testing
+		#region Only For Testing
 
 		public async void LoadDevices_Run() { await LoadDevices(); }
 
-        #endregion
-    }
+		#endregion
+
+	}
 }
 

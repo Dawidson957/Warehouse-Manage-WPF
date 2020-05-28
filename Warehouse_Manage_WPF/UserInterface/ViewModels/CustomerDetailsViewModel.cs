@@ -119,5 +119,6 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         public bool CustomerUpdateResult { get; private set; } = false;
 
         #endregion
+
     }
 }

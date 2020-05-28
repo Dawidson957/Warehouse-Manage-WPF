@@ -96,5 +96,6 @@ namespace Warehouse_Manage_WPF.UserInterface.ViewModels
         }
 
         #endregion
+
     }
 }

@@ -10,7 +10,6 @@ namespace DataAccess.DataAcc
 {
     public class ProjectAccess : IProjectAccess
     {
-
         public async Task<Project> GetProjectById(int Id)
         {
             Project project = null;
